@@ -7,7 +7,7 @@
     </ul> {% endcomment %}
 
     <!-- Page Content -->
-    <div class="container fsm_container" id="fsm_container">
+    <div class="container">
 
         <!-- Portfolio Item Heading -->
         <h1 class="my-4">Beige & Daisy's
@@ -18,19 +18,47 @@
         <div class="row">
             <div class="col-md-7 mb-4 img-set">
                 {% load staticfiles %}
-               {% comment %} <img class="img-fluid" src="{% static 'img/img1.png' %}" alt="" height="500px"> {% endcomment %}
-               <img class="img-fluid img-share-height img-share-width" src="{% static 'img/img1.png' %}" alt="">
-               <div class="img-overlay-text">
+                {% comment %} <img class="img-fluid" src="{% static 'img/img1.png' %}" alt="" height="500px"> {% endcomment %}
+                <img class="img-fluid img-share-height img-share-width img_modal_origin" src="{% static 'img/img1.png' %}" alt="">
+                <div class="modal-parent">
+                    <div class="modal_frame">
+                        <div class="video-wrapper">
+                                <img class="img_frame" src="{% static 'img/img1.png' %}">
+                                <div class="img_frame_caption">
+                                    <h3>내용1</h3>
+                                    <h5>내용2</h5>
+                                </div>
+                        </div>
+                    </div>
+                    {% comment %} <a class="close-modal"></a>  {% endcomment %}
+                </div>
+                <div class="img-overlay-text img_modal_origin">
                     <h3>산-샘플제목-1</h3>
                     <h5>2019.4.3 오후 6시 54분</h5>
-                    <br>
-                    <button class="btn btn-custom">삭제</button>
-               </div>
+                </div>
+                <button class="btn btn-custom" onclick="">삭제</button>
             </div>
 
-            <div class="col-md-5 mb-4">
+            <div class="col-md-5 mb-4 img-set">
                 {% comment %} <img class="img-fluid" src="{% static 'img/img2.png' %}" alt="" height="500px"> {% endcomment %}
-                <img class="img-fluid img-share-height img-share-width" src="{% static 'img/img2.png' %}" alt="">
+                <img class="img-fluid img-share-height img-share-width img_modal_origin" src="{% static 'img/img2.png' %}" alt="">
+                <div class="modal-parent">
+                    <div class="modal_frame">
+                        <div class="video-wrapper">
+                                <img class="img_frame" src="{% static 'img/img2.png' %}">
+                                <div class="img_frame_caption">
+                                    <h3>내용1</h3>
+                                    <h5>내용2</h5>
+                                </div>
+                        </div>
+                    </div>
+                    {% comment %} <a class="close-modal"></a>  {% endcomment %}
+                </div>
+                <div class="img-overlay-text img_modal_origin">
+                    <h3>바다-샘플제목-2</h3>
+                    <h5>2019.4.4 오후 4시 38분</h5>
+                </div>
+                <button class="btn btn-custom" onclick="">삭제</button>
             </div>
         </div>
         <!-- /.row -->
@@ -61,6 +89,4 @@
         </div>
         <!-- /.row -->
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock content %}

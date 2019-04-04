@@ -1,4 +1,4 @@
-(function ($) {
+$(function ($) {
   "use strict";
 
   // Preloader (if the #preloader div exists)
@@ -11,7 +11,7 @@
   });
 
   // Initiate the wowjs animation library
-  new WOW().init();
+  //new WOW().init();
 
   // Header scroll class
   $(window).scroll(function() {
@@ -78,4 +78,34 @@
       }
     });
   });
-})(jQuery);
+});
+
+/*******************************************************
+ 
+          custom modal effects for home-images        
+
+*******************************************************/
+$(function(){
+  var img_modal = $(".img_modal_origin"),
+      modal = $(".modal-parent"),
+      closeButton = $(".close-modal");
+
+  function init(){
+      if($(".img_modal_origin").length){
+          img_modal.on("click", openModal);
+          modal.on("click", closeModal);
+          closeButton.on("click", closeModal);
+      }
+  }
+
+  function openModal(){
+    modal = $(this).parents("div").children('.modal-parent');
+    modal.addClass("show");
+  }
+
+  function closeModal(){
+      modal.removeClass("show");
+  }
+
+  init();
+});
