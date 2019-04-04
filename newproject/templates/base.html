@@ -10,21 +10,25 @@
             My Amazing Site
         {% endblock title %}
     </title>
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
-    {% load staticfiles %}
-    <!-- Libraries CSS Files -->
-    <link rel='stylesheet' type="text/css" href='{% static "css/font-awesome.min.css" %}'>
+    {% block resources %}
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
-    <!-- Main Stylesheet File -->
-    <link rel='stylesheet' type="text/css" href='{% static "css/style.css" %}' />
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+        {% load staticfiles %}
+        <!-- Libraries CSS Files -->
+        <link rel='stylesheet' type="text/css" href='{% static "css/font-awesome.min.css" %}'>
+
+        <!-- Main Stylesheet File -->
+        <link rel='stylesheet' type="text/css" href='{% static "css/style.css" %}' />
+    {% endblock resources %}
+    
 </head>
 <body>
     <header id='header' class='fixed-top'>

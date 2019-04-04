@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app1_ara',
-    'app1_jinju',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -131,6 +131,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "registration", "static"),
 )
 
 # STATIC_ROOT collectstatic 명령어를 통해서 수집되는 static 파일들이 위치하는 곳
