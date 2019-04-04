@@ -83,7 +83,8 @@ WSGI_APPLICATION = 'newproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
     }
 }
 
@@ -125,8 +126,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+# static 파일에 접근하기위한 url을 작성하는 곳
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+# STATIC_ROOT collectstatic 명령어를 통해서 수집되는 static 파일들이 위치하는 곳
 # 운영 모드에서는 static 파일들의 위치를 지정해주어야한다. 
 # python manage.py collectstatic을 실행하면 BASE_DIR/www_dir/static에 정적 파일들이 모아진다.
 STATIC_ROOT = os.path.join(BASE_DIR, 'www_dir', 'static')
