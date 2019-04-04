@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+    {% comment %} <ul>
+        {% for key, value in verbose_dict.items %}
+            <li>{{forloop.counter}}. <a href='{% url key|add:":index" %}'>{{ value }}</a></li>
+        {% endfor %}
+    </ul> {% endcomment %}
+
+    <!-- Page Content -->
+    <div class="container fsm_container" id="fsm_container">
+
+        <!-- Portfolio Item Heading -->
+        <h1 class="my-4">Beige & Daisy's
+            <small>Django Applications</small>
+        </h1>
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+            <div class="col-md-7 mb-4 img-set">
+                {% load staticfiles %}
+               {% comment %} <img class="img-fluid" src="{% static 'img/img1.png' %}" alt="" height="500px"> {% endcomment %}
+               <img class="img-fluid img-share-height" src="{% static 'img/img1.png' %}" alt="">
+               <div class="img-overlay-text">
+                    <h3>산-샘플제목-1</h3>
+                    <h5>2019.4.3 오후 6시 54분</h5>
+                    <br>
+                    <button class="btn btn-custom">삭제</button>
+               </div>
+            </div>
+
+            <div class="col-md-5 mb-4">
+                {% comment %} <img class="img-fluid" src="{% static 'img/img2.png' %}" alt="" height="500px"> {% endcomment %}
+                <img class="img-fluid img-share-height" src="{% static 'img/img2.png' %}" alt="">
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <h3 class="my-4">Related Projects</h3>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 mb-4">
+            <a href="#">
+                    <img class="img-fluid" src="{% static 'img/img3.png' %}" alt="">
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-4">
+            <a href="#">
+                    <img class="img-fluid" src="{% static 'img/img3.png' %}" alt="">
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-4">
+            <a href="#">
+                    <img class="img-fluid" src="{% static 'img/img3.png' %}" alt="">
+                </a>
+            </div>
+            {% comment %} <div class="col-md-3 col-sm-6 mb-4">
+            <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div> {% endcomment %}
+        </div>
+        <!-- /.row -->
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}
