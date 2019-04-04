@@ -21,4 +21,5 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('app1_ara/', include('app1_ara.urls')),
+    path('app1_jinju/', include('app1_jinju.urls')),
 ]
