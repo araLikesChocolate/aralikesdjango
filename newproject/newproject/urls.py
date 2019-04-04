@@ -19,6 +19,7 @@ from newproject import views
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
+    path('2/', views.HomeView2.as_view(), name='home2'),
     path('admin/', admin.site.urls),
     path('app1_ara/', include('app1_ara.urls')),
     path('app1_jinju/', include('app1_jinju.urls')),

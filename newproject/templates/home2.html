@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block resources %}
+ {{ block.super }}
+     {% load static %}
+    <script src="{% static 'js/lottie.min.js' %}"></script>
+{% endblock resources %}
+{% block content %}
+
+
+    {% comment %} <ul>
+        {% for key, value in verbose_dict.items %}
+            <li>{{forloop.counter}}. <a href='{% url key|add:":index" %}'>{{ value }}</a></li>
+        {% endfor %}
+    </ul> {% endcomment %}
+
+    <!-- Page Content -->
+    <div class="container fsm_container" id="fsm_container">
+
+        <!-- Portfolio Item Heading -->
+        <h1 class="my-4">Beige & Daisy's
+            <small>Django Applications</small>
+        </h1>
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+            <div class="col-md-7 mb-4 img-set">
+                 <div style="width:1067px;height:600px"  class="lottie" data-animation-path="animation/" data-anim-loop="true" data-name="ninja"></div>
+                <img class="img-fluid img-share-height" src="{% static 'img/img1.png' %}" alt="">
+            </div>
+
+        <!-- /.row -->
+
+
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}
