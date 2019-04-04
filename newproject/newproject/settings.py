@@ -91,8 +91,8 @@ DATABASES = {
         # 'NAME': 'newproject',
         # 'USER': 'ara',
         # 'PASSWORD': '1234',
-        # 'HOST': '192.168.22.100',
-        # 'POST': '3308',
+        # 'HOST': '192.168.22.119',
+        # 'POST': '3307',
     }
 }
 
