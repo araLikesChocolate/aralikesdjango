@@ -83,7 +83,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        #'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
+        # 'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
+
+
+         ################# mariadb ###################
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'newproject',
+        # 'USER': 'ara',
+        # 'PASSWORD': '1234',
+        # 'HOST': '192.168.22.100',
+        # 'POST': '3308',
     }
 }
 
