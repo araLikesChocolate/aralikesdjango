@@ -22,6 +22,9 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         
+        <!--Google Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         {% load staticfiles %}
         <!-- Libraries CSS Files -->
         <link rel='stylesheet' type="text/css" href='{% static "css/font-awesome.min.css" %}'>
@@ -35,6 +38,7 @@
         <!-- Template Main Javascript File -->
         <script src="{% static 'js/main.js' %}"></script>
 
+
     {% endblock resources %}
     
 </head>
@@ -42,7 +46,7 @@
     <header id='header' class='fixed-top'>
         <div class="container">
 
-            <div class="logo float-left">
+            <div class="logo float-left" id="logo">
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
                 <a href="#intro" class="scrollto"><img src="{% static 'img/logo.png' %}" alt="" class="img-fluid"></a>
@@ -77,9 +81,14 @@
             </nav>
         </div>
     </header>
+    <a class="account_circle" href="#"><i class="material-icons">account_circle</i></a>
     <div id='content'>
         {% block content %}
         {% endblock content %}
     </div>
+    <footer id='footer' class="fixed-bottom">
+        {% block footer %}
+        {% endblock footer %}
+    </footer>
 </body>
 </html>

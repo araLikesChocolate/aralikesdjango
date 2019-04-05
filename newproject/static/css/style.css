@@ -103,6 +103,13 @@
   max-height: 26px;
 }
 
+@media (max-width: 991px) {
+  #logo {
+    float: unset !important;
+    text-align: center !important;
+  }
+}
+
 .main-pages {
   margin-top: 60px;
 }
@@ -226,7 +233,9 @@
   bottom: 0;
   z-index: 9999;
   overflow-y: auto;
-  left: -260px;
+  /* left: -260px; */
+  /* nav 방향 바꾸기 */
+  right: -260px;
   width: 260px;
   padding-top: 18px;
   /* background: rgba(19, 39, 57, 0.8); */
@@ -283,8 +292,10 @@
 
 .mobile-nav-toggle {
   position: fixed;
-  right: 0;
   top: 0;
+  /* right: 0; */
+  /* 버튼 좌우 위치 변경 */
+  left: 10px;
   z-index: 9998;
   border: 0;
   background: none;
@@ -297,7 +308,7 @@
 }
 
 .mobile-nav-toggle i {
-  margin: 18px 18px 0 0;
+  margin: 15px 15px 0 0;
   /* color: #004289; */
   color: #000000;
 }
@@ -310,7 +321,7 @@
   left: 0;
   position: fixed;
   /* background: rgba(19, 39, 57, 0.8); */
-  background: rgba(32, 32, 32, 0.1);
+  background: rgba(32, 32, 32, 0.07);
   overflow: hidden;
   display: none;
 }
@@ -320,7 +331,9 @@
 }
 
 .mobile-nav-active .mobile-nav {
-  left: 0;
+  /* left: 0; */
+  /* nav 방향 바꾸기 */
+  right: 0;
 }
 
 .mobile-nav-active .mobile-nav-toggle i {
@@ -332,7 +345,7 @@
 # Responsive Media Queries
 --------------------------------------------------------------*/
 
-@media (max-width: 991x) {
+@media (max-width: 991px) {
   #header {
     height: 60px;
     padding: 10px 0;
@@ -347,6 +360,16 @@
 /*--------------------------------------------------------------
 # Custom
 --------------------------------------------------------------*/
+
+::-webkit-scrollbar {
+  width: 0em;
+  height: 1em;
+}
+
+#footer {
+  height: 60px;
+  padding: 10px 0;
+}
 
 div#content {
   margin-top: 100px;
@@ -420,6 +443,13 @@ div#content {
   -webkit-transform: translateX(-50%) translateY(-50%);
           transform: translateX(-50%) translateY(-50%);
 }
+
+@media(max-width: 991px) {
+  .modal-parent .modal_frame {
+    width: 95%;
+  }
+}
+
 .modal-parent .modal_frame .video-wrapper {
   position: absolute;
   padding-bottom: 50%;
@@ -494,4 +524,64 @@ div#content {
   width: 100%;
   background: rgba(0, 0, 0, 0.9);
   color: white;
+}
+
+.account_circle {
+  position: fixed;
+  top: 0;
+  right: 0;
+  /* 버튼 좌우 위치 변경 */
+  /* left: 10px; */
+  z-index: 9998;
+  border: 0;
+  background: none;
+  transition: all 0.4s;
+  outline: none !important;
+  line-height: 1;
+  cursor: pointer;
+  text-align: right;
+  display: none;
+}
+
+.account_circle i {
+  margin: 13px 13px 0 0;
+  /* color: #004289; */
+  font-size: 37px !important;
+  color: #000000;
+}
+
+@media(max-width: 991px) {
+  .account_circle {
+    display: block;
+  }
+}
+
+.add_circle {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  /* 버튼 좌우 위치 변경 */
+  /* left: 10px; */
+  z-index: 9998;
+  border: 0;
+  background: none;
+  transition: all 0.4s;
+  outline: none !important;
+  line-height: 1;
+  cursor: pointer;
+  text-align: right;
+}
+
+.add_circle i {
+  margin: 0 30px 30px 0;
+  /* color: #004289; */
+  font-size: 70px;
+  color: #000000;
+}
+
+@media(max-width: 991px) {
+  .add_circle i {
+    margin: 0 11px 20px 0;
+    font-size: 45px;
+  }
 }

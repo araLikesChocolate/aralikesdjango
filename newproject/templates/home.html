@@ -66,27 +66,31 @@
         <!-- Related Projects Row -->
         <h3 class="my-4">Related Projects</h3>
         <div class="row">
-            <div class="col-md-4 col-sm-6 mb-4">
-            <a href="#">
-                    <img class="img-fluid img-share-width" src="{% static 'img/img3.png' %}" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4">
-            <a href="#">
-                    <img class="img-fluid img-share-width" src="{% static 'img/img3.png' %}" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4">
-            <a href="#">
-                    <img class="img-fluid img-share-width" src="{% static 'img/img3.png' %}" alt="">
-                </a>
-            </div>
-            {% comment %} <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div> {% endcomment %}
-        </div>
-        <!-- /.row -->
+            {% for hero in marvel_hero %}
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <img class="img-fluid img-share-height img-share-width img_modal_origin" src="{{ hero.imageurl }}" alt="">
+                    <div class="modal-parent">
+                        <div class="modal_frame">
+                            <div class="video-wrapper">
+                                    <img class="img_frame" src="{{ hero.imageurl }}">
+                                    <div class="img_frame_caption">
+                                        <h3>{{ hero.realname }}</h3>
+                                        <h5>{{ hero.bio }}</h5>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="img-overlay-text img_modal_origin">
+                        <h3>{{ hero.name }}</h3>
+                        <h5>{{ hero.realname }}</h5>
+                    </div>
+                    <button class="btn btn-custom" onclick="">삭제</button> 
+                </div>
+            {% endfor %}
+        </div>  <!-- /.row -->
     </div>
 {% endblock content %}
+
+{% block footer %}
+    <a href="#" class="add_circle"><i class="material-icons">add_circle</i></a>
+{% endblock footer %}
