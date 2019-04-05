@@ -362,10 +362,18 @@
 --------------------------------------------------------------*/
 
 ::-webkit-scrollbar {
-  width: 0em;
+  width: 1em;
   height: 1em;
 }
-
+::-webkit-scrollbar-button {
+  background: #e6e6e6d4
+}
+::-webkit-scrollbar-track-piece {
+  background: #ffffff
+}
+::-webkit-scrollbar-thumb {
+  background: #0000000a
+}​
 #footer {
   height: 60px;
   padding: 10px 0;
@@ -376,11 +384,15 @@ div#content {
 }
 
 .img-share-width {
-  width: -webkit-fill-available;
+  width: 100%;
 }
 
 .img-share-height {
   height: 400px;
+}
+
+.img-share-height-sm {
+  height: 270px;
 }
 
 .img-set {
@@ -399,14 +411,32 @@ div#content {
   font-family: "Montserrat", "sans-serif";
 }
 
+.img-overlay-text-sm {
+  position: absolute;
+  color: #ffffff;
+  bottom: 0;
+  padding: 20px;
+  /* 버튼 위치를 위한 padding-bottom */
+  padding-bottom: 60px;
+  background: #0000003b;
+  width: calc(100% - 30px);
+  font-family: "Montserrat", "sans-serif";
+}
+
 .btn-custom {
   position: absolute;
-  bottom: 10px;
-  left: 35px;
-  width: 22%;
-  height: 50px;
+  bottom: 15px;
+  left: 30px;
+  width: 20%;
+  height: 40px;
   size: 1.2rem;
   background: #ffffffab;
+}
+
+@media (max-width: 991px){
+  .btn-custom {
+    width: 70px;
+  }
 }
 
 .btn-custom:hover, .btn-custom:focus {
@@ -585,3 +615,5 @@ div#content {
     font-size: 45px;
   }
 }
+
+[fade-up-in] { opacity: 0; }

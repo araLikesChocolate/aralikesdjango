@@ -109,3 +109,30 @@ $(function(){
 
   init();
 });
+
+
+
+/****************************************
+        Image fade-in effect
+****************************************/
+// FADE UP & IN
+$(function(){
+  $('[fade-up-in]').each(function(index, el) {
+    // Init ScrollMagic Controller
+    var scrollMagicController = new ScrollMagic.Controller();
+    
+    var tl = new TimelineMax({pause: true});    
+    tl.add("start") // add timeline label
+      .fromTo(el, 1.0, { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, "start")
+
+    // Create the Scene and trigger when visible
+    var scene = new ScrollMagic.Scene({
+      triggerElement: el,
+      triggerHook: 'onEnter',
+      // offset: 170
+      offset: 55
+    })
+    .setTween(tl)
+    .addTo(scrollMagicController);
+  });
+});
