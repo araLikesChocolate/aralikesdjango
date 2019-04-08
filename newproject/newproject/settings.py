@@ -42,11 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-<<<<<<< HEAD
-=======
     'rest_framework.authtoken',
     'rest_auth',
->>>>>>> bbfcfe8b072faae23d0059b15e1bb30363d9bb0f
     'app1_ara',
     'registration',
     'api',
