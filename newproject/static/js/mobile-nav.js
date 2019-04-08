@@ -1,4 +1,4 @@
-(function ($) {
+$(function ($) {
   "use strict";
 
   // Mobile Navigation
@@ -36,4 +36,4 @@
     $(".mobile-nav, .mobile-nav-toggle").hide();
   }
 
-})(jQuery);
+});

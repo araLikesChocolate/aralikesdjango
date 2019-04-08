@@ -1,5 +1,6 @@
 from django.views.generic.base import TemplateView
 from django.apps import apps
+import json, requests
 
 #-- TemplateView
 class HomeView(TemplateView) :
@@ -13,6 +14,7 @@ class HomeView(TemplateView) :
             if 'site-packages' not in app.path :
                 dictVerbose[app.label] = app.verbose_name
         context['verbose_dict'] = dictVerbose
+        
         return context
 
 class HomeView2(TemplateView) :

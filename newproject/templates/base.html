@@ -12,7 +12,9 @@
     </title>
 
     {% block resources %}
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+        <!-- jquery cdn -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
@@ -21,12 +23,23 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         
+        <!--Google Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         {% load staticfiles %}
         <!-- Libraries CSS Files -->
         <link rel='stylesheet' type="text/css" href='{% static "css/font-awesome.min.css" %}'>
 
         <!-- Main Stylesheet File -->
         <link rel='stylesheet' type="text/css" href='{% static "css/style.css" %}' />
+        
+        <!-- JavaScript Libraries -->
+        <script src="{% static 'js/mobile-nav.js' %}"></script>
+
+        <!-- Template Main Javascript File -->
+        <script src="{% static 'js/main.js' %}"></script>
+
+
     {% endblock resources %}
     
 </head>
@@ -34,61 +47,49 @@
     <header id='header' class='fixed-top'>
         <div class="container">
 
-        <div class="logo float-left">
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-            <a href="#intro" class="scrollto"><img src="{% static 'img/logo.png' %}" alt="" class="img-fluid"></a>
-        </div>
+            <div class="logo float-left" id="logo">
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+                <a href="#intro" class="scrollto"><img src="{% static 'img/logo.png' %}" alt="" class="img-fluid"></a>
+            </div>
 
-        <nav class="main-nav float-right d-none d-lg-block">
-            <ul>
-                <li class="active"><a href="#intro">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#team">Team</a></li>
-                <li class="drop-down"><a href="">Drop Down</a>
-                    <ul>
-                    <li><a href="#">Drop Down 1</a></li>
-                    <li class="drop-down"><a href="#">Drop Down 2</a>
+            <nav class="main-nav float-right d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="#intro">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li class="drop-down"><a href="">Drop Down</a>
                         <ul>
-                        <li><a href="#">Deep Drop Down 1</a></li>
-                        <li><a href="#">Deep Drop Down 2</a></li>
-                        <li><a href="#">Deep Drop Down 3</a></li>
-                        <li><a href="#">Deep Drop Down 4</a></li>
-                        <li><a href="#">Deep Drop Down 5</a></li>
+                        <li><a href="#">Drop Down 1</a></li>
+                        <li class="drop-down"><a href="#">Drop Down 2</a>
+                            <ul>
+                            <li><a href="#">Deep Drop Down 1</a></li>
+                            <li><a href="#">Deep Drop Down 2</a></li>
+                            <li><a href="#">Deep Drop Down 3</a></li>
+                            <li><a href="#">Deep Drop Down 4</a></li>
+                            <li><a href="#">Deep Drop Down 5</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Drop Down 3</a></li>
+                        <li><a href="#">Drop Down 4</a></li>
+                        <li><a href="#">Drop Down 5</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Drop Down 3</a></li>
-                    <li><a href="#">Drop Down 4</a></li>
-                    <li><a href="#">Drop Down 5</a></li>
-                    </ul>
-                </li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ul>
-            </nav><!-- .main-nav -->
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
-    {% comment %} <div id='sidebar'>
-        {% block sidebar %}
-            <ul>
-                <li><a href='/'>Project_Home</a></li>
-                <li><a href='/admin/'>Admin</a></li>
-            </ul>
-        {% endblock sidebar %}
-        <br>
-    </div> {% endcomment %}
+    <a class="account_circle" href="#"><i class="material-icons">account_circle</i></a>
     <div id='content'>
         {% block content %}
         {% endblock content %}
     </div>
-
-    <!-- JavaScript Libraries -->
-    <script src="{% static 'js/mobile-nav.js' %}"></script>
-    <script src="{% static 'js/wow.min.js' %}"></script>
-    
-
-    <!-- Template Main Javascript File -->
-    <script src="{% static 'js/main.js' %}"></script>
+    <footer id='footer' class="fixed-bottom">
+        {% block footer %}
+        {% endblock footer %}
+    </footer>
 </body>
 </html>

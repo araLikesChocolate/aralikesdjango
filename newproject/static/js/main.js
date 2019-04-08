@@ -1,4 +1,4 @@
-(function ($) {
+$(function ($) {
   "use strict";
 
   // Preloader (if the #preloader div exists)
@@ -11,7 +11,7 @@
   });
 
   // Initiate the wowjs animation library
-  new WOW().init();
+  //new WOW().init();
 
   // Header scroll class
   $(window).scroll(function() {
@@ -78,4 +78,61 @@
       }
     });
   });
-})(jQuery);
+});
+
+/*******************************************************
+ 
+          custom modal effects for home-images        
+
+*******************************************************/
+$(function(){
+  var img_modal = $(".img_modal_origin"),
+      modal = $(".modal-parent"),
+      closeButton = $(".close-modal");
+
+  function init(){
+      if($(".img_modal_origin").length){
+          img_modal.on("click", openModal);
+          modal.on("click", closeModal);
+          closeButton.on("click", closeModal);
+      }
+  }
+
+  function openModal(){
+    modal = $(this).parents("div").children('.modal-parent');
+    modal.addClass("show");
+  }
+
+  function closeModal(){
+      modal.removeClass("show");
+  }
+
+  init();
+});
+
+
+
+/****************************************
+        Image fade-in effect
+****************************************/
+// FADE UP & IN
+$(function(){
+  $('[fade-up-in]').each(function(index, el) {
+    // Init ScrollMagic Controller
+    var scrollMagicController = new ScrollMagic.Controller();
+    
+    var tl = new TimelineMax({pause: true});    
+    tl.add("start") // add timeline label
+      .fromTo(el, 1.0, { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, "start")
+
+    // Create the Scene and trigger when visible
+    var scene = new ScrollMagic.Scene({
+      triggerElement: el,
+      triggerHook: 'onEnter',
+      // offset: 170
+      offset: 55
+    })
+    .setTween(tl)
+    .addTo(scrollMagicController);
+  });
+});
