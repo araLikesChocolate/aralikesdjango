@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block resources %}
+ {{ block.super }}
+     {% load static %}
+    <script src="{% static 'js/lottie.js' %}"></script>
+{% endblock resources %}
+{% block content %}
+
+    <!-- Page Content -->
+    <div class="container fsm_container" id="fsm_container">
+
+        <!-- Portfolio Item Heading -->
+        <h1 class="my-4">Beige & Daisy's
+            <small>Django Applications</small>
+        </h1>
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+            <div class="col-md-7 mb-4 img-set">
+                 <div style="width:1067px;height:600px"  class="lottie" data-animation-path='{% static "json/5081-empty-box.json" %}' data-anim-loop="true" data-name="empty-box"></div>
+            </div>
+
+        <!-- /.row -->
+
+
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}
