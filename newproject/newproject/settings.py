@@ -41,9 +41,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     'app1_ara',
     'registration',
+    'api',
 ]
+
+# 임시로 보안사항을 열어줌
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -133,6 +144,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     os.path.join(BASE_DIR, "registration", "static"),
 )
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'registration/login/'
+LOGIN_URL = 'registration/login/'
 
 # STATIC_ROOT collectstatic 명령어를 통해서 수집되는 static 파일들이 위치하는 곳
 # 운영 모드에서는 static 파일들의 위치를 지정해주어야한다. 
