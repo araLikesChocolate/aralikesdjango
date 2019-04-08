@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    # pip install django-rest-auth
     'rest_auth',
     'app1_ara',
     'registration',

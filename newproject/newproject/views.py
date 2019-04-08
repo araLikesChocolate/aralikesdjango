@@ -14,7 +14,7 @@ class HomeView(TemplateView) :
             if 'site-packages' not in app.path :
                 dictVerbose[app.label] = app.verbose_name
         context['verbose_dict'] = dictVerbose
-        
+        context['marvel_hero'] = json.loads(requests.get("https://simplifiedcoding.net/demos/marvel/").text)
         return context
 
 class HomeView2(TemplateView) :
