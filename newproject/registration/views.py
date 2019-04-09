@@ -29,3 +29,6 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+def naver_callback(request):
+    return render(request, 'registration/callback.html')
