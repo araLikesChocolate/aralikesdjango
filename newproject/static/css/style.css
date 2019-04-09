@@ -785,8 +785,10 @@
 .add_circle i {
   margin: 0 30px 30px 0;
   /* color: #004289; */
-  font-size: 70px;
+  font-size: 50px;
   color: #000000;
+  background-color: white;
+  border-radius: 50px;
 }
 
 @media(max-width: 991px) {
