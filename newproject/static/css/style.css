@@ -26,8 +26,28 @@
   color: white;
 }
 
+#logo a:hover {
+  /* text-decoration: none; */
+}
+
 #content{
   margin-top: unset;
+}
+
+.account {
+  display: none;
+}
+
+.logout, .user-image, .user-name{
+  display: block;
+}
+
+.user-image {
+  margin: 20px 10px 0 15px !important;
+  width: auto;
+  height: 200px;
+  max-width: 220px;
+  max-height: 235px;
 }
 
 #header {
@@ -111,6 +131,14 @@
     color: #000000;
   }
   
+  .account {
+    display: block;
+  }
+
+  .logout, .user-image, .user-name {
+    display: none;
+  }
+
   #header {
     height: 80px;
     transition: all 0.5s;
@@ -120,6 +148,21 @@
     background: #fff;
     box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
     /* box-shadow: 0px 0px 30px rgba(32, 32, 32, 0.3); */
+  }
+}
+
+@media (max-width: 575px) {
+  #logo {
+    float: unset !important;
+    text-align: center !important;
+  }
+
+  .account {
+    display: none;
+  }
+
+  .logout, .user-image, .user-name {
+    display: block;
   }
 }
 
@@ -151,13 +194,6 @@
   max-height: 26px;
 }
 
-@media (max-width: 575px) {
-  #logo {
-    float: unset !important;
-    text-align: center !important;
-  }
-}
-
 .main-pages {
   margin-top: 60px;
 }
@@ -173,7 +209,7 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  z-index: 9999;
+  z-index: 9997;
   overflow-y: auto;
   left: 0px;
   /* nav 방향 바꾸기 */
@@ -233,6 +269,15 @@
 }
 
  @media (max-width: 1120px){
+  .main-nav ul li ul li a.user_image{
+    /* display: none; */
+    width: 150px;
+    height: 150px;
+    /* max-width: 260px;
+    max-height: 260px; */
+  }
+
+
   .main-nav {
     padding-top: unset !important;
     position: unset;
@@ -301,6 +346,13 @@
     transition: ease all 0.3s;
   }
 
+  @media(max-width: 1120px){
+    .main-nav .drop-down ul {
+      left: unset;
+      right: 0;
+    }
+  }
+
   .main-nav .drop-down:hover > ul {
     opacity: 1;
     top: 100%;
@@ -330,7 +382,7 @@
   .main-nav .drop-down > a:after {
     content: "\f107";
     position: unset;
-    right: unset;
+    padding-left: 5px;
   }
 
   .main-nav .drop-down .drop-down ul {
@@ -360,13 +412,13 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  z-index: 9999;
+  z-index: 9997;
   overflow-y: auto;
-  /* left: -260px; */
+  left: -260px;
   /* nav 방향 바꾸기 */
-  right: -260px;
+  /* right: -260px; */
   width: 260px;
-  padding-top: 18px;
+  padding-top: 40px;
   /* background: rgba(19, 39, 57, 0.8); */
   background: rgba(0, 0, 0, 0.8);
   transition: 0.4s;
@@ -382,7 +434,7 @@
   display: block;
   position: relative;
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 15px;
   font-weight: 500;
 }
 
@@ -440,12 +492,13 @@
   margin: 15px 15px 0 0;
   /* color: #004289; */
   color: #000000;
+  font-size: 27px;
 }
 
 .mobile-nav-overly {
   width: 100%;
   height: 100%;
-  z-index: 9997;
+  z-index: 9996;
   top: 0;
   left: 0;
   position: fixed;
@@ -460,15 +513,14 @@
 }
 
 .mobile-nav-active .mobile-nav {
-  /* left: 0; */
+  left: 0;
   /* nav 방향 바꾸기 */
-  right: 0;
+  /* right: 0; */
 }
 
 .mobile-nav-active .mobile-nav-toggle i {
-  color: #fff;
+  color: white;
 }
-
 
 /*--------------------------------------------------------------
 # Responsive Media Queries
@@ -708,7 +760,7 @@
 .account_circle i {
   margin: 13px 13px 0 0;
   /* color: #004289; */
-  font-size: 37px !important;
+  font-size: 35px !important;
   color: #000000;
 }
 
@@ -743,8 +795,8 @@
 
 @media(max-width: 991px) {
   .add_circle i {
-    margin: 0 11px 20px 0;
-    font-size: 45px;
+    margin: 0 15px 20px 0;
+    font-size: 42px;
   }
 }
 
