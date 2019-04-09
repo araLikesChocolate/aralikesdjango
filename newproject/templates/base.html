@@ -50,20 +50,17 @@
             <div class="logo float-left" id="logo">
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-                <a href="#intro" class="scrollto"><img src="{% static 'img/logo.png' %}" alt="" class="img-fluid"></a>
+                <a href="#intro" class="scrollto">Notebook</a>
             </div>
 
-            <nav class="main-nav float-right d-none d-lg-block">
+            <nav class="main-nav float-right d-none d-sm-block">
                 <ul>
-                    <li class="active"><a href="#intro">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li class="drop-down"><a href="">Drop Down</a>
+                    <li class="active"><a href="#intro">HOME</a></li>
+                    <li><a href="#team">QUIZ</a></li>
+                    <li class="drop-down"><a href="javascript:;">ACCOUNT</a>
                         <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li class="drop-down"><a href="#">Drop Down 2</a>
+                        <li><a href="javascript:;" onclick="return false;">user_image</a></li>
+                        {% comment %} <li class="drop-down"><a href="#">Drop Down 2</a>
                             <ul>
                             <li><a href="#">Deep Drop Down 1</a></li>
                             <li><a href="#">Deep Drop Down 2</a></li>
@@ -74,15 +71,15 @@
                         </li>
                         <li><a href="#">Drop Down 3</a></li>
                         <li><a href="#">Drop Down 4</a></li>
-                        <li><a href="#">Drop Down 5</a></li>
+                        {% endcomment %}
+                        <li><a href="#">logout</a></li> 
                         </ul>
                     </li>
-                    <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <a class="account_circle" href="#"><i class="material-icons">account_circle</i></a>
+    <a class="account_circle d-sm-none" href="#"><i class="material-icons">account_circle</i></a>
     <div id='content'>
         {% block content %}
         {% endblock content %}
