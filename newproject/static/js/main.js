@@ -88,7 +88,9 @@ $(function ($) {
 $(function(){
   var img_modal = $(".img_modal_origin"),
       modal = $(".modal-parent"),
-      closeButton = $(".close-modal");
+      closeButton = $(".close-modal"),
+      style = '';
+      el = '';
 
   function init(){
       if($(".img_modal_origin").length){
@@ -99,11 +101,16 @@ $(function(){
   }
 
   function openModal(){
-    modal = $(this).parents("div").children('.modal-parent');
+    el = $(this).parent();
+    // el.children('div.modal-parent').attr('style', 'left:130px');
+    style = el.attr('style');
+    el.attr('style', 'visibility: unset; opacity: unset;');
+    modal = $(this).parent().children('.modal-parent');
     modal.addClass("show");
   }
 
   function closeModal(){
+      // el.children('div.modal-parent').removeAttr('style');
       modal.removeClass("show");
   }
 
@@ -123,14 +130,14 @@ $(function(){
     
     var tl = new TimelineMax({pause: true});    
     tl.add("start") // add timeline label
-      .fromTo(el, 1.0, { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, "start")
+      .fromTo(el, 0.8, { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, ease: Power2.easeOut }, "start")
 
     // Create the Scene and trigger when visible
     var scene = new ScrollMagic.Scene({
       triggerElement: el,
       triggerHook: 'onEnter',
       // offset: 170
-      offset: 55
+      offset: 55 
     })
     .setTween(tl)
     .addTo(scrollMagicController);
