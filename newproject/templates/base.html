@@ -15,6 +15,7 @@
 
         <!-- jquery cdn -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
         
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
@@ -56,7 +57,7 @@
                 <a href="#intro" class="scrollto">Notebook</a>
             </div>
 
-            <nav class="main-nav float-right d-none d-sm-block">
+            <nav id="main-nav" class="main-nav float-right d-none d-sm-block">
                 <ul>
                     <li class='user-image' style='background:url("https://www.simplifiedcoding.net/demos/marvel/thor.jpg")'><a href="javascript:;">user-image</a></li> 
                     <li class='user-name'><a href="javascript:;">{{ user }} 환영합니다.</a></li>

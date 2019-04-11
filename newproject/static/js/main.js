@@ -102,6 +102,7 @@ $(function(){
 
   function openModal(){
     el = $(this).parent();
+    // el.children('div.modal-parent').attr('style', 'left:130px');
     style = el.attr('style');
     el.attr('style', 'visibility: unset; opacity: unset;');
     modal = $(this).parent().children('.modal-parent');
@@ -109,6 +110,7 @@ $(function(){
   }
 
   function closeModal(){
+      // el.children('div.modal-parent').removeAttr('style');
       modal.removeClass("show");
   }
 
