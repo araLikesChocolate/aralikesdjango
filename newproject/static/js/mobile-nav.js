@@ -30,36 +30,40 @@ $(function ($) {
         }
     });
     
+    if($(window).width() < 1120) {
+      $('.modal-parent').css('width', '100%');
+    }
+
     $(window).resize(function() {
       // do somthing
       if($(window).width() < 1120){
+        $('#header, #content, #footer, #logo, #main-nav').removeAttr('style');
         if($('.main-nav .drop-down.active').length){
           $('.main-nav .drop-down.active').removeClass('active');
           $('.main-nav .drop-down ul').hide();
           $('.modal-parent').removeAttr('style');
-          // $('#header, #content, #footer, #logo, #main-nav').removeAttr('style');
-          // $('#header, #content, #footer, #logo, #main-nav').css('margin-left', 'unset');
-          // $('#header, #content, #footer, #logo, #main-nav').css('margin-right', 'unset');
         }
       } else {
+        $('.modal-parent').css('width', 'calc(100% - 260px)');
         $('#header, #content, #footer, #logo, #main-nav').removeAttr('style');
         $('.modal-parent').removeAttr('style');
       }
     });
 
-    
     $('#main-nav').draggable({
-      cursor:"move",      // 드래그 시 커서모양 
-      stack:".post",      // .post 클래스끼리의 스택 기능 
-      opacity:0.8  
+      cursor: "move",      // 드래그 시 커서모양 
+      // stack: ".container",      // container 클래스끼리의 스택 기능 
+      opacity: 0.8,
+      drag : function (event, ui) { 
+        // ui.position.top += (ui.offset.top - ui.originalPosition.top) * 0.3; 
+        ui.position.left += (ui.offset.left - ui.originalPosition.left) * 0.3; 
+       } 
     });
 
-    $("#main-nav").bind("dragstart",function(e, ui){
-      // e.preventDefault();
-      // $('body').attr('style', 'background: yellow')  //bgi 체인지
+    $("#main-nav").bind("dragstart",function(event, ui){
     });
     
-    $("#main-nav").bind("dragstop", function(e, ui){
+    $("#main-nav").bind("dragstop", function(event, ui){
       console.log('left:', $(this).css('left').split('px')[0], "   ",  $(window).width()/2);
       if($(this).css('left').split('px')[0] < $(window).width() / 2){
         $(this).removeAttr('style');
@@ -67,8 +71,6 @@ $(function ($) {
         $('#header, #content, #footer').css('margin-right', 'unset');
         $('#logo').css('left', '20px');
         $('#logo').css('right', 'unset');
-        // $('.modal-parent').css('left', '130px');
-        // $('.modal-parent').css('right', 'unset');
         $('.modal-parent').css('left', '260px')
       } else {
         $(this).removeAttr('style');
@@ -80,12 +82,7 @@ $(function ($) {
         $('#logo').css('right', '100px');
         $('.modal-parent').css('left', '0')
         $('.modal-parent').css('right', 'unset')
-        // $('.modal-parent').css('left', 'unset');
-        // $('.modal-parent').css('right', '130px');
       }
-      // e.preventDefault();
-      // if()
-        // $(this).removeClass("color");   //bgi 체인지
     });
   
 

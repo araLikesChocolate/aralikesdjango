@@ -539,8 +539,8 @@
 # Custom
 --------------------------------------------------------------*/
 
-/* ::-webkit-scrollbar {
-  width: 1em;
+::-webkit-scrollbar {
+  width: 0em;
   height: 1em;
 }
 ::-webkit-scrollbar-button {
@@ -551,7 +551,8 @@
 }
 ::-webkit-scrollbar-thumb {
   background: yellow;
-}​ */
+}​
+
 #footer {
   height: 60px;
   padding: 10px 0;
@@ -619,7 +620,7 @@
 }
 
 .modal-parent {
-  overflow: hidden;
+  overflow-x: hidden;
   position: fixed;
   top: 0;
   /* nav 왼쪽 */
@@ -642,6 +643,7 @@
   @media(max-width: 1120px){
   .modal-parent {
     left: 0;
+    width: 100%;
     }
   }
 
@@ -660,11 +662,23 @@
           transform: translateX(-50%) translateY(-50%);
 }
 
-@media(max-width: 991px) {
+@media(max-width: 1120px) {
+  .modal-parent .modal_frame {
+    width: 80%;
+  }
+}
+
+@media(max-width: 575px) {
   .modal-parent .modal_frame {
     width: 95%;
   }
 }
+
+/* @media(max-width: 991px) {
+  .modal-parent .modal_frame {
+    width: 95%;
+  }
+} */
 
 .modal-parent .modal_frame .video-wrapper {
   position: absolute;
