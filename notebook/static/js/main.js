@@ -143,3 +143,22 @@ $(function(){
     .addTo(scrollMagicController);
   });
 });
+
+// main nav active
+$(function () {
+  $('#home, #quiz, #login, .logout').removeClass('active');
+  switch($(location).attr('pathname')) {
+    case '/':
+      $('#home').addClass('active');
+      break;
+    case '/#quiz':
+      $('#quiz').addClass('active');
+      break;
+
+    case '/registration/login/':
+      $('#login').addClass('active');
+      break;
+    default:
+      // code block
+  };
+});

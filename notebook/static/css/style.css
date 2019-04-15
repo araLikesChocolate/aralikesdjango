@@ -543,7 +543,7 @@
   width: 0em;
   height: 1em;
 }
-::-webkit-scrollbar-button {
+/* ::-webkit-scrollbar-button {
   background: red;
 }
 ::-webkit-scrollbar-track-piece {
@@ -551,7 +551,7 @@
 }
 ::-webkit-scrollbar-thumb {
   background: yellow;
-}​
+}​ */
 
 #footer {
   height: 60px;
@@ -620,7 +620,7 @@
 }
 
 .modal-parent {
-  overflow-x: hidden;
+  overflow: hidden;
   position: fixed;
   top: 0;
   /* nav 왼쪽 */
@@ -819,3 +819,11 @@
 }
 
 [fade-up-in] { opacity: 0; }
+
+.align-center {
+  text-align: center;
+}
+
+.box-center-custom {
+  transform: translateY(100%);
+} 

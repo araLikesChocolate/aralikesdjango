@@ -37,6 +37,8 @@ $(function ($) {
     $(window).resize(function() {
       // do somthing
       if($(window).width() < 1120){
+        $("#main-nav").draggable({ disabled: true });
+        // $('#main-nav').ui-state-disabled.ui-draggable-disabled
         $('#header, #content, #footer, #logo, #main-nav').removeAttr('style');
         if($('.main-nav .drop-down.active').length){
           $('.main-nav .drop-down.active').removeClass('active');
@@ -44,27 +46,27 @@ $(function ($) {
           $('.modal-parent').removeAttr('style');
         }
       } else {
+        $('#main-nav').draggable({ disabled: false });
+        $('#main-nav').draggable({
+          cursor: "move",      // 드래그 시 커서모양 
+          // stack: ".container",      // container 클래스끼리의 스택 기능 
+          opacity: 0.8,
+          drag : function (event, ui) { 
+            // ui.position.top += (ui.offset.top - ui.originalPosition.top) * 0.3; 
+            ui.position.left += (ui.offset.left - ui.originalPosition.left) * 0.3; 
+           } 
+        });
         $('.modal-parent').css('width', 'calc(100% - 260px)');
         $('#header, #content, #footer, #logo, #main-nav').removeAttr('style');
         $('.modal-parent').removeAttr('style');
       }
     });
 
-    $('#main-nav').draggable({
-      cursor: "move",      // 드래그 시 커서모양 
-      // stack: ".container",      // container 클래스끼리의 스택 기능 
-      opacity: 0.8,
-      drag : function (event, ui) { 
-        // ui.position.top += (ui.offset.top - ui.originalPosition.top) * 0.3; 
-        ui.position.left += (ui.offset.left - ui.originalPosition.left) * 0.3; 
-       } 
-    });
-
     $("#main-nav").bind("dragstart",function(event, ui){
     });
     
     $("#main-nav").bind("dragstop", function(event, ui){
-      console.log('left:', $(this).css('left').split('px')[0], "   ",  $(window).width()/2);
+      // console.log('left:', $(this).css('left').split('px')[0], "   ",  $(window).width()/2);
       if($(this).css('left').split('px')[0] < $(window).width() / 2){
         $(this).removeAttr('style');
         $('#header, #content, #footer').css('margin-left', '260px');
