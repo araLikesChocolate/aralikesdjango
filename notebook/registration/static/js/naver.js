@@ -32,45 +32,17 @@ function setLoginStatus() {
     var profileImage = naverLogin.user.getProfileImage();
     var nickName = naverLogin.user.getNickName();
     console.log(naverLogin);
-    if (window.sessionStorage) {
-        sessionStorage.setItem('naverLogin', naverLogin);
-    }
+    // if (window.sessionStorage) {
+    //     sessionStorage.setItem('naverLogin', naverLogin);
+    // }
     
     $("#naverIdLogin_loginButton").html('<br><br><img src="' + profileImage + '" height=50 /> <p>' + nickName + '님 반갑습니다.</p>');
-    // $("#login a").html(sessionStorage.getItem('naverLogin'));
+    $("#login a").html('logout');
     // $("#gnbLogin").attr("href", "#");
     /* (7) 로그아웃 버튼을 설정하고 동작을 정의합니다. */
     $("#login").click(function () {
-        sessionStorage.removeItem('naverLogin')
+        // sessionStorage.removeItem('naverLogin')
         naverLogin.logout();
         location.reload();
     });
 }
-
-// kakao login
-var kakaoLogin;
-
-$(function () {
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('1d42e53bd6515bec851dc1ba04e83568');
-    kakaoLogin = function loginWithKakao() {
-        // 로그인 창을 띄웁니다.
-        Kakao.Auth.login({
-            success: function(authObj) {
-                alert(JSON.stringify(authObj));
-                Kakao.API.request({
-                    url: '/v2/user/me',
-                    success: function(res) {
-                        alert(JSON.stringify(res));
-                    },
-                    fail: function(error) {
-                        alert(JSON.stringify(error));
-                    }
-                });
-            },
-            fail: function(err) {
-                alert(JSON.stringify(err));
-            }
-        });
-    };
-});
