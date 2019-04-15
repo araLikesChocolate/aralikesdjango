@@ -162,27 +162,27 @@ LOGIN_URL = 'registration/login/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'www_dir', 'static')
 
 # 장고의 디폴트 설정을 유지하면서 로깅 설정함
-LOGGING = {
-    'version' : 1,
-    'disable_exitsting_loggers' : False,
-    'formatters' : {
-        'verbose' : {
-            'format' : '[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s',
-            'datefmt' : '%d/%b/%Y %H:%M:%S',
-        },
-    },
-    'handlers' : {
-        'app1_ara' : {
-            'level' :'DEBUG',
-            'class' : 'logging.FileHandler',
-            'filename' : os.path.join(BASE_DIR, 'logs', 'app1_ara.log'),
-            'formatter' : 'verbose',
-        },
-    },
-    'loggers' : {
-        'app1_ara' : {
-            'handlers' : ['app1_ara'],
-            'level' : 'DEBUG',
-        },
-    },
-}
+# LOGGING = {
+#     'version' : 1,
+#     'disable_exitsting_loggers' : False,
+#     'formatters' : {
+#         'verbose' : {
+#             'format' : '[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s',
+#             'datefmt' : '%d/%b/%Y %H:%M:%S',
+#         },
+#     },
+#     'handlers' : {
+#         'app1_ara' : {
+#             'level' :'DEBUG',
+#             'class' : 'logging.FileHandler',
+#             'filename' : os.path.join(BASE_DIR, 'logs', 'app1_ara.log'),
+#             'formatter' : 'verbose',
+#         },
+#     },
+#     'loggers' : {
+#         'app1_ara' : {
+#             'handlers' : ['app1_ara'],
+#             'level' : 'DEBUG',
+#         },
+#     },
+# }

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.views.generic.base import TemplateView
 from django.views import View
 from django.contrib.auth.decorators import login_required
@@ -10,8 +10,13 @@ from django.contrib.auth.forms import UserCreationForm
 def post_new(request):
     pass
 
-class LoginView(TemplateView):
-    template_name = 'registration/login.html'
+# class LoginView(TemplateView):
+#     template_name = 'registration/login.html'
+
+def LoginView(request):
+    for key, value in request.session.items() :
+        print(key, value)
+    return render(request, 'registration/login.html')
 
 class LogoutView(View):
     pass
@@ -30,5 +35,7 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
 
-def naver_callback(request):
-    return render(request, 'registration/callback.html')
+# def naver(request, access_token):
+#     print(access_token)
+#     # return redirect('registration:callback')
+#     return render(request, 'registration/login.html')

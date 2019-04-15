@@ -56,19 +56,24 @@
             <div class="logo float-left" id="logo">
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-                <a href="#intro" class="scrollto">Notebook</a>
+                <a href="/" class="scrollto"><img src='{% static "img/logo.png" %}'></a>
             </div>
 
             <nav id="main-nav" class="main-nav float-right d-none d-sm-block">
                 <ul>
                     <li class='user-image' style='background:url("https://www.simplifiedcoding.net/demos/marvel/thor.jpg")'><a href="javascript:;">user-image</a></li> 
+                    {% if request.user.is_anonymous %}
+                        <li id='home'><a href="/">home</a></li>
+                        <li id='quiz'><a href="#quiz">quiz</a></li>
+                        <li id='login'><a href="{% url 'registration:login' %}">login</a></li>
+                    {% else %}
                     <li class='user-name'><a href="javascript:;"> {{user}} 환영합니다.</a></li>
-                    <li class='logout'><a href="javascript:;">logout</a></li> 
-                    <li class="active"><a href="#intro">home</a></li>
-                    <li><a href="#team">quiz</a></li>
-                    <li class="drop-down account"><a href="javascript:;">account</a>
+                    <li id='home'ss><a href="/">home</a></li>
+                    <li id='quiz'><a href="#quiz">quiz</a></li>
+                    <li id='logout' class='logout'><a href="javascript:;">logout</a></li> 
+                    <li id='account' class="drop-down account"><a href="javascript:;">account</a>
                         <ul>
-                        <li style='background:url("https://www.simplifiedcoding.net/demos/marvel/thor.jpg")'><a href="javascript:;" onclick="return false;" class='user_image'>user_image</a></li>
+                        <li style='background:url("https://www.simplifiedcoding.net/demos/marvel/thor.jpg")'><a href="javascript:;" onclick="return false;" class='user_image'>{{user}}</a></li>
                         {% comment %} <li class="drop-down"><a href="#">Drop Down 2</a>
                             <ul>
                             <li><a href="#">Deep Drop Down 1</a></li>
@@ -81,9 +86,10 @@
                         <li><a href="#">Drop Down 3</a></li>
                         <li><a href="#">Drop Down 4</a></li>
                         {% endcomment %}
-                        <li><a href="javascript:;">logout</a></li> 
+                        <li id='logout'><a href="javascript:;">logout</a></li> 
                         </ul>
                     </li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
