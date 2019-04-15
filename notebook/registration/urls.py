@@ -11,4 +11,6 @@ urlpatterns = [
     # path('login/<access_token>/', views.LoginView, name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('dd', views.LogoutView.as_view(), name='logout'),
+    ################ kakao ################
+    path('login/kakao', views.kakao, name='kakao'),
 ]
