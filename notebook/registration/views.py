@@ -3,6 +3,7 @@ from django.views.generic.base import TemplateView
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+import json
 
 
 ### decorator 쓰는 방법 // 지울 예정 ###
@@ -39,3 +40,11 @@ def signup(request):
 #     print(access_token)
 #     # return redirect('registration:callback')
 #     return render(request, 'registration/login.html')
+
+
+def kakao(request):
+    # print(request.POST.get('authObj'))
+    user = json.loads(request.POST.get('res'))
+    print('id: {}, nickname: {}, email: {}'.format(user['id'], user['properties']['nickname'], user['kakao_account']['has_email']))
+    return redirect('home')
+    # return render(request, 'registration/login.html')
