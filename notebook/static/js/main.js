@@ -155,10 +155,34 @@ $(function () {
       $('#quiz').addClass('active');
       break;
 
-    case '/registration/login/':
+    case '/login/':
       $('#login').addClass('active');
       break;
     default:
       // code block
   };
 });
+
+function notebookLogout(service_type) {
+  if (service_type == 'KAKAO') {
+    $.getScript("//developers.kakao.com/sdk/js/kakao.min.js", function() {
+      $.getScript("static/js/kakao.js", function(data, textStatus, jqxhr) { 
+        // console.log(data); //data returned 
+        console.log(textStatus); //success 
+        console.log(jqxhr.status); //200 
+        console.log('Loading kakao.js was performed.'); 
+        kakaoLogout();
+      });
+    });
+  } else {
+    $.getScript("https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js", function() {
+      $.getScript("static/js/naver.js", function(data, textStatus, jqxhr) { 
+        // console.log(data); //data returned 
+        console.log(textStatus); //success 
+        console.log(jqxhr.status); //200 
+        console.log('Loading naver.js was performed.');
+        naverLogout();
+      });
+    });
+  }
+}

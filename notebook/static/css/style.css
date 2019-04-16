@@ -273,7 +273,7 @@
  @media (max-width: 1120px){
   .main-nav ul li ul li a.user_image{
     /* display: none; */
-    width: 150px;
+    width: 100%;
     height: 150px;
     /* max-width: 260px;
     max-height: 260px; */
@@ -351,6 +351,7 @@
     .main-nav .drop-down ul {
       left: unset;
       right: 0;
+      width: 200px;
     }
   }
 
@@ -827,3 +828,7 @@
 .box-center-custom {
   transform: translateY(100%);
 } 
+
+.hidden {
+  display: none;
+}
