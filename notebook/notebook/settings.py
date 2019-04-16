@@ -45,15 +45,17 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     # pip install django-rest-auth
     'rest_auth',
-    'app1_ara',
     'registration',
     'api',
+    'login',
+    'logout',
 ]
 
 # 임시로 보안사항을 열어줌
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
+        # 'rest_framework.permissions.IsAdminUser',
     ]
 }
 
@@ -94,15 +96,15 @@ WSGI_APPLICATION = 'notebook.wsgi.application'
 
 DATABASES = {
    'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #    'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
-    #    'ENGINE': 'django.db.backends.mysql',
-    #    'NAME': 'notebook_db',  #mysql
-    #    'USER': 'root', #root
-    #    'PASSWORD': '1234', #1234
-    #    'HOST': '192.168.22.126', #공백으로 냅두면 default localhost
-    #    'PORT': '3307' #공백으로 냅두면 default 3306
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+       'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
+       'ENGINE': 'django.db.backends.mysql',
+       'NAME': 'notebook',  #mysql
+       'USER': 'root', #root
+       'PASSWORD': '1234', #1234
+       'HOST': '192.168.22.126', #공백으로 냅두면 default localhost
+       'PORT': '3307' #공백으로 냅두면 default 3306
    }
 }
 

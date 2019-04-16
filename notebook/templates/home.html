@@ -73,11 +73,13 @@
         <div class="row">
             {% for hero in marvel_hero %}
                 <div class="col-md-4 col-sm-6 mb-4" fade-up-in>
-                    <img class="img-fluid img-share-height-sm img-share-width img_modal_origin" src="{{ hero.imageurl }}" alt="">
+                    {% comment %} <img class="img-fluid img-share-height-sm img-share-width img_modal_origin" src="{{ hero.imageurl }}" alt=""> {% endcomment %}
+                    <img class="img-fluid img-share-height-sm img-share-width img_modal_origin" src="{% static 'img/img2.png' %}" alt="">
                     <div class="modal-parent">
                         <div class="modal_frame">
                             <div class="video-wrapper">
-                                    <img class="img_frame" src="{{ hero.imageurl }}">
+                                    {% comment %} <img class="img_frame" src="{{ hero.imageurl }}"> {% endcomment %}
+                                    <img class="img_frame" src="{% static 'img/img2.png' %}">
                                     <div class="img_frame_caption">
                                         <h3>{{ hero.realname }}</h3>
                                         <h5>내용1</h5>
