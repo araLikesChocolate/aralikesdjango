@@ -17,23 +17,29 @@
 {% block content %}
 <!-- Page Content -->
     <div class="container">
-        <!-- Portfolio Item Heading -->
-        <h1 class="my-4 mb-5 align-center">
-			<small>Welcome!</small>
-        </h1>
-        <!-- Portfolio Item Row -->
-        <div class="row box-center-custom">
-            <div class="col-md-12 mb-4">
-				<div class="align-center">
-					<div id="naverIdLogin"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div>
+        <div class="box-center-custom">
+			<div class='row'>
+				<div class="col-md-12 mb-4">
+					<h2 class="my-4 mb-5 align-center">
+						<small>간편 로그인</small>
+					</h2>
 				</div>
 			</div>
-			<div class="col-md-12 mb-4">
-				<div class="align-center">
-					<a id="custom-login-btn" href="javascript:kakaoLogin();"><img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="233" height="50" /></a>
-            	</div>
+			<div class='row'>
+				<div class="col-md-12 mb-4">
+					<div class="align-center">
+						<div id="naverIdLogin"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width="240" height="50"></a></div>
+					</div>
+				</div>
 			</div>
-        </div>
+			<div class='row'>
+				<div class="col-md-12 mb-4">
+					<div class="align-center">
+						<a id="custom-login-btn" href="javascript:kakaoLogin();"><img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="231.2" height="47" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
 
 {% endblock content %}

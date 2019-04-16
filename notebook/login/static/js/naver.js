@@ -12,7 +12,7 @@ var naverLogin = new naver.LoginWithNaverId(
             callbackUrl: "http://localhost:8000/login/",
             // callbackUrl: "http://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "/oauth/sample/callback.html",
             isPopup: false,
-            loginButton: {color: "green", type: 3, height: 60}
+            loginButton: {color: "green", type: 3, width:240, height: 50}
         });
 
 /* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
