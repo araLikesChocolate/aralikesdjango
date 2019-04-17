@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'api',
     'login',
     'logout',
+    'upload_files',
 ]
 
 # 임시로 보안사항을 열어줌
@@ -90,6 +91,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'notebook.wsgi.application'
 
+# 각 media 파일에 대한 URL Prefix
+MEDIA_URL = '/media/'
+# MEDIA_URL = 'http://static.myservice.com/media/' 다른 서버로 media 파일 복사시
+
+# 업로드된 파일을 저장할 디렉토리 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases

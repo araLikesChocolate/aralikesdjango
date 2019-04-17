@@ -1,0 +1,10 @@
+<h1>사진 업로드</h1>
+
+<form method='post' action='' enctype="multipart/form-data">
+	{% csrf_token %}
+	{% comment %} 이미지를 올려주세요!<br> {% endcomment %}
+	<table>
+		{{ form.as_table }}
+	</table>
+	<input type="submit" value='등록'>
+</form>

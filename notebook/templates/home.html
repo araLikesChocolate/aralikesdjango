@@ -102,6 +102,9 @@
 {% endblock content %}
 
 {% block footer %}
-    <a href="#" class="add_circle"><i class="material-icons">add_circle</i></a>
+{% if request.session.user %}
+    <a href="#" class="add_circle"><i class="material-icons">add_circle</i>{{request.session.user.id}}</a>
+{% else %}
+{% endif %}
     {{ block.super }}
 {% endblock footer %}
