@@ -44,9 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     # pip install django-rest-auth
-    'rest_auth',
+    # 'rest_auth',
     'registration',
-    'api',
     'login',
     'logout',
     'upload_files',
