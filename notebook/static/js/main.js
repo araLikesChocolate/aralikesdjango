@@ -146,17 +146,17 @@ $(function(){
 
 // main nav active
 $(function () {
-  $('#home, #quiz, #login, .logout').removeClass('active');
+  $('#main-nav li.home, li.quiz, li.login, li.logout').removeClass('active');
   switch($(location).attr('pathname')) {
     case '/':
-      $('#home').addClass('active');
+      $('#main-nav li.home').addClass('active');
       break;
     case '/#quiz':
-      $('#quiz').addClass('active');
+      $('#main-nav li.quiz').addClass('active');
       break;
 
     case '/login/':
-      $('#login').addClass('active');
+      $('#main-nav li.login').addClass('active');
       break;
     default:
       // code block
