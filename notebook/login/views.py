@@ -23,6 +23,7 @@ def login(request) :
             tmpdict.update(serializer.data)
             print(tmpdict)
             request.session['user'] = tmpdict
+            request.session['member'] = serializer.data
             return HttpResponse(reverse('home'))
     else :
         return render(request, 'login/login.html')
