@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import ListView
+from django.core import serializers
 from .models import Data, DataModelForm
 from login.models import Member
 
@@ -8,23 +9,13 @@ def file(request):
     if request.method=='GET':
         form = DataModelForm()
     else:
-        print('저장한다.')
         form = DataModelForm(request.POST, request.FILES)
         if form.is_valid():
-            print("form: ", form)
             #ModelForm ... commit 지연
             url = form.cleaned_data['url'] 
-            # member_idx = request.session.get('member')
-            print('################################')
-            for key, value in request.session.items() :
-                print(key, value)
-
-            print('################################')
-            # member_idx = Member.objects.get(idx=1)
-            print("멤버 인덱스:", member_idx)
-            Data.objects.create(url=url, member_idx=member_idx)
-            # data = form.save(commit=False)
-            # data.save()
+            user = request.session.get('data')['user']
+            data = Data(url=url, member_idx=Member.objects.get(id=user['id']))
+            data.save()
             return redirect(reverse('upload_files:list'))
         else :
             print("error....!")
