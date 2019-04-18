@@ -51,8 +51,10 @@ function setLoginStatus() {
         data: { 
                 service_type: 'NAVER',
                 id: naverLogin['user']['id'],
-                nickname: naverLogin['user']['nickname'],
                 email: naverLogin['user']['email'],
+                name: naverLogin['user']['name'],
+                nickname: naverLogin['user']['nickname'],
+                profile_image: naverLogin['user']['profile_image']
             },
         async: false,
         success: function(data) {

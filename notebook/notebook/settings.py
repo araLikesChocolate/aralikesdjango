@@ -45,10 +45,12 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     # pip install django-rest-auth
     # 'rest_auth',
-    'registration',
     'login',
     'logout',
     'upload_files',
+    # djnago google TTS module
+    # 'gTTS',
+    # 'django_jinja',
 ]
 
 # 임시로 보안사항을 열어줌
@@ -72,20 +74,20 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'notebook.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        #'DIRS': [],
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            #'DIRS': [],
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
         },
-    },
 ]
 
 WSGI_APPLICATION = 'notebook.wsgi.application'
@@ -109,10 +111,10 @@ DATABASES = {
         'NAME': 'notebook',  #mysql
         'USER': 'root', #root
         'PASSWORD': '1234', #1234
-        'HOST': '192.168.22.126', #공백으로 냅두면 default localhost
+        'HOST': '192.168.22.114', #공백으로 냅두면 default localhost
         # 'HOST': 'localhost',
-        'PORT': '3307' #공백으로 냅두면 default 3306
-        # 'PORT': '3306' #공백으로 냅두면 default 3306
+        # 'PORT': '3307' #공백으로 냅두면 default 3306
+        'PORT': '3306' #공백으로 냅두면 default 3306
    }
 }
 

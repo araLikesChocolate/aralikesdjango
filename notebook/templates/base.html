@@ -59,17 +59,41 @@
             <nav id="main-nav" class="main-nav float-right d-none d-sm-block">
                 <ul>
                     {% comment %} <li class='user-image' style='background:url("https://www.simplifiedcoding.net/demos/marvel/thor.jpg")'><a href="javascript:;">user-image</a></li>  {% endcomment %}
-                    <li class='user-image' style="background:url({% static 'img/img2.png' %})"><a href="javascript:;">user-image</a></li> 
-                    {% if request.session.user is not None %}
-                        <li class='user-name'><a href="javascript:;">{{ request.session.user.nickname }}님 환영합니다.</a></li>
-                        <li id='home'ss><a href="/">home</a></li>
-                        <li id='quiz'><a href="#quiz">quiz</a></li>
-                        <li id='logout' class='logout'><a href="javascript:notebookLogout('{{request.session.user.service_type}}');">logout</a></li>
+                    {% if request.session.data.user is not None %}
+                    <li class='user-image' style="background:url({{ request.session.data.profile_image }})">
+                        {% comment %} <a href="javascript:;">user-image</a> {% endcomment %}
+                    </li> 
+                        <li class='user-name'>
+                            <a href="javascript:;">
+                            {% if request.session.data.name is not None %}
+                                {{ request.session.data.name }}님 환영합니다.
+                            {% elif request.session.data.nickname is not None %}
+                                {{ request.session.data.nickname }}님 환영합니다.
+                            {% else %}
+                                {{ request.session.data.user.id }}님 환영합니다.
+                            {% endif %}
+                            </a>
+                        </li>
+                        <li id='home' class='home'><a href="/">home</a></li>
+                        <li id='quiz' class='quiz'><a href="#quiz">quiz</a></li>
+                        <li id='logout' class='logout'><a href="javascript:notebookLogout('{{ request.session.data.user.service_type }}');">logout</a></li>
                         <li id='account' class="drop-down account"><a href="javascript:;">account</a>
                             <ul>
                             
                             {% comment %} <li style='background:url("https://www.simplifiedcoding.net/demos/marvel/thor.jpg")'><a href="javascript:;" onclick="return false;" class='user_image'>{{ request.session.user.nickname }}님 환영합니다.</a></li> {% endcomment %}
-                            <li style="background:url({% static 'img/img2.png' %})"><a href="javascript:;" onclick="return false;" class='user_image'>{{ request.session.user.nickname }}님 환영합니다.</a></li>
+                            <li style="background:url({{ request.session.data.profile_image }})">
+                            </li>
+                            <li>
+                                <a href="javascript:;" onclick="return false;" class='user_image'>
+                                    {% if request.session.data.name is not None %}
+                                        {{ request.session.data.name }}님 환영합니다.
+                                    {% elif request.session.data.nickname is not None %}
+                                        {{ request.session.data.nickname }}님 환영합니다.
+                                    {% else %}
+                                        {{ request.session.data.user.id }}님 환영합니다.
+                                    {% endif %}
+                                </a>
+                            </li>
                             {% comment %} <li class="drop-down"><a href="#">Drop Down 2</a>
                                 <ul>
                                 <li><a href="#">Deep Drop Down 1</a></li>
@@ -82,13 +106,13 @@
                             <li><a href="#">Drop Down 3</a></li>
                             <li><a href="#">Drop Down 4</a></li>
                             {% endcomment %}
-                        <li id='logout'><a href="javascript:notebookLogout('{{request.session.user.service_type}}');">logout</a></li>
+                        <li id='logout'><a href="javascript:notebookLogout('{{request.session.data.user.service_type}}');">logout</a></li>
                             </ul>
                         </li>
                     {% else %}
-                        <li id='home'><a href="/">home</a></li>
-                        <li id='quiz'><a href="#quiz">quiz</a></li>
-                        <li id='login'><a href="{% url 'login:login' %}">login</a></li>
+                        <li id='home' class='home'><a href="/">home</a></li>
+                        <li id='quiz' class='quiz'><a href="#quiz">quiz</a></li>
+                        <li id='login' class='login'><a href="{% url 'login:login' %}">login</a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -104,6 +128,6 @@
         {% endblock footer %}
     </footer>
 
-    {% comment %} <div class="hidden"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div> {% endcomment %}
+    <div class="hidden"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div>
 </body>
 </html>

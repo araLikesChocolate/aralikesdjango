@@ -16,8 +16,8 @@ var kakaoLogin = function loginWithKakao() {
             Kakao.API.request({
                 url: '/v2/user/me',
                 success: function(res) {
-                    // alert(JSON.stringify(authObj));
-                    // alert(JSON.stringify(res));
+                    console.log(JSON.stringify(authObj));
+                    console.log(JSON.stringify(res));
                     $.ajaxSetup({
                         beforeSend: function(xhr, settings) {
                             var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
@@ -33,8 +33,10 @@ var kakaoLogin = function loginWithKakao() {
                         data: { 
                                 service_type: 'KAKAO',
                                 id: res['id'],
-                                nickname: res['properties']['nickname'],
                                 email: res['kakao_account']['email'],
+                                name: res['properties']['name'],
+                                nickname: res['properties']['nickname'],
+                                profile_image: res['properties']['profile_image']
                             },
                         async: false,
                         success: function(data) {
@@ -43,7 +45,7 @@ var kakaoLogin = function loginWithKakao() {
                                 // console.log(res['properties']['nickname'])
                                 console.log('ajax kakao login success...')
                                 console.log(data)
-                                window.location.replace(data)
+                                // window.location.replace(data)
                             }
                         },
                         fail: function(error) {
