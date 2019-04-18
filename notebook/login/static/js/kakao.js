@@ -45,7 +45,7 @@ var kakaoLogin = function loginWithKakao() {
                                 // console.log(res['properties']['nickname'])
                                 console.log('ajax kakao login success...')
                                 console.log(data)
-                                // window.location.replace(data)
+                                window.location.replace(data)
                             }
                         },
                         fail: function(error) {
