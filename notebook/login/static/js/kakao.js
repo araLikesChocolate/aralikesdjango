@@ -20,7 +20,10 @@ var kakaoLogin = function loginWithKakao() {
                     console.log(JSON.stringify(res));
                     $.ajaxSetup({
                         beforeSend: function(xhr, settings) {
-                            var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+                            var csrftoken = $.cookie('csrftoken');
+                            console.log(csrftoken);
+                            console.log('csrf: ', $.removeCookie('csrftoken', { path: '/',}));
+                            $.cookie('csrftoken', csrftoken, { path: '/',});
                             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
                                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
                             }
@@ -70,9 +73,8 @@ kakaoLogout = function logoutWithKakao(params) {
     Kakao.Auth.logout(function () {
         $.ajaxSetup({
             beforeSend: function(xhr, settings) {
-                var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
                 if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
                 }
             }
         });

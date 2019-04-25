@@ -32,7 +32,8 @@
 }
 
 #content{
-  margin-top: unset;
+  /* margin-top: unset; */
+  margin-top: 80px;
 }
 
 .account {
@@ -118,7 +119,7 @@
   }
 
   #content {
-    margin-top: 100px;
+    margin-top: 60px !i;
   }
 
   #logo {
@@ -833,17 +834,17 @@
 }
 
 .box-center-custom {
-  margin: 0 150px;
+  /* margin: 0 150px; */
   padding-top: 4.5rem;
   padding-bottom: 4.5rem;
   border: 2px solid black;
-  transform: translateY(calc(50% - 60px)) translateX(0%);
+  /* transform: translateY(calc(50% - 60px)) translateX(0%); */
   min-width: 300px;
   /* width: 300px; */
 }
 @media(max-width: 1120px){
   .box-center-custom {
-    transform: translateY(calc(50% - 9rem)) translateX(0%);
+    /* transform: translateY(calc(50% - 9rem)) translateX(0%); */
   }
 }
 @media(max-width: 991px){
@@ -851,7 +852,7 @@
 }
 @media(max-width: 767px){
   .box-center-custom {
-    margin: 0 50px;
+    /* margin: 0 50px; */
   }
 }
 @media(max-width: 575px){

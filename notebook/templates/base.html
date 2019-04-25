@@ -40,11 +40,11 @@
         <link rel='stylesheet' type="text/css" href='{% static "css/style.css" %}' />
         
         <!-- JavaScript Libraries -->
-        <script src="{% static 'js/mobile-nav.js' %}"></script>
+        <script src="{% static 'js/jquery.cookie.js' %}"></script>
 
         <!-- Template Main Javascript File -->
         <script src="{% static 'js/main.js' %}"></script>
-        {% csrf_token %}
+        <script src="{% static 'js/mobile-nav.js' %}"></script>
     {% endblock resources %}
     
 </head>

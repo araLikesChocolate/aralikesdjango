@@ -25,6 +25,15 @@ window.addEventListener('load', function () {
     naverLogin.getLoginStatus(function (status) {
         if (status) {
             /* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+            var list = [typeof(naverLogin['user']['id']), typeof(naverLogin['user']['email']), typeof(naverLogin['user']['name']),
+            typeof(naverLogin['user']['nickname']), typeof(naverLogin['user']['profile_image'])];
+            console.log($.inArray('undefined', list));
+
+            if( list.includes('undefined') || list.includes('null') ) {
+                alert('정보 제공에 모두 동의해주세요.');
+                naverLogin.reprompt();
+                return;
+            }
             setLoginStatus();
         }
     });
@@ -38,9 +47,12 @@ function setLoginStatus() {
     
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
-            var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+            var csrftoken = $.cookie('csrftoken');
+            console.log(csrftoken);
+            console.log('csrf: ', $.removeCookie('csrftoken', { path: '/',}));
+            $.cookie('csrftoken', csrftoken, { path: '/',});
             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
             }
         }
     });
@@ -83,9 +95,8 @@ function naverLogout() {
             /* (6) 로그인 상태가 "true" 인 경우 로그아웃 */
             $.ajaxSetup({
                 beforeSend: function(xhr, settings) {
-                    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
                     if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                        xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
                     }
                 }
             });
@@ -100,6 +111,7 @@ function naverLogout() {
                         // console.log(res['properties']['nickname'])
                         console.log('ajax naver logout success...')
                         // console.log(data)
+                        console.log('csrf remove:', $.removeCookie('csrftoken', { path: '/',}))
                         window.location.replace(data)
                     }
                 },

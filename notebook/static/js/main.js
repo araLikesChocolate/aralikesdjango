@@ -128,7 +128,7 @@ $(function(){
   var scrollHeight = 0;
   $(window).scroll(function () {
     scrollHeight = $(document).scrollTop();
-    console.log(scrollHeight);
+    // console.log(scrollHeight);
     }); 
 
   function closeModal(e){
