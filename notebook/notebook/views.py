@@ -1,6 +1,6 @@
 from django.views.generic.base import TemplateView
 from django.apps import apps
-import json, requests
+# import json, requests
 
 #-- TemplateView
 class HomeView(TemplateView) :
