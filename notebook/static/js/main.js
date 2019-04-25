@@ -101,22 +101,58 @@ $(function(){
   }
 
   function openModal(){
+    var arr=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     el = $(this).parent();
     // el.children('div.modal-parent').attr('style', 'left:130px');
-    style = el.attr('style');
+    // style = el.attr('style');
     el.attr('style', 'visibility: unset; opacity: unset;');
     modal = $(this).parent().children('.modal-parent');
     modal.addClass("show");
-  }
 
-  function closeModal(){
+  
+    //----------------------------------------------------------
+    var mobileSelect1 = new MobileSelect({
+      trigger: '.trigger1', 
+      title: 'Single Selection',  
+      wheels: [
+            {data: arr}
+          ],
+      position:[2],
+    });
+
+    var baseDiv = modal.children('div').children('div').children('div').children('input');
+    // console.log(baseDiv)
+    $('.mobileSelect.mobileSelect-show').insertAfter(baseDiv);
+   
+  }
+  var scrollHeight = 0;
+  $(window).scroll(function () {
+    scrollHeight = $(document).scrollTop();
+    console.log(scrollHeight);
+    }); 
+
+  function closeModal(e){
       // el.children('div.modal-parent').removeAttr('style');
-      modal.removeClass("show");
+      // console.log(, e.clientY)
+      // console.log($(this));
+      targetUpper = $(this).children().children().children('.img_frame');
+      // console.log(targetUpper);
+      targetLower = $(this).children().children().children('.img_frame_caption');
+      // console.log(targetLower);
+      upperOffset = targetUpper.offset();
+      // console.log('x:', e.clientX, '->', upperOffset.left, ' ~ ', upperOffset.left + targetUpper.width());
+      // console.log('y:', e.clientY + scrollHeight, '->', upperOffset.top, ' ~ ', upperOffset.top + targetUpper.height() + targetLower.height());
+      if( e.clientX >= (upperOffset.left) && e.clientX <= (upperOffset.left + targetUpper.width()) 
+        && (e.clientY + scrollHeight) >= (upperOffset.top) && (e.clientY + scrollHeight) <= (upperOffset.top + targetUpper.height() + targetLower.height()) ){
+            // console.log('pass');
+      } else {
+        modal.removeClass("show");
+        $('.mobileSelect.mobileSelect-show').remove();
+      }
   }
 
   init();
 });
-
 
 
 /****************************************

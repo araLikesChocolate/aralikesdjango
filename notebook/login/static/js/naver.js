@@ -62,7 +62,7 @@ function setLoginStatus() {
                 // Do somothing when data is not null
                 // console.log(res['properties']['nickname'])
                 console.log('ajax naver login success...')
-                console.log(data)
+                // console.log(data)
                 window.location.replace(data)
             }
         },
@@ -99,7 +99,7 @@ function naverLogout() {
                         // Do somothing when data is not null
                         // console.log(res['properties']['nickname'])
                         console.log('ajax naver logout success...')
-                        console.log(data)
+                        // console.log(data)
                         window.location.replace(data)
                     }
                 },

@@ -18,23 +18,23 @@
         <link rel="icon" type="image/png" href="{% static 'img/icons/favicon.ico' %}"/>
 
         <!-- jquery cdn -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/jquery-ui.min.js' %}"></script>
         
         <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet"/>
 
         <!-- Google Material Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="{% static 'css/icon.css' %}" rel="stylesheet"/>
       
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
         
         <!-- JavaScript Libraries -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         
         <!-- Libraries CSS Files -->
-        <link rel='stylesheet' type="text/css" href='{% static "css/font-awesome.min.css" %}'>
+        <link rel='stylesheet' type="text/css" href='{% static "css/font-awesome.min.css" %}'/>
 
         <!-- Main Stylesheet File -->
         <link rel='stylesheet' type="text/css" href='{% static "css/style.css" %}' />
@@ -53,7 +53,8 @@
         <div class="container">
 
             <div class="logo float-left" id="logo">
-                <a href="/" class="scrollto"><img src='{% static "img/logo.png" %}'></a>
+                {% comment %} <a href="/" class="scrollto"><img src='{% static "img/logo.png" %}'></a> {% endcomment %}
+                <a href="/" class="scrollto">Notebook</a>
             </div>
 
             <nav id="main-nav" class="main-nav float-right d-none d-sm-block">
@@ -125,9 +126,10 @@
     </div>
     <footer id='footer' class="fixed-bottom">
         {% block footer %}
+            {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> {% endcomment %}
         {% endblock footer %}
     </footer>
-
-    <div class="hidden"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div>
+    <div id="naverIdLogin" class='hidden'><a id="naverIdLogin_loginButton" href="#"><img src="https://static.nid.naver.com/oauth/big_g.PNG?version=js-2.0.0" height="50"></a></div>
+    {% comment %} <div class="hidden"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div> {% endcomment %}
 </body>
 </html>

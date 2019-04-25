@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% block resources %}
     {{ block.super }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/animation.gsap.js"></script>
+    {% load staticfiles %}
+    <link ref='text/css' href="{% static 'css/mobileSelect.css' %}">
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/ScrollMagic.min.js' %}"></script>
+    <script src="{% static 'js/animation.gsap.js' %}"></script>
+    <script src="{% static 'js/mobileSelect.js' %}"></script>
+    <script src="{% static 'js/speech.js' %}"></script>
 {% endblock resources %}
 {% block content %}
 
@@ -26,10 +30,7 @@
                         <div class="video-wrapper">
                                 <img class="img_frame" src="{% static 'img/img1.png' %}">
                                 <div class="img_frame_caption">
-                                    <h5>내용1</h5>
-                                    <h5>내용2</h5>
-                                    <h5>내용3</h5>
-                                    <h5>내용4</h5>
+                                    <input type="hidden" id="trigger1" placeholder="Speech Selection">
                                 </div>
                         </div>
                     </div>
@@ -50,10 +51,7 @@
                         <div class="video-wrapper">
                                 <img class="img_frame" src="{% static 'img/img2.png' %}">
                                 <div class="img_frame_caption">
-                                    <h5>내용1</h5>
-                                    <h5>내용2</h5>
-                                    <h5>내용3</h5>
-                                    <h5>내용4</h5>
+                                    <input type="hidden" class="trigger1" placeholder="Speech Selection">
                                 </div>
                         </div>
                     </div>
@@ -81,11 +79,7 @@
                                     {% comment %} <img class="img_frame" src="{{ hero.imageurl }}"> {% endcomment %}
                                     <img class="img_frame" src="{% static 'img/img2.png' %}">
                                     <div class="img_frame_caption">
-                                        <h3>aa</h3>
-                                        <h5>내용1</h5>
-                                        <h5>내용2</h5>
-                                        <h5>내용3</h5>
-                                        <h5>내용4</h5>
+                                        <input type="hidden" class="trigger1" placeholder="Speech Selection">
                                     </div>
                             </div>
                         </div>
@@ -103,7 +97,7 @@
 
 {% block footer %}
     {{ block.super }}
-    {% if request.session.user %}
+    {% if request.session.data.user %}
         <a href="#" class="add_circle"><i class="material-icons">add_circle</i>{{request.session.user.id}}</a>
     {% else %}
     {% endif %}
