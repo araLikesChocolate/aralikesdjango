@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     # djnago google TTS module
     # 'gTTS',
     # 'django_jinja',
+    'ML',
 ]
 
 # 임시로 보안사항을 열어줌
