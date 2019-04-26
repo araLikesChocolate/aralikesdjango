@@ -6,26 +6,21 @@ from uuid import uuid4 # universally unique identifiers : 타임스템프를 기
 import jsonfield
 from login.models import Member
 
-def get_file_path(instance, filename):
-    upload_to = 'img'
-    ext = filename.split('.')[-1]
-    # get filename
-    if instance.pk:
-        filename = '{}.{}'.format(instance.member_idx, ext)
-    else:
-        # set filename as random string
-        filename = '{}.{}'.format(uuid4().hex, ext)
-        pass
-
-    # return the whole path to the file
-    return os.path.join(upload_to, filename)
+#파라미터 instance는 Data 모델을 의미 filename은 업로드 된 파일의 파일 이름
+def user_path(instance, filename): 
+    extension = filename.split('.')[-1]
+    aa = str(timezone.now())
+    bb = aa.split('.')[0]
+    print(type(bb))
+    return '%s/%s.%s' % (instance.member_idx.id, bb, extension) # 예 : wayhome/abcdefgs.png
 
 class Data(models.Model):
     idx = models.AutoField(primary_key=True, null=False)
-    url = models.ImageField(upload_to=get_file_path,
-                            null=False,
-                            verbose_name=('imgs'),
-                            blank=False,)
+    url = models.ImageField(blank=True, upload_to=user_path)
+    # url = models.ImageField(upload_to=user_path,
+    #                         null=False,
+    #                         verbose_name=('imgs'),
+    #                         blank=False,)
     texts = jsonfield.JSONField()
     date = models.DateTimeField(auto_now_add = True)
     publish = models.BooleanField(default=False)
@@ -36,9 +31,10 @@ class Data(models.Model):
 
 # django.utils.timezone
 class DataModelForm(forms.ModelForm):
-    class Meta: 
+    class Meta:
         model = Data
-        fields = ['url', ] # 'username_date', 
-        labels = { # 'username_date': '유저이름과 업로드 날짜',
-                    'url':'이미지'
-        }
+        # fields = '__all__'
+        fields = ['url','publish']
+        labels = {  'url':'이미지',
+                    'publish':'공유여부',
+                }

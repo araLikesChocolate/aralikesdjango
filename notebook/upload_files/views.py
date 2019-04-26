@@ -1,12 +1,19 @@
+<<<<<<< Updated upstream
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import ListView
+=======
+from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.views.generic import ListView, DetailView
+from django.core import serializers
+>>>>>>> Stashed changes
 from .models import Data, DataModelForm
 from login.models import Member
-
+from django.views.decorators.csrf import csrf_exempt
 
 def file(request):
     if request.method=='GET':
         form = DataModelForm()
+<<<<<<< Updated upstream
     else:
         print('저장한다.')
         form = DataModelForm(request.POST, request.FILES)
@@ -30,6 +37,22 @@ def file(request):
             print("error....!")
 
     return render(request, 'upload_files/files_form.html', {'form': form})
+=======
+        return render(request, 'upload_files/files_form.html', {'form':form})
+
+@csrf_exempt
+def file_submit(request):
+    form = DataModelForm(request.POST, request.FILES)
+
+    if request.is_ajax():
+        data = form.save(commit=False)
+        data.user = request.session.get('data')['user']
+        # {'idx': 2, 'email': 'jinju2415@naver.com', 'id': '1064590680', 'service_type': 'KAKAO'}
+        data.member_idx = Member.objects.get(idx=data.user['idx'])
+        data.save()
+    return HttpResponse("OK")
+    # return render(request, 'upload_files/files_detail.html')
+>>>>>>> Stashed changes
 
 class DataListView(ListView):
     model=Data
@@ -39,7 +62,7 @@ class DataListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(DataListView, self).get_context_data(**kwargs)
         paginator = context['paginator']
-        page_numbers_range = 15  # Display only 5 page numbers
+        page_numbers_range = 5  # Display only 5 page numbers
         max_index = len(paginator.page_range)
 
         page = self.request.GET.get('page')
@@ -53,3 +76,7 @@ class DataListView(ListView):
         page_range = paginator.page_range[start_index:end_index]
         context['page_range'] = page_range
         return context
+
+class DataDetailView(DetailView):
+    model = Data
+    template_name = 'upload_files/files_Detail.html'

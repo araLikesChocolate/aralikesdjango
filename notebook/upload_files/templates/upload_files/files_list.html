@@ -16,15 +16,17 @@
 
 	<table border="2">
 	<tr>
-	<td>번호</td><td>사용자_날짜</td><td>업로드시간</td><td>경로</td><td>사진</td>
+	<td>번호</td><td>경로</td><td>사진</td><td>json</td><td>업로드시간</td><td>공유여부</td><td>멤버정보</td>
 	</tr>
-	{% for file in data_list %}
+	{% for data in object_list %}
 	<tr>
-		<td>{{ file.id }}</td>
-		<td>미정</td>
-		<td>{{ file.upload_time }}</td>
-		<td>{{ file.data }}</td>
-		<td><img src='/media/{{ file.data }}' alt="" width="200" heigh="200"></td>
+		<td>{{ data.idx }}</td>
+		<td>{{ data.url }}</td>
+		<td><img src='/media/{{ data.url }}' alt="" width="200" heigh="200"></td>
+		<td>{{ data.texts }}</td>
+		<td>{{ data.date }}</td>
+		<td>{{ data.publish }}</td>
+		<td>{{ data.member_idx }}</td>
 	</tr>
 	{% endfor %}
 

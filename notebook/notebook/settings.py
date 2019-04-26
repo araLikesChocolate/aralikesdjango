@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'widget_tweaks',
     # pip install django-rest-auth
     # 'rest_auth',
     'registration',
@@ -102,6 +103,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DATABASES = {
    'default': {
+<<<<<<< Updated upstream
     #    'ENGINE': 'django.db.backends.sqlite3',
     #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         # 'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
@@ -112,6 +114,18 @@ DATABASES = {
         'HOST': '192.168.22.126', #공백으로 냅두면 default localhost
         # 'HOST': 'localhost',
         'PORT': '3307' #공백으로 냅두면 default 3306
+=======
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # # 'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'notebook',  #mysql
+        # 'USER': 'root', #root
+        # 'PASSWORD': '1234', #1234
+        # 'HOST': '192.168.22.114', #공백으로 냅두면 default localhost
+        # # 'HOST': 'localhost',
+        # # 'PORT': '3307' #공백으로 냅두면 default 3306
+>>>>>>> Stashed changes
         # 'PORT': '3306' #공백으로 냅두면 default 3306
    }
 }
@@ -159,12 +173,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "registration", "static"),
+    os.path.join(BASE_DIR, "upload_files", "static"),
 )
-
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'registration/login/'
-LOGIN_URL = 'registration/login/'
 
 # STATIC_ROOT collectstatic 명령어를 통해서 수집되는 static 파일들이 위치하는 곳
 # 운영 모드에서는 static 파일들의 위치를 지정해주어야한다. 
