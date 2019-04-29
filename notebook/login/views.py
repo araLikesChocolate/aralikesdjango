@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse, HttpResponseRedirect, get_object_or_404
 from django.views.generic.base import TemplateView
 from rest_framework import viewsets
+# from rest_framework.request import Request
 from .serializers import MemberSerializer
 from .models import Member
 from ML.models import Data
+from ML.serializers import DataSerializer
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 import json
-from django.core import serializers
 
 # Create your views here.
 def login(request) :
@@ -28,7 +29,14 @@ def login(request) :
                 request.session['user'] = serializer.data
                 tmpData = { 'name': request.POST.get('name'), 'nickname': request.POST.get('nickname'), 'profile_image': request.POST.get('profile_image') }
                 request.session['tmpData'] = tmpData
-                # print(serializers.serialize('json', Data.objects.get(member_idx=obj)))
+                # Data.objects.all().filter(member_idx=obj)
+                for data in Data.objects.all().filter(member_idx=obj):
+                    # print(DataSerializer(data, context={'request': request}).data)
+                    pass
+                # dd = type()
+                # print(dd)
+                # print( [ DataSerializer(_obj).data for _obj in [ Data.objects.all().filter(member_idx=obj) ] ] )
+                
                 # request.session['data'] = 
                 return HttpResponse(reverse('home'))
         else :
