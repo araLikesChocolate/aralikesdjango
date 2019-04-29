@@ -202,7 +202,7 @@ $(function () {
 function notebookLogout(service_type) {
   if (service_type == 'KAKAO') {
     $.getScript("//developers.kakao.com/sdk/js/kakao.min.js", function() {
-      $.getScript("static/js/kakao.js", function(data, textStatus, jqxhr) { 
+      $.getScript("/static/js/kakao.js", function(data, textStatus, jqxhr) { 
         // console.log(data); //data returned 
         console.log(textStatus); //success 
         console.log(jqxhr.status); //200 
@@ -212,7 +212,7 @@ function notebookLogout(service_type) {
     });
   } else {
     $.getScript("https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js", function() {
-      $.getScript("static/js/naver.js", function(data, textStatus, jqxhr) { 
+      $.getScript("/static/js/naver.js", function(data, textStatus, jqxhr) { 
         // console.log(data); //data returned 
         console.log(textStatus); //success 
         console.log(jqxhr.status); //200 
