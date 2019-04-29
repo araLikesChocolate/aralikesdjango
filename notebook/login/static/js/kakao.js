@@ -16,11 +16,14 @@ var kakaoLogin = function loginWithKakao() {
             Kakao.API.request({
                 url: '/v2/user/me',
                 success: function(res) {
-                    // alert(JSON.stringify(authObj));
-                    // alert(JSON.stringify(res));
+                    console.log(JSON.stringify(authObj));
+                    console.log(JSON.stringify(res));
                     $.ajaxSetup({
                         beforeSend: function(xhr, settings) {
-                            var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+                            var csrftoken = $.cookie('csrftoken');
+                            console.log(csrftoken);
+                            console.log('csrf: ', $.removeCookie('csrftoken', { path: '/',}));
+                            $.cookie('csrftoken', csrftoken, { path: '/',});
                             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
                                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
                             }
@@ -33,8 +36,10 @@ var kakaoLogin = function loginWithKakao() {
                         data: { 
                                 service_type: 'KAKAO',
                                 id: res['id'],
-                                nickname: res['properties']['nickname'],
                                 email: res['kakao_account']['email'],
+                                name: res['properties']['name'],
+                                nickname: res['properties']['nickname'],
+                                profile_image: res['properties']['profile_image']
                             },
                         async: false,
                         success: function(data) {
@@ -43,7 +48,9 @@ var kakaoLogin = function loginWithKakao() {
                                 // console.log(res['properties']['nickname'])
                                 console.log('ajax kakao login success...')
                                 console.log(data)
-                                window.location.replace(data)
+                                
+                                // window.location.replace(data)
+                                
                             }
                         },
                         fail: function(error) {
@@ -68,9 +75,8 @@ kakaoLogout = function logoutWithKakao(params) {
     Kakao.Auth.logout(function () {
         $.ajaxSetup({
             beforeSend: function(xhr, settings) {
-                var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
                 if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
                 }
             }
         });
@@ -84,13 +90,13 @@ kakaoLogout = function logoutWithKakao(params) {
                     // Do somothing when data is not null
                     // console.log(res['properties']['nickname'])
                     console.log('ajax kakao logout success...')
-                    console.log(data)
+                    // console.log(data)
                     window.location.replace(data)
                 }
             },
             fail: function(error) {
                 console.log('ajax kakao logout failed...')
-                window.location.replace('/')
+                // window.location.replace('/')
                 console.log(JSON.stringify(error));
             }
         });

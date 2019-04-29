@@ -10,23 +10,26 @@ import json
 # Create your views here.
 def login(request) :
     obj = ''
-    if request.method == 'POST' :
-        try:
-            # login
-            obj = Member.objects.get(id=request.POST.get('id'), service_type=request.POST.get('service_type'))
-        except Member.DoesNotExist:
-            # join
-            obj = memberJoin(request)
-        finally:
-            serializer = MemberSerializer(obj)
-            tmpdict = { 'nickname' : request.POST.get('nickname')}
-            tmpdict.update(serializer.data)
-            print(tmpdict)
-            request.session['user'] = tmpdict
-            request.session['member'] = serializer.data
-            return HttpResponse(reverse('home'))
-    else :
-        return render(request, 'login/login.html')
+    try :
+        if request.session['data']['user'] is not None :
+            return redirect('home')
+    except :
+        if request.method == 'POST' :
+            try:
+                # login
+                obj = Member.objects.get(id=request.POST.get('id'), service_type=request.POST.get('service_type'))
+            except Member.DoesNotExist:
+                # join
+                obj = memberJoin(request)
+            finally:
+                serializer = MemberSerializer(obj)
+                tmpdict = { 'name': request.POST.get('name'), 'nickname': request.POST.get('nickname'), 'profile_image': request.POST.get('profile_image') }
+                tmpdict.update({ 'user' : serializer.data })
+                # print(tmpdict)
+                request.session['data'] = tmpdict
+                return HttpResponse(reverse('home'))
+        else :
+            return render(request, 'login/login.html')
 
 def memberJoin(request):
     obj = Member(email=request.POST.get('email'), id=request.POST.get('id'), service_type=request.POST.get('service_type'))

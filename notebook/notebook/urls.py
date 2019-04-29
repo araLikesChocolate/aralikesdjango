@@ -23,12 +23,11 @@ app_name = ''
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
-    path('2/', views.HomeView2.as_view(), name='home2'),
-    path('admin/', admin.site.urls),
-    path('registration/', include('registration.urls')),
+    # path('admin/', admin.site.urls),
     path('login/', include('login.urls')),
     path('logout/', include('logout.urls')),
     path('upload_files/', include('upload_files.urls')),
+    path('upload/', include('ML.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
