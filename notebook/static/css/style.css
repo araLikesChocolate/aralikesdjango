@@ -33,6 +33,7 @@
 
 #content{
   margin-top: unset;
+  /* margin-top: 80px; */
 }
 
 .account {
@@ -110,7 +111,6 @@
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-
 @media (max-width: 1120px){
   #header, #content, #footer {
     margin-left: unset;
@@ -118,7 +118,7 @@
   }
 
   #content {
-    margin-top: 100px;
+    margin-top: 80px !important;
   }
 
   #logo {
@@ -151,6 +151,12 @@
     background: #fff;
     box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
     /* box-shadow: 0px 0px 30px rgba(32, 32, 32, 0.3); */
+  }
+}
+
+@media(max-width: 991px) {
+  #content {
+    margin-top: 60px !important;
   }
 }
 
@@ -627,15 +633,17 @@
   top: 0;
   /* nav 왼쪽 */
   /* left: 130px; */
-  left: 260px;
+  /* left: 260px; */
+  left: 0;
   /* right: 130px; */
   bottom: 0;
-  width: calc(100% - 260px);
-  /* width: 100%; */
+  /* width: calc(100% - 260px); */
+  width: 100%;
   height: 100%;
   /* background: rgba(255, 255, 255, 0.9); */
-  background: rgba(255, 255, 255, 1);
-  z-index: 9;
+  /* background: rgba(255, 255, 255, 1); */
+  background: rgba(0, 0, 0, 1);
+  z-index: 9999;
   opacity: 0;
   visibility: hidden;
   perspective: 1000px;
@@ -652,7 +660,7 @@
 
 .modal-parent .modal_frame {
   position: fixed;
-  top: 45%;
+  top: 44%;
   /* 130px + padding 15px */
   left: calc(50%);
   width: 60%;
@@ -833,17 +841,17 @@
 }
 
 .box-center-custom {
-  margin: 0 150px;
+  /* margin: 0 150px; */
   padding-top: 4.5rem;
   padding-bottom: 4.5rem;
   border: 2px solid black;
-  transform: translateY(calc(50% - 60px)) translateX(0%);
+  /* transform: translateY(calc(50% - 60px)) translateX(0%); */
   min-width: 300px;
   /* width: 300px; */
 }
 @media(max-width: 1120px){
   .box-center-custom {
-    transform: translateY(calc(50% - 9rem)) translateX(0%);
+    /* transform: translateY(calc(50% - 9rem)) translateX(0%); */
   }
 }
 @media(max-width: 991px){
@@ -851,7 +859,7 @@
 }
 @media(max-width: 767px){
   .box-center-custom {
-    margin: 0 50px;
+    /* margin: 0 50px; */
   }
 }
 @media(max-width: 575px){

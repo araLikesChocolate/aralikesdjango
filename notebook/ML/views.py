@@ -115,6 +115,13 @@ def main(args):
 
 
 def upload(request):
+    try:
+        if request.session['data']['user'] is None:
+            return redirect('home')
+    except KeyError:
+        return redirect('home')
+            
+
     context = {}
     if request.method == 'POST':
         uploaded_file = request.FILES['image']

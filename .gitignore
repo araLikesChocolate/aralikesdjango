@@ -710,3 +710,4 @@ notebook/ML/models/encoder-5-2000.ckpt
 notebook/ML/data/annotations/captions_train2014.json
 notebook/ML/data/annotations/captions_val2014.json
 notebook/ML/data/vocab.json
+notebook/ML/coco
