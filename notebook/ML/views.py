@@ -27,8 +27,9 @@ from collections import Counter
 from pycocotools.coco import COCO
 import easydict
 import time
-import json
+import json, datetime
 from . import voc
+from .models import Data, Member
 
 #from .build_vocab import Vocabulary
 sys.modules["voc"] = voc
@@ -74,7 +75,7 @@ def main(args):
             #vocab = f.readlines()
             #print(vocab)
 
-    print('pickle 열기')
+    # print('pickle 열기')
     # Build models
     encoder = EncoderCNN(args.embed_size).eval()  # eval mode (batchnorm uses moving mean/variance)
     decoder = DecoderRNN(args.embed_size, args.hidden_size, len(vocab), args.num_layers)
@@ -100,34 +101,40 @@ def main(args):
     # Convert word_ids to words
     sampled_caption = []
     # print(sampled_caption)
+    # print('sampled_ids:', sampled_ids)
+    sentence = []
     for word_id in sampled_ids:
         word = vocab.idx2word[word_id]
         # print(word)
         sampled_caption.append(word)
         if word == '<end>':
             break
-    sentence = ' '.join(sampled_caption)
+            # sentence.append(' '.join(sampled_caption[1:-1]))
+    # print("원본: ", sampled_caption)
+    # print("가공: ", sampled_caption[1:-1])
+    sentence.append(' '.join(sampled_caption[1:-1]))
+    print(sentence)
 
     #Print out the image and the generated caption
     return sentence
 
-
-
-
 def upload(request):
     try:
-        if request.session['data']['user'] is None:
+        if request.META['HTTP_USER_AGENT'] == 'ANDROID':
+            print('\n\n######### ANDROID #########\n\n')
+            pass
+        elif request.session['user'] is None:
             return redirect('home')
     except KeyError:
         return redirect('home')
-            
+
 
     context = {}
     if request.method == 'POST':
         uploaded_file = request.FILES['image']
         # name = os.path.splitext(str(request.FILES['image']))[0]
         extension = os.path.splitext(str(request.FILES['image']))[1]
-        rename = 'idx_' + str(time.strftime("%Y%m%d%H%M%S")) + extension
+        rename = request.session['user']['id'] + '_' + str(time.strftime("%Y%m%d%H%M%S")) + extension
         fs = FileSystemStorage()
         fs.save(rename, uploaded_file)
         # print('save_file:', name)
@@ -155,5 +162,19 @@ def upload(request):
 
         sentence = main(args) #문장출력
         context['sentence'] = sentence
+
+        if request.META['HTTP_USER_AGENT'] == 'ANDROID':
+            pass
+        else:
+            insertData(request, rename, sentence)
+
         return render(request, 'ML/upload_result.html', context)
     return render(request, 'ML/upload.html', context)
+
+def insertData(request, rename, sentence) :
+    member = Member.objects.get(id=request.session['user']['id'], service_type=request.session['user']['service_type'])
+    # print('\n### Member: ', member)
+    # print(rename, sentence, datetime.datetime.now(), 0 if request.POST.get('publish') is None else 1)
+    obj = Data(url=rename, texts={ 'texts' : sentence }, date=datetime.datetime.now(), publish=0 if request.POST.get('publish') is None else 1, member_idx=member)
+    obj.save()
+    # return ''

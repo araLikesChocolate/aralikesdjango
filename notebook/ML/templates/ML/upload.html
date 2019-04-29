@@ -6,6 +6,7 @@
     {% csrf_token %}
     {% comment %} <input type='hidden' name='csrfmiddlewaretoken' value='{{ request.COOKIES.csrftoken }}'> {% endcomment %}
     <input type="file" name="image">
+    <input type='checkbox' name='publish'>
     <button type="submit">Upload file</button>
   </form>
 {% endblock %}

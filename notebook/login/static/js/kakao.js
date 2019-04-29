@@ -30,6 +30,13 @@ var kakaoLogin = function loginWithKakao() {
                         }
                     });
 
+                    // var list = [typeof(res['kakao_account']['email']), typeof(res['properties']['name'])]
+                    // for(var i in list){
+                    //     if(list[i] == 'undefined'){
+                    //         list[i] == ''
+                    //     }
+                    // }
+                    
                     $.ajax({
                         type: 'POST',
                         url: '',
@@ -49,7 +56,7 @@ var kakaoLogin = function loginWithKakao() {
                                 console.log('ajax kakao login success...')
                                 console.log(data)
                                 
-                                // window.location.replace(data)
+                                window.location.replace(data)
                                 
                             }
                         },
@@ -83,7 +90,7 @@ kakaoLogout = function logoutWithKakao(params) {
 
         $.ajax({
             type: 'POST',
-            url: 'logout/',
+            url: '/logout/',
             async: false,
             success: function(data) {
                 if(data != null) {
