@@ -23,6 +23,7 @@ app_name = ''
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
+    path('1/', views.HomeView2.as_view(), name='home_empty'),
     # path('admin/', admin.site.urls),
     path('login/', include('login.urls')),
     path('logout/', include('logout.urls')),

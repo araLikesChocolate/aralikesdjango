@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <title>
+        {% block title %}
+            My Amazing Site
+        {% endblock title %}
+    </title>
+
+    {% block resources %}
+
+        {% load staticfiles %}
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="{% static 'img/icons/favicon.ico' %}"/>
+
+        <!-- jquery cdn -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+        
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet"/>
+
+        <!-- Google Material Icons -->
+        <link href="{% static 'css/icon.css' %}" rel="stylesheet"/>
+      
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+        
+        <!-- JavaScript Libraries -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        
+        <!-- Libraries CSS Files -->
+        <link rel='stylesheet' type="text/css" href='{% static "css/font-awesome.min.css" %}'/>
+
+        <!-- Main Stylesheet File -->
+        <link rel='stylesheet' type="text/css" href='{% static "css/style.css" %}' />
+        
+        <!-- JavaScript Libraries -->
+        <script src="{% static 'js/jquery.cookie.js' %}"></script>
+
+        <!-- Template Main Javascript File -->
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/mobile-nav.js' %}"></script>
+    {% endblock resources %}
+    
+</head>
+<body>
+    <header id='header' class='fixed-top'>
+        <div class="container">
+
+            <div class="logo float-left" id="logo">
+                {% comment %} <a href="/" class="scrollto"><img src='{% static "img/logo.png" %}'></a> {% endcomment %}
+                <a href="/" class="scrollto">Notebook</a>
+            </div>
+
+            <nav id="main-nav" class="main-nav float-right d-none d-sm-block">
+                <ul>
+                    {% comment %} <li class='user-image' style='background:url("https://www.simplifiedcoding.net/demos/marvel/thor.jpg")'><a href="javascript:;">user-image</a></li>  {% endcomment %}
+                    {% if request.session.data.user is not None %}
+                    <li class='user-image' style="background:url({{ request.session.data.profile_image }})">
+                        {% comment %} <a href="javascript:;">user-image</a> {% endcomment %}
+                    </li> 
+                        <li class='user-name'>
+                            <a href="javascript:;">
+                            {% if request.session.data.name is not None %}
+                                {{ request.session.data.name }}님 환영합니다.
+                            {% elif request.session.data.nickname is not None %}
+                                {{ request.session.data.nickname }}님 환영합니다.
+                            {% else %}
+                                {{ request.session.data.user.id }}님 환영합니다.
+                            {% endif %}
+                            </a>
+                        </li>
+                        <li id='home' class='home'><a href="/">home</a></li>
+                        <li id='quiz' class='quiz'><a href="#quiz">quiz</a></li>
+                        <li id='logout' class='logout'><a href="javascript:notebookLogout('{{ request.session.data.user.service_type }}');">logout</a></li>
+                        <li id='account' class="drop-down account"><a href="javascript:;">account</a>
+                            <ul>
+                            
+                            {% comment %} <li style='background:url("https://www.simplifiedcoding.net/demos/marvel/thor.jpg")'><a href="javascript:;" onclick="return false;" class='user_image'>{{ request.session.user.nickname }}님 환영합니다.</a></li> {% endcomment %}
+                            <li style="background:url({{ request.session.data.profile_image }})">
+                            </li>
+                            <li>
+                                <a href="javascript:;" onclick="return false;" class='user_image'>
+                                    {% if request.session.data.name is not None %}
+                                        {{ request.session.data.name }}님 환영합니다.
+                                    {% elif request.session.data.nickname is not None %}
+                                        {{ request.session.data.nickname }}님 환영합니다.
+                                    {% else %}
+                                        {{ request.session.data.user.id }}님 환영합니다.
+                                    {% endif %}
+                                </a>
+                            </li>
+                            {% comment %} <li class="drop-down"><a href="#">Drop Down 2</a>
+                                <ul>
+                                <li><a href="#">Deep Drop Down 1</a></li>
+                                <li><a href="#">Deep Drop Down 2</a></li>
+                                <li><a href="#">Deep Drop Down 3</a></li>
+                                <li><a href="#">Deep Drop Down 4</a></li>
+                                <li><a href="#">Deep Drop Down 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Drop Down 3</a></li>
+                            <li><a href="#">Drop Down 4</a></li>
+                            {% endcomment %}
+                        <li id='logout'><a href="javascript:notebookLogout('{{request.session.data.user.service_type}}');">logout</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li id='home' class='home'><a href="/">home</a></li>
+                        <li id='quiz' class='quiz'><a href="#quiz">quiz</a></li>
+                        <li id='login' class='login'><a href="{% url 'login:login' %}">login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    {% comment %} <a class="account_circle d-sm-none" href="#"><i class="fas fa-user-circle"></i></a> {% endcomment %}
+    <div id='content'>
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <footer id='footer' class="fixed-bottom">
+        {% block footer %}
+            {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> {% endcomment %}
+        {% endblock footer %}
+    </footer>
+    <div id="naverIdLogin" class='hidden'><a id="naverIdLogin_loginButton" href="#"><img src="https://static.nid.naver.com/oauth/big_g.PNG?version=js-2.0.0" height="50"></a></div>
+    {% comment %} <div class="hidden"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div> {% endcomment %}
+</body>
+</html>
