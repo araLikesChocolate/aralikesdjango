@@ -26,7 +26,7 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('login/', include('login.urls')),
     path('logout/', include('logout.urls')),
-    path('upload_files/', include('upload_files.urls')),
+    # path('upload_files/', include('upload_files.urls')),
     path('upload/', include('ML.urls')),
 ]
 

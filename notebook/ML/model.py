@@ -16,7 +16,7 @@ class EncoderCNN(nn.Module):
         self.bn = nn.BatchNorm1d(embed_size, momentum=0.01)
 
     def forward(self, images):
-        print('encode forward...........................................')
+        print('encode forward...')
         """Extract feature vectors from input images."""
         with torch.no_grad():
             features = self.resnet(images)
@@ -37,7 +37,7 @@ class DecoderRNN(nn.Module):
         self.max_seg_length = max_seq_length
 
     def forward(self, features, captions, lengths):
-        print('decode forward............................................................')
+        print('decode forward...')
         """Decode image feature vectors and generates captions."""
         embeddings = self.embed(captions)
         embeddings = torch.cat((features.unsqueeze(1), embeddings), 1)
@@ -47,8 +47,8 @@ class DecoderRNN(nn.Module):
         return outputs
 
     def sample(self, features, states=None):
-        print('decode sample')
-        print(self.max_seg_length)
+        # print('decode sample')
+        # print(self.max_seg_length)
         """Generate captions for given image features using greedy search."""
         sampled_ids = []
         inputs = features.unsqueeze(1)

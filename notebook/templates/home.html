@@ -20,10 +20,9 @@
         </h1>
 
         <!-- Portfolio Item Row -->
-        <div class="row">
+        {% comment %} <div class="row">
             <div class="col-md-7 mb-4 img-set" fade-up-in>
                 {% load staticfiles %}
-                {% comment %} <img class="img-fluid" src="{% static 'img/img1.png' %}" alt="" height="500px"> {% endcomment %}
                 <img class="img-fluid img-share-height img-share-width img_modal_origin" src="{% static 'img/img1.png' %}" alt="">
                 <div class="modal-parent">
                     <div class="modal_frame">
@@ -34,7 +33,6 @@
                                 </div>
                         </div>
                     </div>
-                    {% comment %} <a class="close-modal"></a>  {% endcomment %}
                 </div>
                 <div class="img-overlay-text img_modal_origin">
                     <h3>산-샘플제목-1</h3>
@@ -44,7 +42,6 @@
             </div>
 
             <div class="col-md-5 mb-4 img-set" fade-up-in>
-                {% comment %} <img class="img-fluid" src="{% static 'img/img2.png' %}" alt="" height="500px"> {% endcomment %}
                 <img class="img-fluid img-share-height img-share-width img_modal_origin" src="{% static 'img/img2.png' %}" alt="">
                 <div class="modal-parent">
                     <div class="modal_frame">
@@ -55,7 +52,6 @@
                                 </div>
                         </div>
                     </div>
-                    {% comment %} <a class="close-modal"></a>  {% endcomment %}
                 </div>
                 <div class="img-overlay-text img_modal_origin">
                     <h3>바다-샘플제목-2</h3>
@@ -63,7 +59,7 @@
                 </div>
                 <button class="btn btn-custom" onclick="">삭제</button>
             </div>
-        </div>
+        </div> {% endcomment %}
         <!-- /.row -->
 
         <!-- Related Projects Row -->
@@ -97,8 +93,8 @@
 
 {% block footer %}
     {{ block.super }}
-    {% if request.session.data.user %}
-        <a href="#" class="add_circle"><i class="material-icons">add_circle</i>{{request.session.user.id}}</a>
+    {% if request.session.user %}
+        <a href="#" class="add_circle"><i class="material-icons">add_circle</i></a>
     {% else %}
     {% endif %}
 {% endblock footer %}

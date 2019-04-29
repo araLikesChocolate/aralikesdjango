@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     # 'rest_auth',
     'login',
     'logout',
-    'upload_files',
+    # 'upload_files',
     # djnago google TTS module
     # 'gTTS',
     # 'django_jinja',
@@ -151,7 +151,10 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# USE_TZ가 True일 때는 templates, forms에서의 datetime에만 내가 설정한 TIME_ZONE이 적용
+# models의 datetime에도 적용하고 싶다면 False
+# USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
