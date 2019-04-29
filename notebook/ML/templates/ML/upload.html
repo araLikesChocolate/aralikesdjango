@@ -3,11 +3,9 @@
 {% block content %}
   <h2>Upload</h2>
   <form method="post" action='' enctype="multipart/form-data">
-    <input type='hidden' value='{{ request.COOKIES.csrftoken}}'>
+    {% csrf_token %}
+    {% comment %} <input type='hidden' name='csrfmiddlewaretoken' value='{{ request.COOKIES.csrftoken }}'> {% endcomment %}
     <input type="file" name="image">
     <button type="submit">Upload file</button>
   </form>
-  {% comment %} {% if url %}
-    <p>Uploaded file: <a href="{{ url }}">{{ url }}</a></p>
-  {% endif %} {% endcomment %}
 {% endblock %}

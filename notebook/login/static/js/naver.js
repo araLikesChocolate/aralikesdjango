@@ -80,7 +80,7 @@ function setLoginStatus() {
         },
         fail: function(error) {
             console.log('ajax naver login failed...')
-            // window.location.replace('/')
+            window.location.replace('/')
             console.log(JSON.stringify(error));
         }
     });   

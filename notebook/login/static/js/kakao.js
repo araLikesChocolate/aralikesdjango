@@ -47,8 +47,10 @@ var kakaoLogin = function loginWithKakao() {
                                 // Do somothing when data is not null
                                 // console.log(res['properties']['nickname'])
                                 console.log('ajax kakao login success...')
-                                // console.log(data)
-                                window.location.replace(data)
+                                console.log(data)
+                                
+                                // window.location.replace(data)
+                                
                             }
                         },
                         fail: function(error) {
