@@ -14,6 +14,16 @@
         data.append("url", $("input[name=url]")[0].files[0]);
         data.append("publish", $("input[name=publish]").val());
 
+
+        for (var key of data.keys()) {
+            console.log("key:"+ key);
+            }
+
+        for (var value of data.values()) {
+        console.log("value:"+ value);
+            }   
+
+
         $.ajax({
             url:"upload_files/submit/",
             data:data,

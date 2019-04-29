@@ -1,11 +1,6 @@
-<<<<<<< Updated upstream
-from django.shortcuts import render, redirect, reverse
-from django.views.generic import ListView
-=======
 from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.views.generic import ListView, DetailView
 from django.core import serializers
->>>>>>> Stashed changes
 from .models import Data, DataModelForm
 from login.models import Member
 from django.views.decorators.csrf import csrf_exempt
@@ -13,46 +8,25 @@ from django.views.decorators.csrf import csrf_exempt
 def file(request):
     if request.method=='GET':
         form = DataModelForm()
-<<<<<<< Updated upstream
-    else:
-        print('저장한다.')
-        form = DataModelForm(request.POST, request.FILES)
-        if form.is_valid():
-            print("form: ", form)
-            #ModelForm ... commit 지연
-            url = form.cleaned_data['url'] 
-            # member_idx = request.session.get('member')
-            print('################################')
-            for key, value in request.session.items() :
-                print(key, value)
-
-            print('################################')
-            # member_idx = Member.objects.get(idx=1)
-            print("멤버 인덱스:", member_idx)
-            Data.objects.create(url=url, member_idx=member_idx)
-            # data = form.save(commit=False)
-            # data.save()
-            return redirect(reverse('upload_files:list'))
-        else :
-            print("error....!")
-
-    return render(request, 'upload_files/files_form.html', {'form': form})
-=======
         return render(request, 'upload_files/files_form.html', {'form':form})
 
 @csrf_exempt
 def file_submit(request):
     form = DataModelForm(request.POST, request.FILES)
-
-    if request.is_ajax():
+    print("#########POST############")
+    if form.is_valid():
+    # if request.is_ajax():
+        print("######### is_valid() ############")
         data = form.save(commit=False)
-        data.user = request.session.get('data')['user']
+        print(data)
+        user = request.session.get('data')['user']
         # {'idx': 2, 'email': 'jinju2415@naver.com', 'id': '1064590680', 'service_type': 'KAKAO'}
-        data.member_idx = Member.objects.get(idx=data.user['idx'])
+        data.member_idx = Member.objects.get(idx=user['idx'])
         data.save()
-    return HttpResponse("OK")
-    # return render(request, 'upload_files/files_detail.html')
->>>>>>> Stashed changes
+        print("##################", data, "##################")
+    #return HttpResponse("OK")
+    return render(request, 'upload_files/files_detail.html')
+
 
 class DataListView(ListView):
     model=Data

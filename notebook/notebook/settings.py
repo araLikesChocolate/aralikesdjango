@@ -103,18 +103,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DATABASES = {
    'default': {
-<<<<<<< Updated upstream
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'notebook',  #mysql
-        'USER': 'root', #root
-        'PASSWORD': '1234', #1234
-        'HOST': '192.168.22.126', #공백으로 냅두면 default localhost
-        # 'HOST': 'localhost',
-        'PORT': '3307' #공백으로 냅두면 default 3306
-=======
        'ENGINE': 'django.db.backends.sqlite3',
        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         # # 'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
@@ -125,8 +113,6 @@ DATABASES = {
         # 'HOST': '192.168.22.114', #공백으로 냅두면 default localhost
         # # 'HOST': 'localhost',
         # # 'PORT': '3307' #공백으로 냅두면 default 3306
->>>>>>> Stashed changes
-        # 'PORT': '3306' #공백으로 냅두면 default 3306
    }
 }
 

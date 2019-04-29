@@ -10,9 +10,9 @@ $(function () {
                 if(data != null) {
                     console.log(data)
                     $("#modalForm").html(data);
-                    // $('div:last').removeClass('modal-backdrop');
+                    $('div.modal-backdrop:last').removeClass();
                     // console.log($('#btnsubmit'));
-                    $('div.modal-backdrop').remove();
+                    // $('div.modal-backdrop').remove();
                 }
                 else {
                     console.log("데이터 받기 실패");
@@ -29,6 +29,8 @@ $(function () {
         var data = new FormData();
         data.append("url", $("input[name=url]")[0].files[0]);
         data.append("publish", $("input[name=publish]").val());
+
+        alert(data);
 
         $.ajax({
             url:"upload_files/submit/",
