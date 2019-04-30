@@ -75,7 +75,7 @@ function setLoginStatus() {
                 // console.log(res['properties']['nickname'])
                 console.log('ajax naver login success...')
                 // console.log(data)
-                window.location.replace(data)
+                window.location.replace('/')
             }
         },
         fail: function(error) {
@@ -112,7 +112,7 @@ function naverLogout() {
                         console.log('ajax naver logout success...')
                         // console.log(data)
                         console.log('csrf remove:', $.removeCookie('csrftoken', { path: '/',}))
-                        window.location.replace(data)
+                        window.location.replace('/')
                     }
                 },
                 fail: function(error) {

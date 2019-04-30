@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block resources %}
+    {{ block.super }}
+    {% load staticfiles %}
+    <link ref='text/css' href="{% static 'css/mobileSelect.css' %}">
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/ScrollMagic.min.js' %}"></script>
+    <script src="{% static 'js/animation.gsap.js' %}"></script>
+    <script src="{% static 'js/mobileSelect.js' %}"></script>
+    <script src="{% static 'js/speech.js' %}"></script>
+{% endblock resources %}
+{% block content %}
+    로그인 OK result None - home
+{% endblock content %}
+
+{% block footer %}
+    {{ block.super }}
+    {% if request.session.user %}
+        <a href="#" class="add_circle"><i class="material-icons">add_circle</i></a>
+    {% else %}
+    {% endif %}
+{% endblock footer %}

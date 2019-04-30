@@ -22,7 +22,7 @@ from . import views
 app_name = ''
 
 urlpatterns = [
-    path('', views.HomeView.as_view(), name='home'),
+    path('', views.HomeView, name='home'),
     # path('admin/', admin.site.urls),
     path('login/', include('login.urls')),
     path('logout/', include('logout.urls')),

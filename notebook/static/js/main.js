@@ -101,12 +101,15 @@ $(function(){
   }
 
   function openModal(){
-    var arr=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    // var arr=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     el = $(this).parent();
     // el.children('div.modal-parent').attr('style', 'left:130px');
     // style = el.attr('style');
     el.attr('style', 'visibility: unset; opacity: unset;');
     modal = $(this).parent().children('.modal-parent');
+    var texts= modal.children().children().children('input#texts').val();
+    var textsArray = $.parseJSON(texts).texts;
+    // console.log(textsArray);
     modal.addClass("show");
 
   
@@ -115,9 +118,9 @@ $(function(){
       trigger: '.trigger1', 
       title: 'Single Selection',  
       wheels: [
-            {data: arr}
+            {data: textsArray}
           ],
-      position:[2],
+      position: [0], // 처음 선택되는 textsArray의 index
     });
 
     var baseDiv = modal.children('div').children('div').children('div').children('input');
