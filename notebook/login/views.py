@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse, HttpResponseRedirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from rest_framework import viewsets
 # from rest_framework.request import Request
@@ -12,10 +13,11 @@ import json
 
 # Create your views here.
 def login(request) :
+    # context = {}
     obj = ''
     try :
         if request.session['user'] is not None :
-            return redirect('home')
+            return redirect(reverse('home'))
     except KeyError:
         if request.method == 'POST' :
             try:
@@ -26,19 +28,11 @@ def login(request) :
                 obj = insertMember(request)
             finally:
                 serializer = MemberSerializer(obj)
-                request.session['user'] = serializer.data
                 tmpData = { 'name': request.POST.get('name'), 'nickname': request.POST.get('nickname'), 'profile_image': request.POST.get('profile_image') }
+                request.session['user'] = serializer.data
                 request.session['tmpData'] = tmpData
-                # Data.objects.all().filter(member_idx=obj)
-                for data in Data.objects.all().filter(member_idx=obj):
-                    # print(DataSerializer(data, context={'request': request}).data)
-                    pass
-                # dd = type()
-                # print(dd)
-                # print( [ DataSerializer(_obj).data for _obj in [ Data.objects.all().filter(member_idx=obj) ] ] )
-                
-                # request.session['data'] = 
-                return HttpResponse(reverse('home'))
+                # context['user'] = obj
+                return redirect(reverse('home'))
         else :
             return render(request, 'login/login.html')
 

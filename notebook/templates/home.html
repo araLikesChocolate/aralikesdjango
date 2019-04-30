@@ -10,70 +10,22 @@
     <script src="{% static 'js/speech.js' %}"></script>
 {% endblock resources %}
 {% block content %}
-
     <!-- Page Content -->
     <div class="container">
-
         <!-- Portfolio Item Heading -->
         <h1 class="my-4">Beige & Daisy's
             <small>Django Applications</small>
         </h1>
-
-        <!-- Portfolio Item Row -->
-        {% comment %} <div class="row">
-            <div class="col-md-7 mb-4 img-set" fade-up-in>
-                {% load staticfiles %}
-                <img class="img-fluid img-share-height img-share-width img_modal_origin" src="{% static 'img/img1.png' %}" alt="">
-                <div class="modal-parent">
-                    <div class="modal_frame">
-                        <div class="video-wrapper">
-                                <img class="img_frame" src="{% static 'img/img1.png' %}">
-                                <div class="img_frame_caption">
-                                    <input type="hidden" id="trigger1" placeholder="Speech Selection">
-                                </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="img-overlay-text img_modal_origin">
-                    <h3>산-샘플제목-1</h3>
-                    <h5>2019.4.3 오후 6시 54분</h5>
-                </div>
-                <button class="btn btn-custom" onclick="">삭제</button>
-            </div>
-
-            <div class="col-md-5 mb-4 img-set" fade-up-in>
-                <img class="img-fluid img-share-height img-share-width img_modal_origin" src="{% static 'img/img2.png' %}" alt="">
-                <div class="modal-parent">
-                    <div class="modal_frame">
-                        <div class="video-wrapper">
-                                <img class="img_frame" src="{% static 'img/img2.png' %}">
-                                <div class="img_frame_caption">
-                                    <input type="hidden" class="trigger1" placeholder="Speech Selection">
-                                </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="img-overlay-text img_modal_origin">
-                    <h3>바다-샘플제목-2</h3>
-                    <h5>2019.4.4 오후 4시 38분</h5>
-                </div>
-                <button class="btn btn-custom" onclick="">삭제</button>
-            </div>
-        </div> {% endcomment %}
-        <!-- /.row -->
-
-        <!-- Related Projects Row -->
         <h3 class="my-4">Related Projects</h3>
         <div class="row">
-            {% for i in testData %}
+            {% for data in request.session.data %}
                 <div class="col-md-4 col-sm-6 mb-4" fade-up-in>
-                    {% comment %} <img class="img-fluid img-share-height-sm img-share-width img_modal_origin" src="{{ hero.imageurl }}" alt=""> {% endcomment %}
-                    <img class="img-fluid img-share-height-sm img-share-width img_modal_origin" src="{% static 'img/img2.png' %}" alt="">
+                    <img class="img-fluid img-share-height-sm img-share-width img_modal_origin" src="/media/{{ data.url }}" alt="">
                     <div class="modal-parent">
                         <div class="modal_frame">
                             <div class="video-wrapper">
-                                    {% comment %} <img class="img_frame" src="{{ hero.imageurl }}"> {% endcomment %}
-                                    <img class="img_frame" src="{% static 'img/img2.png' %}">
+                                    <img class="img_frame" src="/media/{{ data.url }}">
+                                    <input type='hidden' id='texts' value='{{ data.texts }}'>
                                     <div class="img_frame_caption">
                                         <input type="hidden" class="trigger1" placeholder="Speech Selection">
                                     </div>
@@ -81,13 +33,13 @@
                         </div>
                     </div>
                     <div class="img-overlay-text img_modal_origin">
-                        <h3>aa</h3>
-                        <h5>bb</h5>
+                        <h3>{{ data.date }}</h3>
+                        <h5>publish: {{ data.publish }}</h5>
                     </div>
                     <button class="btn btn-custom" onclick="">삭제</button> 
                 </div>
             {% endfor %}
-        </div>  <!-- /.row -->
+        </div>
     </div>
 {% endblock content %}
 

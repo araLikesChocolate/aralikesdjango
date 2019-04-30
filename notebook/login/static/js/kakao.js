@@ -55,8 +55,8 @@ var kakaoLogin = function loginWithKakao() {
                                 // console.log(res['properties']['nickname'])
                                 console.log('ajax kakao login success...')
                                 console.log(data)
-                                
-                                window.location.replace(data)
+                                // $('div.container').html(data);
+                                window.location.replace('/')
                                 
                             }
                         },
@@ -97,8 +97,8 @@ kakaoLogout = function logoutWithKakao(params) {
                     // Do somothing when data is not null
                     // console.log(res['properties']['nickname'])
                     console.log('ajax kakao logout success...')
-                    // console.log(data)
-                    window.location.replace(data)
+                    console.log(data)
+                    window.location.replace('/')
                 }
             },
             fail: function(error) {

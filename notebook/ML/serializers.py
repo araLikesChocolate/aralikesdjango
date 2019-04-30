@@ -9,8 +9,8 @@ class DataSerializer(serializers.HyperlinkedModelSerializer):
         #     read_only=True,
         #     view_name='member-detail'
         # )
-        lookup_field='pk'
-        fields = ('idx', 'url', 'texts', 'date', 'publish', 'member_idx')
+        # lookup_field='pk'
+        fields = ('idx', 'url', 'texts', 'date', 'publish')
 
     def create(self, validated_data):
         """

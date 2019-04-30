@@ -101,13 +101,18 @@ window.MobileSelect = (function() {
 					i==_this.wheel.length-1 ? tempValue += _this.getValue(i) : tempValue += _this.getValue(i)+' ';
 		    	}
 				// var text = $('#message').val();
+				
 				var text = tempValue;
 				console.log(text);
+
 				var msg = new SpeechSynthesisUtterance();
 				var voices = window.speechSynthesis.getVoices();
-				msg.voice = voices[$('#voices').val()];
-				msg.rate = $('#rate').val() / 10;
-				msg.pitch = $('#pitch').val();
+				// msg.voice = voices[$('#voices').val()];
+				// msg.rate = $('#rate').val() / 10;
+				// msg.pitch = $('#pitch').val();
+				msg.voice = voices[3];
+				msg.rate = 1;
+				msg.pitch = 1;
 				msg.text = text;
 		  
 				msg.onend = function(e) {
@@ -145,9 +150,9 @@ window.MobileSelect = (function() {
 		            //         '<div class="ensure">Select</div>'+
 		            //     '</div>'+
 					// '</div>'+
-					'<select id="voices" class="hidden voices"></select> ' +
-					'<input type="hidden" id="rate" min="1" max="100" value="10" />' +
-					'<input type="hidden" id="pitch" min="0" max="2" value="1" />' +
+					// '<select id="voices" class="hidden voices"></select> ' +
+					// '<input type="hidden" id="rate" min="1" max="100" value="10" />' +
+					// '<input type="hidden" id="pitch" min="0" max="2" value="1" />' +
 					'<input type="hidden" id="message" placeholder="message" value="Test">' +
 					'<div class="caption-bar"><a href="#" id="speak" class="waves-effect waves-light btn">Speak</a></div>' +
 		            '<div class="panel">'+
