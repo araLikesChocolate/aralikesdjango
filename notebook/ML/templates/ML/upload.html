@@ -1,12 +1,43 @@
-{% extends 'base.html' %}
+<form method="post" action='' enctype="multipart/form-data">
+  {% csrf_token %}
+  {% comment %} {{ form.as_table }} {% endcomment %}
+  <input type="file" name="image"><br>
+  <input type='checkbox' name='publish'><br>
+  <button type="submit" id="btnsubmit">업로드</button>
+</form>
 
-{% block content %}
-  <h2>Upload</h2>
-  <form method="post" action='' enctype="multipart/form-data">
-    {% csrf_token %}
-    {% comment %} <input type='hidden' name='csrfmiddlewaretoken' value='{{ request.COOKIES.csrftoken }}'> {% endcomment %}
-    <input type="file" name="image">
-    <input type='checkbox' name='publish'>
-    <button type="submit">Upload file</button>
-  </form>
-{% endblock %}
+<script>
+    
+    $(".close").click(function(event){
+        $('#myModal').removeClass('show')
+        $('#myModal').removeAttr("style");
+    });   
+
+    $("#btnsubmit").click(function(event){
+
+        event.preventDefault();
+        // var data = new FormData();
+        // data.append("url", $("input[name=url]")[0].files[0]);
+        // data.append("publish", $("input[name=publish]").val());
+
+        var form = $('form')[0];
+        //FormData parameter에 담아줌
+        var formData = new FormData(form);
+
+        $.ajax({
+            url:"upload/",
+            data:formData,
+            processData:false,
+            contentType:false,
+            type:'POST',
+            success:function(data){
+                alert("사진 로드 성공");
+
+            },
+            error: function(xhr,status){				
+                alert("사진 로드 실패");
+            }
+        });
+    });            
+</script>
+

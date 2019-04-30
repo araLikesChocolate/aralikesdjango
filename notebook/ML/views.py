@@ -30,6 +30,7 @@ import time
 import json, datetime
 from . import voc
 from .models import Data, Member
+from django.http import HttpResponse
 
 #from .build_vocab import Vocabulary
 sys.modules["voc"] = voc
@@ -168,7 +169,8 @@ def upload(request):
         else:
             insertData(request, rename, sentence)
 
-        return render(request, 'ML/upload_result.html', context)
+        # return render(request, 'ML/upload_result.html', context)
+        return HttpResponse("OK")
     return render(request, 'ML/upload.html', context)
 
 def insertData(request, rename, sentence) :

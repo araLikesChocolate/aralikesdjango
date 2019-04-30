@@ -8,19 +8,24 @@
     <script src="{% static 'js/animation.gsap.js' %}"></script>
     <script src="{% static 'js/mobileSelect.js' %}"></script>
     <script src="{% static 'js/speech.js' %}"></script>
+    <script src="{% static 'js/upload.js' %}"></script>
+    <script src="{% static 'js/bodymovin.js' %}"></script>
+
 {% endblock resources %}
 {% block content %}
 
     <!-- Page Content -->
     <div class="container">
 
+
         <!-- Portfolio Item Heading -->
         <h1 class="my-4">Beige & Daisy's
             <small>Django Applications</small>
         </h1>
-
+{% comment %}
         <!-- Portfolio Item Row -->
-        {% comment %} <div class="row">
+        <div class="row">
+            {% if testData > 0  %}
             <div class="col-md-7 mb-4 img-set" fade-up-in>
                 {% load staticfiles %}
                 <img class="img-fluid img-share-height img-share-width img_modal_origin" src="{% static 'img/img1.png' %}" alt="">
@@ -59,6 +64,19 @@
                 </div>
                 <button class="btn btn-custom" onclick="">삭제</button>
             </div>
+            {% else %}
+            <span id="lottie"></span>
+            <script>
+                var animation = bodymovin.loadAnimation({
+                container: document.getElementById('lottie'), // Required
+                path: '/static/json/5081-empty-box.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: true // Optional
+                });
+                         
+            </script>
+            {% endif %}
         </div> {% endcomment %}
         <!-- /.row -->
 
@@ -95,39 +113,45 @@
     {{ block.super }}
     {% if request.session.user %}
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-        <a href="#myModal" class="add_circle" data-toggle="modal" data-target="#myModal"><i class="material-icons">add_circle</i></a>
+        <a href="javascript:test();" class="add_circle" id="modalUpload" data-toggle="modal" data-target="#myModal"><i class="material-icons">add_circle</i></a>
 
         <!-- The Modal -->
-        <div class="modal" id="myModal">
+        <div class="modal modal-center fade" id="myModal">
             <div class="modal-dialog">
-            <div class="modal-content">
-            
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">파일 업로드</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="modal-content">
+       
+                    <!-- Modal Header -->
+                    <div class="modal-header" styles>
+                    <h4 class="modal-title">파일 업로드</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body" id="modalForm">
+                        <h2>Upload</h2>
+                    </div>
+
+                    {% comment %} <!-- Modal footer -->
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-default">Close</button>
+                    </div> {% endcomment %}
+                    
                 </div>
-                
-                <!-- Modal body -->
-                <div class="modal-body">
-                Modal body..
-                </div>
-                
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" data-backdrop="false">Close</button>
-                </div>
-                
-            </div>
             </div>
 
         </div>
 
     {% else %}
+        <span id="lottie"></span>
+        <script>
+            var animation = bodymovin.loadAnimation({
+            container: document.getElementById('lottie'), // Required
+            path: '/static/json/5081-empty-box.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: true // Optional
+            });
+                        
+        </script>    
     {% endif %}
 {% endblock footer %}

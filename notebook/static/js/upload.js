@@ -1,40 +1,19 @@
 $(function () {
-    $('#modalUpload').on('click', function(){
-        console.log("Button Clicked")
-
-        $.ajax({
-            type: 'GET',
-            url: '/upload_files',
-            async: false,
-            success: function(data) { //받아오는 것
-                if(data != null) {
-                    console.log(data)
-                    $("#modalForm").html(data);
-                    $('div.modal-backdrop:last').removeClass();
-                    // console.log($('#btnsubmit'));
-                    // $('div.modal-backdrop').remove();
-                }
-                else {
-                    console.log("데이터 받기 실패");
-                }
-            },
-            fail: function(error) {
-                console.log('error');
-            }
-        });  
-    });
 
     $("#btnsubmit").click(function(event){
-        event.preventDefault();
-        var data = new FormData();
-        data.append("url", $("input[name=url]")[0].files[0]);
-        data.append("publish", $("input[name=publish]").val());
 
-        alert(data);
+        event.preventDefault();
+        // var data = new FormData();
+        // data.append("url", $("input[name=url]")[0].files[0]);
+        // data.append("publish", $("input[name=publish]").val());
+
+        var form = $('form')[0];
+        //FormData parameter에 담아줌
+        var formData = new FormData(form);
 
         $.ajax({
-            url:"upload_files/submit/",
-            data:data,
+            url:"upload/",
+            data:formData,
             processData:false,
             contentType:false,
             type:'POST',
@@ -46,5 +25,32 @@ $(function () {
                 alert("사진 로드 실패");
             }
         });
-    });
+    });            
 });  
+
+function test() {
+        console.log("Button Clicked")     
+
+        $.ajax({
+            type: 'GET',
+            url: '/upload',
+            async: false,
+            success: function(data) { //받아오는 것
+                if(data != null) {
+                    console.log(data)
+                    $("#modalForm").html(data);
+                    // $('div').removeClass("modal-backdrop");
+                    var m = $('#myModal')
+                    m.addClass('show')
+                    m.attr('style', 'display:block;')
+                    // show  aria-modal="true", style="display:block"
+                }
+                else {
+                    console.log("데이터 받기 실패");
+                }
+            },
+            fail: function(error) {
+                console.log('error');
+            }
+        });  
+}
