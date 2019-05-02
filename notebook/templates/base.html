@@ -61,7 +61,7 @@
                 <ul>
                     {% comment %} <li class='user-image' style='background:url("https://www.simplifiedcoding.net/demos/marvel/thor.jpg")'><a href="javascript:;">user-image</a></li>  {% endcomment %}
                     {% if request.session.user is not None %}
-                    <li class='user-image' style="background:url({{ request.session.data.profile_image }})">
+                    <li class='user-image' style="background:url({{ request.session.tmpData.profile_image }})">
                         {% comment %} <a href="javascript:;">user-image</a> {% endcomment %}
                     </li> 
                         <li class='user-name'>

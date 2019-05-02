@@ -22,12 +22,13 @@ from . import views
 app_name = ''
 
 urlpatterns = [
-    path('', views.HomeView.as_view(), name='home'),
+    path('', views.homeView, name='home'),
     # path('admin/', admin.site.urls),
     path('login/', include('login.urls')),
     path('logout/', include('logout.urls')),
     # path('upload_files/', include('upload_files.urls')),
     path('upload/', include('ML.urls')),
+    path('api/', include('api.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

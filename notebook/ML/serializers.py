@@ -1,15 +1,16 @@
 from rest_framework import serializers
-from .models import Member
+from .models import Data
 
-class MemberSerializer(serializers.HyperlinkedModelSerializer):
+class DataSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Member
-        fields = ('idx', 'email', 'id', 'service_type')
-
-    # def get_children(self, obj):
-    #     queryset = Child.objects.filter(owner=obj)
-    #     children = ChildSerializer(queryset, many=True, context=self.context).data
-    #     return children
+        model = Data
+        # member_idx = serializers.HyperlinkedRelatedField(
+        #     many=False,
+        #     read_only=True,
+        #     view_name='member-detail'
+        # )
+        # lookup_field='pk'
+        fields = ('idx', 'url', 'texts', 'date', 'publish')
 
     def create(self, validated_data):
         """

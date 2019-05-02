@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block resources %}
+    {{ block.super }}
+    {% load staticfiles %}
+    <link ref='text/css' href="{% static 'css/mobileSelect.css' %}">
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/ScrollMagic.min.js' %}"></script>
+    <script src="{% static 'js/animation.gsap.js' %}"></script>
+    <script src="{% static 'js/mobileSelect.js' %}"></script>
+    <script src="{% static 'js/speech.js' %}"></script>
+    <script src="{% static 'js/bodymovin.js' %}"></script>
+{% endblock resources %}
+
+{% block content %}
+    <span id="lottie"></span>
+    <script>
+        var animation = bodymovin.loadAnimation({
+        container: document.getElementById('lottie'), // Required
+        path: '/static/json/5081-empty-box.json', // Required
+        renderer: 'svg', // Required
+        loop: false, // Optional
+        autoplay: true // Optional
+        });
+                    
+    </script>  
+{% endblock content %}
+
+{% block footer %}
+    {{ block.super }}
+    {% if request.session.user %}
+        <a href="#" class="add_circle"><i class="material-icons">add_circle</i></a>
+    {% else %}
+    {% endif %}
+{% endblock footer %}

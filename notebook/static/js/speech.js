@@ -1,23 +1,26 @@
 $(function(){
   if ('speechSynthesis' in window) {
+    console.log('speech initiated...')
     speechSynthesis.onvoiceschanged = function() {
-      var $voicelist = $('#voices');
-
-      if($voicelist.find('option').length == 0) {
-        speechSynthesis.getVoices().forEach(function(voice, index) {
-          var $option = $('<option>')
-          .val(index)
-          .html(voice.name + (voice.default ? ' (default)' :''));
-          if(index==3)
-          $option.attr('selected', 'selected')
-          $voicelist.append($option);
-        });
+      // var voicelist = $('#voices');
+      
+      // if(voicelist.find('option').length == 0) {
+      //   speechSynthesis.getVoices().forEach(function(voice, index) {
+      //     var option = $('<option>')
+      //     .val(index)
+      //     .html(voice.name + (voice.default ? ' (default)' :''));
+      //     if(index==3)
+      //       option.attr('selected', 'selected')
+      //     voicelist.append(option);
+      //   });
+        // console.log(voicelist)
         // $voicelist.material_select();
-      }
+      // }
     }
 
     // $('#speak').click(function(){
-    //   var text = $('#message').val();
+    //   console.log('clicked....')
+    //   var text = 'asdfasdf';
     //   var msg = new SpeechSynthesisUtterance();
     //   var voices = window.speechSynthesis.getVoices();
     //   msg.voice = voices[$('#voices').val()];

@@ -4,4 +4,4 @@ from django.shortcuts import render, redirect, reverse, HttpResponse, HttpRespon
 # Create your views here.
 def logout(request) :
     request.session.clear()
-    return HttpResponse(reverse('home'))
+    return HttpResponseRedirect(reverse('home'))
