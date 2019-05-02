@@ -32,6 +32,7 @@ import json, datetime
 from . import voc
 from .models import Data, Member
 from django.http import HttpResponse
+from api.views import insertView
 
 #from .build_vocab import Vocabulary
 sys.modules["voc"] = voc
@@ -132,7 +133,7 @@ def upload(request):
         return redirect('home')
 
 
-    context = {}
+    # context = {}
     if request.method == 'POST':
         if request.META['HTTP_USER_AGENT'] == 'ANDROID':
             # print('\n############ ANDROID META ############   ')
@@ -153,7 +154,7 @@ def upload(request):
         rename = id + '_' + str(time.strftime("%Y%m%d%H%M%S")) + extension
         fs = FileSystemStorage()
         fs.save(rename, uploaded_file)
-        context['uploaded_file'] = rename
+        # context['uploaded_file'] = rename
 
         args = easydict.EasyDict({
                             #'image': sys.argv[1],
@@ -167,20 +168,9 @@ def upload(request):
             })
 
         sentence = main(args) #문장출력
-        context['sentence'] = sentence
 
-        insertData(id, service_type, publish, rename, sentence)
+        params = { 'id': id, 'service_type': service_type, 'publish': publish, 'rename': rename, 'sentence': sentence}
 
-        if request.META['HTTP_USER_AGENT'] == 'ANDROID':
-            return HttpResponse('upload 완료...')
-        else:
-            return render(request, 'ML/upload_result.html', context)
-    return render(request, 'ML/upload.html', context)
-
-def insertData(id, service_type, publish, rename, sentence) :
-    member = Member.objects.get(id=id, service_type=service_type)
-    # print('\n### Member: ', member)
-    # print(rename, sentence, datetime.datetime.now(), 0 if request.POST.get('publish') is None else 1)
-    obj = Data(url=rename, texts={ 'texts' : sentence }, date=datetime.datetime.now(), publish=0 if publish is None else 1, member_idx=member)
-    obj.save()
-    # return ''
+        return insertView(request, params)
+        
+    return render(request, 'ML/upload.html')
