@@ -16,13 +16,15 @@ def homeView(request) :
     try :
         if request.session['user'] is not None :
             obj = Member.objects.get(idx=request.session['user']['idx'])
-            queryset = Data.objects.filter(member_idx=obj).values('idx', 'url', 'texts', 'date', 'publish')
+            # queryset = Data.objects.filter(member_idx=obj).values('idx', 'url', 'texts', 'date', 'publish')
+            queryset = Data.objects.filter(publish=1).values('idx', 'url', 'texts', 'date', 'publish')
+            
             if len(queryset) > 0 :
-                print('login한 homeview - queryset OK')
+                print('login한 homeview - queryset EXIST')
                 request.session['data'] = DataSerializer(queryset, many = True).data
                 return render(request, 'home.html')
             else :
-                print('login한 homeview - queryset X')
+                print('login한 homeview - queryset None')
                 return render(request, 'no_result.html')
         else :
             # 로그인 하지 않은 상태

@@ -12,7 +12,7 @@ class Data(models.Model):
     date = models.DateTimeField(auto_now_add = True)
     publish = models.BooleanField(default=False)
     member_idx = models.ForeignKey(Member, db_column='member_idx', on_delete=models.CASCADE)
-
+    
     class Meta:
         db_table = u'data'
         # fields = ['idx', 'image_path', 'texts', 'date', 'publish']

@@ -158,8 +158,8 @@ def upload(request):
         args = easydict.EasyDict({
                             #'image': sys.argv[1],
             'image': uploaded_file,
-            'encoder_path': 'ML/models/encoder-5-2000.ckpt', # MYTEST + '/models/encoder-5-1000.ckpt'
-            'decoder_path': 'ML/models/decoder-5-2000.ckpt', # MYTEST + '/models/decoder-5-1000.ckpt
+            'encoder_path': 'ML/models/encoder-5-1000.ckpt', # MYTEST + '/models/encoder-5-1000.ckpt'
+            'decoder_path': 'ML/models/decoder-5-1000.ckpt', # MYTEST + '/models/decoder-5-1000.ckpt
             'vocab_path' : 'ML/data/vocab.pkl', #MYTEST + '/data/vocab.pkl'
             'embed_size' : 256,
             'hidden_size' : 512,
