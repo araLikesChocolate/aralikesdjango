@@ -1,12 +1,84 @@
-{% extends 'base.html' %}
+<form method="post" action='' enctype="multipart/form-data">
+  {% csrf_token %}
+  {% comment %} {{ form.as_table }} {% endcomment %}
+  이  미  지<input type="file" name="image"><br>
+  공유 여부 <input type='checkbox' name='publish'><br>
+  {% comment %} <button type="submit" class="btn btn-default" id="btnsubmit">업로드</button> {% endcomment %}
 
-{% block content %}
-  <h2>Upload</h2>
-  <form method="post" action='' enctype="multipart/form-data">
-    {% csrf_token %}
-    {% comment %} <input type='hidden' name='csrfmiddlewaretoken' value='{{ request.COOKIES.csrftoken }}'> {% endcomment %}
-    <input type="file" name="image">
-    <input type='checkbox' name='publish'>
-    <button type="submit">Upload file</button>
-  </form>
-{% endblock %}
+  <div class="form-group">
+    <input type="file" name="img[]" class="file" style="visibility:hidden; position: absolute;">
+    <div class="input-group col-xs-12">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+      <input type="text" class="form-control input-lg" disabled placeholder="Upload Image">
+      <span class="input-group-btn">
+        <button class="browse-img btn btn-primary input-lg" type="button"><i class="glyphicon glyphicon-search"></i> 사진</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="checkbox" name="img[]" class="share" style="">
+    <div class="input-group col-xs-12">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-share"></i></span>
+      <input type="checkbox" class="form-control input-lg" checked data-style="btn-group-justified">
+      <span class="input-group-btn">
+            </span>
+        <button class="browse-share btn btn-primary input-lg" type="button"><i class="glyphicon glyphicon-search"></i> 공유</button>
+
+    </div>
+  </div>
+
+</form>
+
+<script>
+
+    $(document).on('click', '.browse-img', function(){
+    var file = $(this).parent().parent().parent().find('.file');
+    file.trigger('click');
+    });
+    $(document).on('change', '.file', function(){
+    $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+    });
+
+    $(document).on('click', '.browse-share', function(){
+    var share = $(this).parent().parent().parent().find('.share');
+    file.trigger('click');
+    });
+    $(document).on('', '.share', function(){
+    $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+    });
+
+
+    $(".close").click(function(event){
+        $('#myModal').removeClass('show')
+        $('#myModal').removeAttr("style");
+    });   
+
+    $("#btnsubmit").click(function(event){
+
+        event.preventDefault();
+        // var data = new FormData();
+        // data.append("url", $("input[name=url]")[0].files[0]);
+        // data.append("publish", $("input[name=publish]").val());
+
+        var form = $('form')[0];
+        //FormData parameter에 담아줌
+        var formData = new FormData(form);
+
+        $.ajax({
+            url:"upload/",
+            data:formData,
+            processData:false,
+            contentType:false,
+            type:'POST',
+            success:function(data){
+                alert("사진 로드 성공");
+
+            },
+            error: function(xhr,status){				
+                alert("사진 로드 실패");
+            }
+        });
+    });            
+</script>
+

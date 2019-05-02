@@ -8,9 +8,21 @@
     <script src="{% static 'js/animation.gsap.js' %}"></script>
     <script src="{% static 'js/mobileSelect.js' %}"></script>
     <script src="{% static 'js/speech.js' %}"></script>
+    <script src="{% static 'js/bodymovin.js' %}"></script>
 {% endblock resources %}
+
 {% block content %}
-    로그인 OK result None - home
+    <span id="lottie"></span>
+    <script>
+        var animation = bodymovin.loadAnimation({
+        container: document.getElementById('lottie'), // Required
+        path: '/static/json/5081-empty-box.json', // Required
+        renderer: 'svg', // Required
+        loop: false, // Optional
+        autoplay: true // Optional
+        });
+                    
+    </script>  
 {% endblock content %}
 
 {% block footer %}

@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.views.generic import TemplateView, ListView, CreateView
+from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 from django.urls import reverse_lazy
 
@@ -30,6 +31,7 @@ import time
 import json, datetime
 from . import voc
 from .models import Data, Member
+from django.http import HttpResponse
 
 #from .build_vocab import Vocabulary
 sys.modules["voc"] = voc
@@ -118,6 +120,7 @@ def main(args):
     #Print out the image and the generated caption
     return sentence
 
+@csrf_exempt 
 def upload(request):
     try:
         if request.META['HTTP_USER_AGENT'] == 'ANDROID':
@@ -131,24 +134,27 @@ def upload(request):
 
     context = {}
     if request.method == 'POST':
+        if request.META['HTTP_USER_AGENT'] == 'ANDROID':
+            # print('\n############ ANDROID META ############   ')
+            # print(request.META)
+            id = request.META['HTTP_ID']
+            service_type = request.META['HTTP_SERVICE_TYPE']
+            publish = request.META['HTTP_PUBLISH']
+            print('\n#### ANDROID ID ####   ',  id)
+            print('\n#### ANDROID SERVICE_TYPE ####   ', service_type)
+            print('\n### ANDROID PUBLISH ####   ', publish)
+        else :
+            id = request.session['user']['id']
+            service_type = request.session['user']['service_type']
+            publish = request.POST.get('publish')
+
         uploaded_file = request.FILES['image']
-        # name = os.path.splitext(str(request.FILES['image']))[0]
         extension = os.path.splitext(str(request.FILES['image']))[1]
-        rename = request.session['user']['id'] + '_' + str(time.strftime("%Y%m%d%H%M%S")) + extension
+        rename = id + '_' + str(time.strftime("%Y%m%d%H%M%S")) + extension
         fs = FileSystemStorage()
         fs.save(rename, uploaded_file)
-        # print('save_file:', name)
-        # context['url'] = fs.url('media/' + rename)
         context['uploaded_file'] = rename
 
-
-        # Device configuration
-
-        #MYTEST = "/home/encore/notebook/pytorch-tutorial-master/tutorials/03-advanced/image_captioning"
-
-        #    image = Image.open(args.image)
-        #    plt.imshow(np.asarray(image))
-        #if __name__ == '__main__':
         args = easydict.EasyDict({
                             #'image': sys.argv[1],
             'image': uploaded_file,
@@ -163,18 +169,18 @@ def upload(request):
         sentence = main(args) #문장출력
         context['sentence'] = sentence
 
-        if request.META['HTTP_USER_AGENT'] == 'ANDROID':
-            pass
-        else:
-            insertData(request, rename, sentence)
+        insertData(id, service_type, publish, rename, sentence)
 
-        return render(request, 'ML/upload_result.html', context)
+        if request.META['HTTP_USER_AGENT'] == 'ANDROID':
+            return HttpResponse('upload 완료...')
+        else:
+            return render(request, 'ML/upload_result.html', context)
     return render(request, 'ML/upload.html', context)
 
-def insertData(request, rename, sentence) :
-    member = Member.objects.get(id=request.session['user']['id'], service_type=request.session['user']['service_type'])
+def insertData(id, service_type, publish, rename, sentence) :
+    member = Member.objects.get(id=id, service_type=service_type)
     # print('\n### Member: ', member)
     # print(rename, sentence, datetime.datetime.now(), 0 if request.POST.get('publish') is None else 1)
-    obj = Data(url=rename, texts={ 'texts' : sentence }, date=datetime.datetime.now(), publish=0 if request.POST.get('publish') is None else 1, member_idx=member)
+    obj = Data(url=rename, texts={ 'texts' : sentence }, date=datetime.datetime.now(), publish=0 if publish is None else 1, member_idx=member)
     obj.save()
     # return ''

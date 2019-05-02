@@ -1,0 +1,42 @@
+<form method='post' id="FileuploadForm" name="FileuploadForm" action='' enctype="multipart/form-data">
+	{% csrf_token %}
+	<table>
+		{{ form.as_table }}
+	</table>
+	<input type="submit" id='btnsubmit' value='등록'>
+</form>
+
+
+<script>
+    $("#btnsubmit").click(function(event){
+        event.preventDefault();
+        var data = new FormData();
+        data.append("url", $("input[name=url]")[0].files[0]);
+        data.append("publish", $("input[name=publish]").val());
+
+
+        for (var key of data.keys()) {
+            console.log("key:"+ key);
+            }
+
+        for (var value of data.values()) {
+        console.log("value:"+ value);
+            }   
+
+
+        $.ajax({
+            url:"upload_files/submit/",
+            data:data,
+            processData:false,
+            contentType:false,
+            type:'POST',
+            success:function(data){
+                alert("사진 로드 성공");
+            },
+            error: function(xhr,status){				
+                alert("사진 로드 실패");
+            }
+        });
+    });
+
+</script>
