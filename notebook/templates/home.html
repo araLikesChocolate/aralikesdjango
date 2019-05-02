@@ -2,6 +2,7 @@
 {% block resources %}
     {{ block.super }}
     {% load staticfiles %}
+    {% load custom_tags %}
     <link ref='text/css' href="{% static 'css/mobileSelect.css' %}">
     <script src="{% static 'js/TweenMax.min.js' %}"></script>
     <script src="{% static 'js/ScrollMagic.min.js' %}"></script>
@@ -40,7 +41,13 @@
                         <h3>{{ data.date }}</h3>
                         <h5>publish: {{ data.publish }}</h5>
                     </div>
-                    <button class="btn btn-custom" onclick="javacript:delData({{ data.idx }});">삭제</button> 
+                    {% comment %} {{ request.session.user.id }}
+                    {{ data.member_fake }} {% endcomment %}
+                    
+                    {% if request.session.user.id == data.url|split:"_"|first %}
+                        <button class="btn btn-custom" onclick="javacript:delData({{ data.idx }});">삭제</button> 
+                    {% else %}
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
