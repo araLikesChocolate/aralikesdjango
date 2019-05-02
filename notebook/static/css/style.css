@@ -846,8 +846,10 @@
   padding-bottom: 4.5rem;
   border: 2px solid black;
   /* transform: translateY(calc(50% - 60px)) translateX(0%); */
+  transform: translateY(calc(50% - 60px));
   min-width: 300px;
-  /* width: 300px; */
+  width: 70%;
+  height: 400px;
 }
 @media(max-width: 1120px){
   .box-center-custom {
@@ -888,6 +890,15 @@
   background-size: 100% !important;
 }
 
+.loginBox {
+  height: -webkit-fill-available;
+  text-align: -webkit-center;
+}
+
+/* ************************************************* */
+/*                   mobileSelect                    */
+/* ************************************************* */
+
 .mobileSelect {
   position: relative;
   z-index: 0;
@@ -896,12 +907,14 @@
   -webkit-transition: opacity 0.4s, z-index 0.4s;
   transition: opacity 0.4s, z-index 0.4s;
 }
+
 .mobileSelect * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .mobileSelect .grayLayer {
   position: fixed;
   top: 0;
@@ -913,6 +926,7 @@
   z-index: 888;
   display: block;
 }
+
 .mobileSelect .content {
   width: 100%;
   display: block;
@@ -925,11 +939,13 @@
   left: 0;
   background: white;
 }
+
 .mobileSelect .content .fixWidth {
   width: 90%;
   margin: 0 auto;
   position: relative;
 }
+
 .mobileSelect .content .fixWidth:after {
   content: ".";
   display: block;
@@ -937,6 +953,7 @@
   clear: both;
   visibility: hidden;
 }
+
 .mobileSelect .content .btnBar {
   border-bottom: 1px solid #DCDCDC;
   font-size: 15px;
@@ -945,6 +962,7 @@
   text-align: center;
   line-height: 45px;
 }
+
 .mobileSelect .content .btnBar .cancel,
 .mobileSelect .content .btnBar .ensure {
   height: 45px;
@@ -953,14 +971,17 @@
   position: absolute;
   top: 0;
 }
+
 .mobileSelect .content .btnBar .cancel {
   left: 0;
   color: #666;
 }
+
 .mobileSelect .content .btnBar .ensure {
   right: 0;
   color: #1e83d3;
 }
+
 .mobileSelect .content .btnBar .title {
   font-size: 15px;
   padding: 0 15%;
@@ -968,6 +989,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .mobileSelect .content .panel:after {
   content: ".";
   display: block;
@@ -975,11 +997,13 @@
   clear: both;
   visibility: hidden;
 }
+
 .mobileSelect .content .panel .wheels {
   width: 100%;
   height: 200px;
   overflow: hidden;
 }
+
 .mobileSelect .content .panel .wheel {
   position: relative;
   z-index: 0;
@@ -990,6 +1014,7 @@
   -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease;
 }
+
 .mobileSelect .content .panel .wheel .selectContainer {
   display: block;
   text-align: center;
@@ -998,6 +1023,7 @@
   transition: transform 0.18s ease-out;
   transition: transform 0.18s ease-out, -webkit-transform 0.18s ease-out;
 }
+
 .mobileSelect .content .panel .wheel .selectContainer li {
   font-size: 15px;
   display: block;
@@ -1008,6 +1034,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .mobileSelect .content .panel .selectLine {
   height: 40px;
   width: 100%;
@@ -1019,6 +1046,7 @@
   border-top: 1px solid #DCDCDC;
   border-bottom: 1px solid #DCDCDC;
 }
+
 .mobileSelect .content .panel .shadowMask {
   position: absolute;
   top: 0;
@@ -1030,15 +1058,18 @@
   opacity: 0.9;
   pointer-events: none;
 }
+
 .mobileSelect-show {
   opacity: 1;
   z-index: 10000;
   visibility: visible;
 }
+
 .mobileSelect-show .content {
   /* bottom: 0; */
   border: 1px solid black;
 }
+
 .caption-bar{
  position: absolute;
  top: -35px;

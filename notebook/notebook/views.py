@@ -5,7 +5,7 @@ from ML.models import Data
 from ML.serializers import DataSerializer
 # import json, requests
 
-def HomeView(request) :
+def homeView(request) :
 
     # print('\n##### context #####\n', context)
     # print()

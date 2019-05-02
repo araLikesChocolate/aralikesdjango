@@ -32,6 +32,7 @@ def login(request) :
                 request.session['user'] = serializer.data
                 request.session['tmpData'] = tmpData
                 # context['user'] = obj
+                request.session.set_expiry(0)
                 return redirect(reverse('home'))
         else :
             return render(request, 'login/login.html')

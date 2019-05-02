@@ -18,7 +18,7 @@ class Data(models.Model):
         # fields = ['idx', 'image_path', 'texts', 'date', 'publish']
 
     def __str__(self) :
-        return 'idx: {}, url: {}, texts: {}, date: {}, publish: {}, member_idx: {}'.format(type(self.idx), type(self.image_path), type(self.texts), type(self.date), type(self.publish), type(self.member_idx))
+        return 'idx: {}, url: {}, texts: {}, date: {}, publish: {}, member_idx: {}'.format(type(self.idx), type(self.url), type(self.texts), type(self.date), type(self.publish), type(self.member_idx))
 
 # django.utils.timezone
 class DataModelForm(forms.ModelForm):
