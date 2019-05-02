@@ -52,33 +52,6 @@
     $(".close").click(function(event){
         $('#myModal').removeClass('show')
         $('#myModal').removeAttr("style");
-    });   
-
-    $("#btnsubmit").click(function(event){
-
-        event.preventDefault();
-        // var data = new FormData();
-        // data.append("url", $("input[name=url]")[0].files[0]);
-        // data.append("publish", $("input[name=publish]").val());
-
-        var form = $('form')[0];
-        //FormData parameter에 담아줌
-        var formData = new FormData(form);
-
-        $.ajax({
-            url:"upload/",
-            data:formData,
-            processData:false,
-            contentType:false,
-            type:'POST',
-            success:function(data){
-                alert("사진 로드 성공");
-
-            },
-            error: function(xhr,status){				
-                alert("사진 로드 실패");
-            }
-        });
-    });            
+    });           
 </script>
 
