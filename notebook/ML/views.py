@@ -45,7 +45,6 @@ def load_image(image_path, transform=None):
     # console.log('########### image path ################# -- ',image_path)
     image = Image.open(image_path)
     image = image.resize([224, 224], Image.LANCZOS)
-
     if transform is not None:
         image = transform(image).unsqueeze(0)
 
