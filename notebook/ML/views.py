@@ -133,3 +133,49 @@ def simpleSentence(uploaded_file):
 
     sentence = main(args) #문장출력
     return sentence
+
+def denseSentence(uploaded_file):
+
+    res = subprocess.Popen([
+        "th", # torch
+        "/home/encore/ext/aralikesdjango/notebook/ML/data/densecap/run_model.lua", # model url
+        # "-input_dir", # args
+        # "/home/encore/ext/aralikesdjango/notebook/media", # image dir
+        '-input_image',
+        '/home/encore/ext/aralikesdjango/notebook/media/' + uploaded_file,
+        "-output_vis_dir", # args
+        "/home/encore/temp/" # json save url
+        ],stdout=PIPE
+    )
+
+    out, err = res.communicate()
+    #차후 파일 옵저버 생성
+    
+    with open('/home/encore/temp/results.json') as json_file:
+        json_obj = json.load(json_file)
+        captions = json_obj["results"]
+        captions = captions[0]['captions']
+        sentence = captions
+
+    # engToKoList=[]
+    # for eng in sentence:
+
+    #     client_id = "66gsrCeYdWm9rV5HfXG8" # 개발자센터에서 발급받은 Client ID 값
+    #     client_secret = "LFGjYIy6XY" # 개발자센터에서 발급받은 Client Secret 값
+    #     encText = urllib.parse.quote(eng)
+    #     data = "source=en&target=ko&text=" + encText
+    #     url = "https://openapi.naver.com/v1/papago/n2mt"
+    #     a_request = urllib.request.Request(url)
+    #     a_request.add_header("X-Naver-Client-Id",client_id)
+    #     a_request.add_header("X-Naver-Client-Secret",client_secret)
+    #     response = urllib.request.urlopen(a_request, data=data.encode("utf-8"))
+    #     response_body = response.read()
+    #     engToKo = response_body.decode('utf-8')
+    #     k = eval(engToKo)
+    #     engToKoK = k['message']['result']['translatedText']
+    #     engToKoList.append(engToKoK)
+
+    # context['engToKoList'] = engToKoList
+    #translation
+
+    return sentence
