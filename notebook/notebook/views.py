@@ -3,6 +3,7 @@ from django.apps import apps
 from login.models import Member
 from ML.models import Data
 from ML.serializers import DataSerializer
+from django.db.models import Q
 # import json, requests
 
 def homeView(request) :
@@ -10,7 +11,8 @@ def homeView(request) :
         if request.session['user'] is not None :
             obj = Member.objects.get(idx=request.session['user']['idx'])
             # queryset = Data.objects.filter(member_idx=obj).values('idx', 'url', 'texts', 'date', 'publish')
-            queryset = Data.objects.filter(publish=1).values('idx', 'url', 'texts', 'date', 'publish')
+            # queryset = Data.objects.filter(publish=1).values('idx', 'url', 'texts', 'date', 'publish')
+            queryset = Data.objects.filter(Q(publish=1)|Q(idx=obj)).values('idx', 'url', 'texts', 'date', 'publish')
             
             if len(queryset) > 0 :
                 print('login한 homeview - queryset EXIST')

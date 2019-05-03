@@ -10,6 +10,7 @@
     <script src="{% static 'js/mobileSelect.js' %}"></script>
     <script src="{% static 'js/speech.js' %}"></script>
     <script src="{% static 'js/upload.js' %}"></script>
+    <script src="{% static 'js/bodymovin.js' %}"></script>
 {% endblock resources %}
 
 {% block content %}
@@ -18,10 +19,10 @@
 
 
         <!-- Portfolio Item Heading -->
-        <h1 class="my-4">Beige & Daisy's
-            <small>Django Applications</small>
+        <h1 class="my-4">  
+            <small> </small>
         </h1>
-        <h3 class="my-4">Related Projects</h3>
+        <h3 class=" pt-5 my-4">Related Projects</h3>
         <div class="row">
             {% for data in request.session.data %}
                 <div class="col-md-4 col-sm-6 mb-4" fade-up-in>
@@ -38,7 +39,7 @@
                         </div>
                     </div>
                     <div class="img-overlay-text img_modal_origin">
-                        <h3>{{ data.date }}</h3>
+                        <h5>date: {{ data.date }}</h5>
                         <h5>publish: {{ data.publish }}</h5>
                     </div>
                     {% comment %} {{ request.session.user.id }}

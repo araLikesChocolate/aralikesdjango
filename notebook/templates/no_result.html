@@ -13,7 +13,7 @@
     <script>
         $(function(){
             var animation = bodymovin.loadAnimation({
-            container: document.getElementById('lottie'), // Required
+            container: document.getElementById('lottie-empty-box'), // Required
             path: '/static/json/5081-empty-box.json', // Required
             renderer: 'svg', // Required
             loop: false, // Optional
@@ -24,7 +24,7 @@
 {% endblock resources %}
 
 {% block content %}
-    <span id="lottie"></span>
+    <span id="lottie-empty-box"></span>
 {% endblock content %}
 
 {% block footer %}

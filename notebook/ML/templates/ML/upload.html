@@ -1,10 +1,7 @@
-{% load staticfiles %}
-<script src="{% static 'js/bodymovin.js' %}"></script>
-
-    <span id="lottie" class='loading'></span>
+    <span id="lottie-progress-bar" class='loading'></span>
     <script>
         var animation = bodymovin.loadAnimation({
-        container: document.getElementById('lottie'), // Required
+        container: document.getElementById('lottie-progress-bar'), // Required
         path: '/static/json/progress_bar.json', // Required
         renderer: 'svg', // Required
         loop: true, // Optional
