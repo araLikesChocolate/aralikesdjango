@@ -6,13 +6,6 @@ from ML.serializers import DataSerializer
 # import json, requests
 
 def homeView(request) :
-
-    # print('\n##### context #####\n', context)
-    # print()
-
-    print('\n##### session #####\n', request.session.keys())
-    print()
-
     try :
         if request.session['user'] is not None :
             obj = Member.objects.get(idx=request.session['user']['idx'])

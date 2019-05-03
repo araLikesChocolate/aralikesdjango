@@ -36,7 +36,6 @@ var kakaoLogin = function loginWithKakao() {
                     //         list[i] == ''
                     //     }
                     // }
-                    
                     $.ajax({
                         type: 'POST',
                         url: '',

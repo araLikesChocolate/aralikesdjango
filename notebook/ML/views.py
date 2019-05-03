@@ -138,11 +138,11 @@ def denseSentence(uploaded_file):
 
     res = subprocess.Popen([
         "th", # torch
-        "/home/encore/ext/aralikesdjango/notebook/ML/data/densecap/run_model.lua", # model url
+        "/home/encore/ext/repo/aralikesdjango/notebook/ML/data/densecap/run_model.lua", # model url
         # "-input_dir", # args
         # "/home/encore/ext/aralikesdjango/notebook/media", # image dir
         '-input_image',
-        '/home/encore/ext/aralikesdjango/notebook/media/' + uploaded_file,
+        '/home/encore/ext/repo/aralikesdjango/notebook/media/' + uploaded_file,
         "-output_vis_dir", # args
         "/home/encore/temp/" # json save url
         ],stdout=PIPE
