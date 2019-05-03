@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
+from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import csrf_exempt
 from ML.models import Data
 from ML.serializers import DataSerializer
 from ML.views import simpleSentence
 from login.models import Member
-import datetime
+import datetime, time, os
 
 # Create your views here.
 def deleteView(request) :
@@ -24,8 +25,7 @@ def deleteView(request) :
 def insert(request, params) :
     # member = Member.objects.get(id=params['id'], service_type=params['service_type'])
     member = Member.objects.get(idx=params['idx'])
-    obj = insertData(params['id'], params['service_type'], params['publish'], params['rename'], params['sentence'])
-    obj = Data(url=params['rename'], texts={ 'texts' : params['sentence'] }, date=datetime.datetime.now(), publish=1 if publish == 'on' else 0, member_idx=member)
+    obj = Data(url=params['rename'], texts={ 'texts' : params['sentence'] }, date=datetime.datetime.now(), publish=1 if  params['publish'] == 'on' else 0, member_idx=member)
     try : 
         obj.save()
         print('image DB 저장 완료!')
@@ -59,15 +59,14 @@ def upload(request):
             print('\n#### ANDROID SERVICE_TYPE ####   ', service_type)
             print('\n### ANDROID PUBLISH ####   ', publish)
         else :
-            # id = request.session['user']['id']
-            # service_type = request.session['user']['service_type']
+            id = request.session['user']['id']
+            service_type = request.session['user']['service_type']
             idx = request.session['user']['idx']
             publish = request.POST.get('publish')
 
         uploaded_file = request.FILES['image']
         extension = os.path.splitext(str(request.FILES['image']))[1]
-        # rename = id + '_' + str(time.strftime("%Y%m%d%H%M%S")) + extension
-        rename = idx + '_' + str(time.strftime("%Y%m%d%H%M%S")) + extension
+        rename = id + '_' + str(time.strftime("%Y%m%d%H%M%S")) + extension
         fs = FileSystemStorage()
         fs.save(rename, uploaded_file)
 
@@ -92,10 +91,14 @@ def upload(request):
             'sentence': sentence}
 
         # DB 저장
-        insert(params)
+        insert(request, params)
         
-    if request.META['HTTP_USER_AGENT'] == 'ANDROID': 
-        return HttpResponse(DataSerializer(obj).data)
-    else:
-        # pass
-        return render(request, 'ML/upload_result.html')
+        if request.META['HTTP_USER_AGENT'] == 'ANDROID': 
+            return HttpResponse(DataSerializer(obj).data)
+        else:
+            # pass
+            context = { 'uploaded_file': rename,
+                        'sentences': sentence,
+                    }
+            return render(request, 'ML/upload_result.html', context)
+    return render(request, 'ML/upload.html')

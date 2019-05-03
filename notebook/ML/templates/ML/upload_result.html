@@ -5,6 +5,8 @@
   </tr>
   <tr>
       <td>문장</td>
-      <td>{{sentence}}</td>
+      {% for sentence in sentences %}
+        <td>{{forloop.counter}}. {{sentence}}</td>
+      {% endfor %}
   </tr>
 </table>
