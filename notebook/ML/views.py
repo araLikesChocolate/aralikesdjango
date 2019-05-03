@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.views.generic import TemplateView, ListView, CreateView
-from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 from django.urls import reverse_lazy
 
@@ -32,7 +31,6 @@ import json, datetime
 from . import voc
 from .models import Data, Member
 from django.http import HttpResponse
-from api.views import insertView
 
 #from .build_vocab import Vocabulary
 sys.modules["voc"] = voc
@@ -121,56 +119,18 @@ def main(args):
     #Print out the image and the generated caption
     return sentence
 
-@csrf_exempt 
-def upload(request):
-    try:
-        if request.META['HTTP_USER_AGENT'] == 'ANDROID':
-            print('\n\n######### ANDROID #########\n\n')
-            pass
-        elif request.session['user'] is None:
-            return redirect('home')
-    except KeyError:
-        return redirect('home')
+def simpleSentence(uploaded_file):
 
+    args = easydict.EasyDict({
+                        #'image': sys.argv[1],
+        'image': uploaded_file,
+        'encoder_path': 'ML/models/encoder-5-1000.ckpt', # MYTEST + '/models/encoder-5-1000.ckpt'
+        'decoder_path': 'ML/models/decoder-5-1000.ckpt', # MYTEST + '/models/decoder-5-1000.ckpt
+        'vocab_path' : 'ML/data/vocab.pkl', #MYTEST + '/data/vocab.pkl'
+        'embed_size' : 256,
+        'hidden_size' : 512,
+        'num_layers' : 1
+        })
 
-    # context = {}
-    if request.method == 'POST':
-        if request.META['HTTP_USER_AGENT'] == 'ANDROID':
-            # print('\n############ ANDROID META ############   ')
-            # print(request.META)
-            id = request.META['HTTP_ID']
-            service_type = request.META['HTTP_SERVICE_TYPE']
-            publish = request.META['HTTP_PUBLISH']
-            print('\n#### ANDROID ID ####   ',  id)
-            print('\n#### ANDROID SERVICE_TYPE ####   ', service_type)
-            print('\n### ANDROID PUBLISH ####   ', publish)
-        else :
-            id = request.session['user']['id']
-            service_type = request.session['user']['service_type']
-            publish = request.POST.get('publish')
-
-        uploaded_file = request.FILES['image']
-        extension = os.path.splitext(str(request.FILES['image']))[1]
-        rename = id + '_' + str(time.strftime("%Y%m%d%H%M%S")) + extension
-        fs = FileSystemStorage()
-        fs.save(rename, uploaded_file)
-        # context['uploaded_file'] = rename
-
-        args = easydict.EasyDict({
-                            #'image': sys.argv[1],
-            'image': uploaded_file,
-            'encoder_path': 'ML/models/encoder-5-1000.ckpt', # MYTEST + '/models/encoder-5-1000.ckpt'
-            'decoder_path': 'ML/models/decoder-5-1000.ckpt', # MYTEST + '/models/decoder-5-1000.ckpt
-            'vocab_path' : 'ML/data/vocab.pkl', #MYTEST + '/data/vocab.pkl'
-            'embed_size' : 256,
-            'hidden_size' : 512,
-            'num_layers' : 1
-            })
-
-        sentence = main(args) #문장출력
-
-        params = { 'id': id, 'service_type': service_type, 'publish': publish, 'rename': rename, 'sentence': sentence}
-
-        return insertView(request, params)
-        
-    return render(request, 'ML/upload.html')
+    sentence = main(args) #문장출력
+    return sentence
