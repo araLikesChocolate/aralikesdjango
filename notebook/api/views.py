@@ -3,7 +3,7 @@ from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import csrf_exempt
 from ML.models import Data
 from ML.serializers import DataSerializer
-from ML.views import simpleSentence
+from ML.views import simpleSentence, denseSentence
 from login.models import Member
 import datetime, time, os
 
@@ -25,7 +25,7 @@ def deleteView(request) :
 def insert(request, params) :
     # member = Member.objects.get(id=params['id'], service_type=params['service_type'])
     member = Member.objects.get(idx=params['idx'])
-    obj = Data(url=params['rename'], texts={ 'texts' : params['sentence'] }, date=datetime.datetime.now(), publish=1 if  params['publish'] == 'on' else 0, member_idx=member)
+    obj = Data(url=params['rename'], texts={ 'texts' : params['sentence'] }, date=datetime.datetime.now(), publish=1 if  params['publish'] == 'on' else 0, member_idx=member, model=params['model'])
     try : 
         obj.save()
         print('image DB 저장 완료!')
@@ -72,13 +72,15 @@ def upload(request):
 
     ################### SIMPLE MODEL ###################
     #                                                  #
+        model = 'simple'
         sentence = simpleSentence(uploaded_file)  
     #                                                  #
     ####################################################
         
     ################### DENSE MODEL ###################
     #                                                  #
-            #    sentence = denseSentence(uploaded_file)  
+        # model = 'dense'
+        # sentence = denseSentence(rename)  
     #                                                  #
     ####################################################
 
@@ -88,7 +90,9 @@ def upload(request):
             'idx': idx,
             'publish': publish, 
             'rename': rename, 
-            'sentence': sentence}
+            'sentence': sentence,
+            'model' : model,
+            }
 
         # DB 저장
         insert(request, params)

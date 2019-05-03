@@ -12,6 +12,7 @@ class Data(models.Model):
     date = models.DateTimeField(auto_now_add = True)
     publish = models.BooleanField(default=False)
     member_idx = models.ForeignKey(Member, db_column='member_idx', on_delete=models.CASCADE)
+    model = models.CharField(max_length=255, null=False, blank=False)
     
     class Meta:
         db_table = u'data'
