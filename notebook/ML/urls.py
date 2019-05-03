@@ -8,7 +8,7 @@ app_name = 'ML'
 urlpatterns = [
     # path('', views.HomeView.as_view(), name='home'),
     # path('admin/', admin.site.urls),
-    path('', views.upload, name='upload'),
+    # path('', views.upload, name='upload'),
 ]
 
 if settings.DEBUG:

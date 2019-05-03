@@ -27,8 +27,8 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('logout/', include('logout.urls')),
     # path('upload_files/', include('upload_files.urls')),
-    path('upload/', include('ML.urls')),
-    path('api/', include('api.urls')),
+    path('upload/', include('api.urls'), name='upload'),
+    path('api/', include('api.urls'), name='delete'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
