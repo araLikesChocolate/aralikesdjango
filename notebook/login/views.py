@@ -29,6 +29,7 @@ def login(request) :
             finally:
                 serializer = MemberSerializer(obj)
                 tmpData = { 'name': request.POST.get('name'), 'nickname': request.POST.get('nickname'), 'profile_image': request.POST.get('profile_image') }
+                # print(tmpData)
                 request.session['user'] = serializer.data
                 request.session['tmpData'] = tmpData
                 # context['user'] = obj
