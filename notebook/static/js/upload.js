@@ -1,6 +1,10 @@
 function file_get() {
     console.log("Button Clicked")     
 
+    if($(".modal-content").hasClass("modal-footer") === false) {
+        $(".modal-footer").show();
+    }
+
     $.ajax({
         type: 'GET',
         url: '/upload',
@@ -18,6 +22,7 @@ function file_get() {
             }
             else {
                 console.log("데이터 받기 실패");
+
             }
         },
         fail: function(error) {
@@ -35,10 +40,10 @@ $(function () {
         // data.append("url", $("input[name=url]")[0].files[0]);
         // data.append("publish", $("input[name=publish]").val());
 
-        //***** 로딩 아이콘 수정 예정 */
         $('span.loading').show();
         $('#img-form').hide();
         $(".modal-footer").hide();
+
         var form = $('form')[0];
         //FormData parameter에 담아줌
         var formData = new FormData(form);
@@ -64,6 +69,8 @@ $(function () {
             },
             error: function(xhr,status){				
                 alert("사진 로드 실패");
+                $('#myModal').removeClass('show')
+                $('#myModal').removeAttr("style");
             }
         });
     });            

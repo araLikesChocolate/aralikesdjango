@@ -62,7 +62,12 @@
     });
           // 수정하기!!!
     $(document).on('change', '.share', function(){
-    $(this).parent().find('.form-control').val($(this).val().replace('공유 거부', "공유 허용"));
+      var txtarea = $(this).parent().find('.form-control')
+      if(txtarea.attr("placeholder")=="on"){
+        txtarea.attr("placeholder", "off")
+      }else{
+        txtarea.attr("placeholder", "on")
+      };
     });
 
     // 모달 창 닫기
