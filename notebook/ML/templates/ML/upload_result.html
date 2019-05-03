@@ -1,11 +1,10 @@
-{% extends 'base.html' %}
-
-{% block content %}
-  <h2>Upload-----END</h2>
-
- 파일 : <img src='/media/{{uploaded_file}}' width="300" height="300"> <br>
- 문장 : <h1>{{sentence}} </h1>
-
-
-
-{% endblock %}
+<table class="table">
+  <tr>
+      <td>파일</td>
+      <td><img src='/media/{{uploaded_file}}' width="350" height="300"></td>
+  </tr>
+  <tr>
+      <td>문장</td>
+      <td>{{sentence}}</td>
+  </tr>
+</table>
