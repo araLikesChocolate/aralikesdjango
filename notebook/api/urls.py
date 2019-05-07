@@ -8,6 +8,7 @@ from . import views
 urlpatterns = [
     path('', views.upload),
     path('delete/', views.deleteView),
+    path('update/', views.updateView),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

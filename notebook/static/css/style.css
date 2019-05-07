@@ -588,7 +588,7 @@
   bottom: 0;
   padding: 20px;
   /* 버튼 위치를 위한 padding-bottom */
-  padding-bottom: 80px;
+  padding-bottom: 50px;
   background: #0000003b;
   width: calc(100% - 30px);
   font-family: "Montserrat", "sans-serif";
@@ -609,20 +609,30 @@
 .btn-custom {
   position: absolute;
   bottom: 15px;
-  left: 30px;
+  left: 60%;
   width: 20%;
   height: 40px;
   size: 1.2rem;
   background: #ffffffab;
 }
 
+.btn-custom2 {
+  position: absolute;
+  bottom: 15px;
+  left: 20%;
+  width: 23%;
+  height: 40px;
+  size: 1.2rem;
+  background: #ffffffab;
+}
+
 @media (max-width: 991px){
-  .btn-custom {
+  .btn-custom .btn-custom2 {
     width: 70px;
   }
 }
 
-.btn-custom:hover, .btn-custom:focus {
+.btn-custom.btn-custom2:hover, .btn-custom.btn-custom2:focus {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
 }

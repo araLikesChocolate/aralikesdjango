@@ -265,3 +265,41 @@ function delData(idx) {
     }
   });   
 }
+
+/****************************************
+        publish button
+****************************************/    
+
+function updateData(idx) {
+  console.log(idx);
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+      // var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+        csrftoken = $.cookie('csrftoken');
+        console.log(csrftoken);
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+        }
+    }
+  });
+
+  $.ajax({
+    type: 'POST',
+    url: 'api/update/',
+    data: { 
+            idx: idx,
+        },
+    async: false,
+    success: function(data) {
+        if(data != null) {
+            console.log('Update successed...');
+            window.location.replace('/');
+        }
+    },
+    fail: function(error) {
+        console.log('Update failed...');
+        window.location.replace('/');
+        console.log(JSON.stringify(error));
+    }
+  });   
+}

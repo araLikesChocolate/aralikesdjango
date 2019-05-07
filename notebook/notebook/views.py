@@ -12,8 +12,7 @@ def homeView(request) :
             obj = Member.objects.get(idx=request.session['user']['idx'])
             # queryset = Data.objects.filter(member_idx=obj).values('idx', 'url', 'texts', 'date', 'publish')
             # queryset = Data.objects.filter(publish=1).values('idx', 'url', 'texts', 'date', 'publish')
-            queryset = Data.objects.filter(Q(publish=1)|Q(idx=obj)).values('idx', 'url', 'texts', 'date', 'publish')
-            
+            queryset = Data.objects.filter(Q(member_idx=obj) | Q(publish=1)).values('idx', 'url', 'texts', 'date', 'publish')
             if len(queryset) > 0 :
                 print('login한 homeview - queryset EXIST')
                 request.session['data'] = DataSerializer(queryset, many = True).data

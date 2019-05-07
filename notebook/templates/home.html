@@ -24,6 +24,7 @@
         </h1>
         <h3 class=" pt-5 my-4">Related Projects</h3>
         <div class="row">
+
             {% for data in request.session.data %}
                 <div class="col-md-4 col-sm-6 mb-4" fade-up-in>
                     <img class="img-fluid img-share-height-sm img-share-width img_modal_origin" src="/media/{{ data.url }}" alt="">
@@ -39,13 +40,14 @@
                         </div>
                     </div>
                     <div class="img-overlay-text img_modal_origin">
-                        <h5>date: {{ data.date }}</h5>
-                        <h5>publish: {{ data.publish }}</h5>
+                        <h5 style='text-align:center;'>{{ data.date|split:"."|first }}</h5>
                     </div>
-                    {% comment %} {{ request.session.user.id }}
-                    {{ data.member_fake }} {% endcomment %}
-                    
+
                     {% if request.session.user.id == data.url|split:"_"|first %}
+                        <button class="btn btn-custom2" onclick="javacript:updateData({{ data.idx }});"> 
+                            {% if data.publish == True %}공개 <i class="fas fa-check"></i>{% else %}공개 <i class="fas fa-times"></i>{% endif %}
+                        </button>
+                            
                         <button class="btn btn-custom" onclick="javacript:delData({{ data.idx }});">삭제</button> 
                     {% else %}
                     {% endif %}
