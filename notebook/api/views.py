@@ -99,8 +99,8 @@ def upload(request):
         
     ################### DENSE MODEL ###################
     #                                                  #
-        model = 'dense'
-        sentence2 = denseSentence(rename)  
+        # model = 'dense'
+        # sentence = denseSentence(rename)  
     #                                                  #
     ####################################################
 
@@ -110,7 +110,7 @@ def upload(request):
             'idx': idx,
             'publish': publish, 
             'rename': rename, 
-            'sentence': sentence.append(sentence2),
+            'sentence': sentence,
             'model' : model,
             }
 
@@ -122,7 +122,7 @@ def upload(request):
         else:
             # pass
             context = { 'uploaded_file': rename,
-                        'sentences': sentence.append(sentence2),
+                        'sentences': sentence,
                     }
             return render(request, 'ML/upload_result.html', context)
     return render(request, 'ML/upload.html')
