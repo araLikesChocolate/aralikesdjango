@@ -24,8 +24,8 @@ app_name = ''
 urlpatterns = [
     path('', views.homeView, name='home'),
     # path('admin/', admin.site.urls),
-    path('login/', include('login.urls')),
-    path('logout/', include('logout.urls')),
+    path('login/', include('login.urls'), name='login'),
+    path('logout/', include('logout.urls'), name='logout'),
     # path('upload_files/', include('upload_files.urls')),
     path('upload/', include('api.urls'), name='upload'),
     path('api/', include('api.urls'), name='delete'),

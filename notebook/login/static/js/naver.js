@@ -9,7 +9,7 @@ var naverLogin = new naver.LoginWithNaverId(
         {
             clientId: "eSp9Qh3o0n6xt21BDo57",
             // callbackUrl: "http://localhost:8000/registration/login/",
-            callbackUrl: "http://192.168.22.131:8000/login/",
+            callbackUrl: "http://192.168.103.101:8001/login/",
             // callbackUrl: "http://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "/oauth/sample/callback.html",
             isPopup: false,
             loginButton: {color: "green", type: 3, width:240, height: 50}

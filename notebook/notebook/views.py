@@ -23,11 +23,12 @@ def homeView(request) :
         else :
             # 로그인 하지 않은 상태
             print('login하지 않은 homeview 1')
-            return render(request, 'no_user.html')
+            # return render(request, 'no_user.html')
+            return redirect(reverse('login:login'))
     except KeyError :
         print('login하지 않은 homeview 2')
-        return render(request, 'no_user.html')
-        # template_name = 'no_user.html'
+        # return render(request, 'no_user.html')
+        return redirect(reverse('login:login'))
 
 
 #-- TemplateView

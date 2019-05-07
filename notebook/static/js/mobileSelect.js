@@ -154,7 +154,7 @@ window.MobileSelect = (function() {
 					// '<input type="hidden" id="rate" min="1" max="100" value="10" />' +
 					// '<input type="hidden" id="pitch" min="0" max="2" value="1" />' +
 					'<input type="hidden" id="message" placeholder="message" value="Test">' +
-					'<div class="caption-bar"><a href="#" id="speak" class="waves-effect waves-light btn">speak<i class="far fa-volume"></i></a></div>' +
+					'<div class="caption-bar"><a href="#" id="speak" class="waves-effect waves-light btn"><i class="fas fa-volume-up" style="font-size:24px"></i></a></div>' +
 		            '<div class="panel">'+
 		                '<div class="fixWidth">'+
 		                	'<div class="wheels">'+
