@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls import handler400,handler404,handler500
 from . import views
 
 app_name = ''
@@ -29,6 +30,11 @@ urlpatterns = [
     # path('upload_files/', include('upload_files.urls')),
     path('upload/', include('api.urls'), name='upload'),
     path('api/', include('api.urls'), name='delete'),
+    # path('error/', views.error),
 ]
+
+handler400 = 'notebook.views.bad_request_page'
+handler404 = 'notebook.views.page_not_found_page'
+handler500 = 'notebook.views.server_error_page'
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

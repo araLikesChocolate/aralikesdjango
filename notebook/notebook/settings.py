@@ -107,7 +107,7 @@ DATABASES = {
         'NAME': 'notebook',  #mysql
         'USER': 'root', #root
         'PASSWORD': '1234', #1234
-        'HOST': '192.168.22.86',  # 공백으로 냅두면 default localhost 192.168.22.114
+        'HOST': '192.168.22.114',  # 공백으로 냅두면 default localhost 192.168.22.86
         # 'HOST': 'localhost',
         # 'PORT': '3307' #공백으로 냅두면 default 3306
         'PORT': '3306' #공백으로 냅두면 default 3306
@@ -160,6 +160,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
+    # os.path.join(BASE_DIR, "login", "static"),
 )
 
 # STATIC_ROOT collectstatic 명령어를 통해서 수집되는 static 파일들이 위치하는 곳

@@ -129,7 +129,10 @@
     right: unset !important;
     display: block;
   }
-  
+  .logo-font{
+  font-family: 'Fredericka the Great', cursive; 
+  text-decoration:none !important;
+  }
   #logo a {
     color: #000000;
   }
@@ -278,13 +281,13 @@
 }
 
  @media (max-width: 1120px){
-  .main-nav ul li ul li a.user_image{
-    /* display: none; */
-    /* width: 100%;
-    height: 150px; */
-    /* max-width: 260px;
-    max-height: 260px; */
-  }
+  /*.main-nav ul li ul li a.user_image{
+    display: none; 
+    width: 100%;
+    height: 150px;
+    max-width: 260px;
+    max-height: 260px; 
+  }*/
 
 
   .main-nav {
@@ -594,35 +597,6 @@
   font-family: "Montserrat", "sans-serif";
 }
 
-
-/* *********test 시작************* */
-
-@media(max-width: 575px){
-  .test33 {
-    color: red;
-    }
-  }
-
-@media(max-width: 767px){
-  .test33 {
-    color: orange;
-    }
-  }
-
-@media(max-width: 991px){
-  .test33 {
-    color: yellow;
-    }
-  }
-
-@media(max-width: 1120px){
-  .test33 {
-    color: green;
-    }
-  }
-
-  /* *********test 끝************* */
-
 .img-overlay-text-sm {
   position: absolute;
   color: #ffffff;
@@ -655,13 +629,23 @@
   background: #ffffffab;
 }
 
+.btn-custom3 {
+  position: absolute;
+  bottom: -25px;
+  left: -38px;
+  width: 44px;
+  height: 40px;
+  size: 1.2rem;
+  background: #ffffffab;
+}
+
 /* @media (max-width: 991px){
   .btn-custom .btn-custom2 {
     width: 70px;
   }
 } */
 
-.btn-custom.btn-custom2:hover, .btn-custom.btn-custom2:focus {
+.btn-custom.btn-custom2.btn-custom3:hover, .btn-custom.btn-custom2.btn-custom3:focus {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
 }
@@ -803,6 +787,10 @@
         transform: translateX(-50%) translateY(calc(-50% - 50px)) translateZ(0px);         
 }
 
+.modal-dialog{
+  margin-top:5rem;
+}
+
 .img_frame_caption {
   position: absolute;
   top: 100%;
@@ -891,21 +879,23 @@
   height: 400px;
 }
 @media(max-width: 1120px){
-  .box-center-custom {
-    /* transform: translateY(calc(50% - 9rem)) translateX(0%); */
+  .test33 {
+    color: red;
   }
 }
 @media(max-width: 991px){
-
+  .test33 {
+    color: orange;
+  }
 }
 @media(max-width: 767px){
-  .box-center-custom {
-    /* margin: 0 50px; */
+  .test33 {
+    color: yellow;
   }
 }
 @media(max-width: 575px){
-  .box-center-custom {
-    margin: unset;
+  .test33 {
+    color: green;
   }
 }
 
