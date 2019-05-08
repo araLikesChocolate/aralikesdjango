@@ -107,7 +107,7 @@ DATABASES = {
         'NAME': 'notebook',  #mysql
         'USER': 'root', #root
         'PASSWORD': '1234', #1234
-        'HOST': '192.168.22.114', #공백으로 냅두면 default localhost
+        'HOST': '192.168.22.86',  # 공백으로 냅두면 default localhost 192.168.22.114
         # 'HOST': 'localhost',
         # 'PORT': '3307' #공백으로 냅두면 default 3306
         'PORT': '3306' #공백으로 냅두면 default 3306

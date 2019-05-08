@@ -11,6 +11,8 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 import json
 
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
 # Create your views here.
 def login(request) :
     # context = {}
@@ -27,14 +29,23 @@ def login(request) :
                 # join
                 obj = insertMember(request)
             finally:
-                serializer = MemberSerializer(obj)
-                tmpData = { 'name': request.POST.get('name'), 'nickname': request.POST.get('nickname'), 'profile_image': request.POST.get('profile_image') }
-                # print(tmpData)
-                request.session['user'] = serializer.data
-                request.session['tmpData'] = tmpData
-                # context['user'] = obj
-                request.session.set_expiry(0)
-                return redirect(reverse('home'))
+                '''
+                ANDROID
+                '''
+                if request.META['HTTP_USER_AGENT'] == 'ANDROID':
+                    print('\n\n######### ANDROID #########\n\n')
+                    serializedCallbackForAndroid = {'idx': obj.idx }
+                    print(serializedCallbackForAndroid)
+                    return HttpResponse(serializedCallbackForAndroid.get('idx'))
+                else:            
+                    serializer = MemberSerializer(obj)
+                    tmpData = { 'name': request.POST.get('name'), 'nickname': request.POST.get('nickname'), 'profile_image': request.POST.get('profile_image') }
+                    # print(tmpData)
+                    request.session['user'] = serializer.data
+                    request.session['tmpData'] = tmpData
+                    # context['user'] = obj
+                    request.session.set_expiry(0)
+                    return redirect(reverse('home'))
         else :
             return render(request, 'login/login.html')
 
