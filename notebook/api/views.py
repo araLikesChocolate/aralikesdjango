@@ -1,25 +1,40 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import csrf_exempt
 from ML.models import Data
 from ML.serializers import DataSerializer
 from ML.views import simpleSentence, denseSentence
 from login.models import Member
-import datetime, time, os
+import datetime, time, os, json
 
 # Create your views here.
+'''
+19.05.08
+Android 추가
+'''
+@csrf_exempt
 def deleteView(request) :
-    try :
-        if request.session['user'] is not None :
-            obj = Data.objects.get(idx=request.POST.get('idx'))
-            # print(obj)
-            obj.delete()
-            return render(request, 'home.html')
-        else :
-            # 로그인 하지 않은 상태
+    '''
+    19.05.08
+    Android 추가
+    '''
+    if request.META['HTTP_USER_AGENT'] == 'ANDROID':
+        obj = Data.objects.get(idx=request.POST.get('idx'))
+        obj.delete()
+        return HttpResponse("200")
+
+    else:
+        try :
+            if request.session['user'] is not None :
+                obj = Data.objects.get(idx=request.POST.get('idx'))
+                # print(obj)
+                obj.delete()
+                return render(request, 'home.html')
+            else :
+                # 로그인 하지 않은 상태
+                return redirect('home')
+        except KeyError :
             return redirect('home')
-    except KeyError :
-       return redirect('home')
 
 def updateView(request) :
     try :
@@ -72,7 +87,7 @@ def upload(request):
             # print(request.META)
             id = request.META['HTTP_ID']
             service_type = request.META['HTTP_SERVICE_TYPE']
-            # idx = request.META['HTTP_IDX']
+            idx = request.META['HTTP_IDX']
 
             publish = request.META['HTTP_PUBLISH']
             print('\n#### ANDROID ID ####   ',  id)
@@ -117,8 +132,22 @@ def upload(request):
         # DB 저장
         insert(request, params)
         
+        '''
+        19.05.07
+        Android 추가
+        '''
         if request.META['HTTP_USER_AGENT'] == 'ANDROID': 
-            return HttpResponse(DataSerializer(obj).data)
+            params = {
+                # 'id': id,
+                # 'service_type': service_type,
+                "idx": idx,
+                "publish": publish,
+                "rename": rename,
+                "sentence": sentence,
+                "model": model,
+            }
+            print(params)
+            return HttpResponse(json.dumps(params))
         else:
             # pass
             context = { 'uploaded_file': rename,
