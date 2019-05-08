@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block resources %}
+    {{ block.super }}
+    {% load staticfiles %}
+    {% load custom_tags %}
+    {% comment %} <link ref='text/css' href="{% static 'css/mobileSelect.css' %}">
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/ScrollMagic.min.js' %}"></script>
+    <script src="{% static 'js/animation.gsap.js' %}"></script>
+    <script src="{% static 'js/mobileSelect.js' %}"></script>
+    <script src="{% static 'js/speech.js' %}"></script>
+    <script src="{% static 'js/upload.js' %}"></script> {% endcomment %}
+    <script src="{% static 'js/bodymovin.js' %}"></script>
+{% endblock resources %}
+
+{% block content %}
+<script>
+    $(function(){
+        var animation = bodymovin.loadAnimation({
+        container: document.getElementById('lottie-page-missing'), // Required
+        path: '/static/json/5189-page-missing.json', // Required
+        renderer: 'svg', // Required
+        loop: true, // Optional
+        autoplay: true // Optional
+        });  
+    })
+</script> 
+
+<div style="text-align:center;">
+<span id="lottie-page-missing"></span>
+</div>
+{% endblock %}
