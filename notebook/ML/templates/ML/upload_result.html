@@ -4,10 +4,13 @@
       <td><img src='/media/{{uploaded_file}}' width="350" height="300"></td>
   </tr>
   <tr>
-      <td>문장</td>
   {% for sentence in sentences %}
-    
-      <td>{{forloop.counter}}. {{sentence}}</td>
+    {% if forloop.counter < 6 and forloop.counter > 0 %}
+      <td>{{forloop.counter}}</td>      
+      <td>{{sentence}}</td>
+    {% elif forloop.counter == 0 or forloop.counter is None %}
+      <td>사진을 읽지 못 했습니다...</td>
+    {% endif %}
   {% endfor %}
   </tr>
 </table>

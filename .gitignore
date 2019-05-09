@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io/api/pydev,macos,django,python,windows,pycharm+all,visualstudio,jupyternotebook,visualstudiocode,jupyternotebooks
+﻿# Created by https://www.gitignore.io/api/pydev,macos,django,python,windows,pycharm+all,visualstudio,jupyternotebook,visualstudiocode,jupyternotebooks
 # Edit at https://www.gitignore.io/?templates=pydev,macos,django,python,windows,pycharm+all,visualstudio,jupyternotebook,visualstudiocode,jupyternotebooks
 
 ### Django ###
@@ -702,6 +702,7 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/pydev,macos,django,python,windows,pycharm+all,visualstudio,jupyternotebook,visualstudiocode,jupyternotebooks
+.static_root/
 .vscode/settings.json
 notebook/ML/models/decoder-5-1000.ckpt
 notebook/ML/models/decoder-5-2000.ckpt

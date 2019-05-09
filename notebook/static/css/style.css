@@ -16,7 +16,8 @@
 }
 
 #logo {
-  font-family: "Montserrat";
+  /* font-family: "Montserrat"; */
+  font-family: 'Fredericka the Great', cursive; 
   position: fixed;
   top: 20px;
   /* nav 왼쪽 */
@@ -29,6 +30,7 @@
 
 #logo a {
   color: white;
+  text-decoration:none !important;
 }
 
 #content{
@@ -122,19 +124,21 @@
   }
 
   #logo {
-    font-family: "Montserrat";
+    /* font-family: "Montserrat"; */
+    font-family: 'Fredericka the Great', cursive; 
     position: unset !important;
     top: unset !important;
     left: unset !important;
     right: unset !important;
     display: block;
   }
-  .logo-font{
+  /* .logo-font{
   font-family: 'Fredericka the Great', cursive; 
   text-decoration:none !important;
-  }
+  } */
   #logo a {
     color: #000000;
+    text-decoration:none !important;
   }
   
   .account {
@@ -168,6 +172,11 @@
     float: unset !important;
     text-align: center !important;
   }
+
+  /* .logo-font{
+    font-family: 'Fredericka the Great', cursive; 
+    text-decoration:none !important;
+    }   */
 
   .account {
     display: none;
@@ -695,6 +704,19 @@
   -webkit-transform: translateX(-50%) translateY(-50%);
           transform: translateX(-50%) translateY(-50%);
 }
+
+/* 빈 박스 크기 조정(시작) */
+.box-container{
+  text-align:center; 
+  width:85%;
+}
+
+@media(min-width:1120px) {
+  .box-container{
+    height:1000px;
+  }
+}
+/* 빈 박스 (끝) */
 
 @media(max-width: 1120px) {
   .modal-parent .modal_frame {

@@ -29,7 +29,7 @@ DEBUG = True
 # 실행 환경
 # DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['192.168.103.101', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -160,11 +160,12 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    # os.path.join(BASE_DIR, "login", "static"),
+
 )
 
 # STATIC_ROOT collectstatic 명령어를 통해서 수집되는 static 파일들이 위치하는 곳
 # 운영 모드에서는 static 파일들의 위치를 지정해주어야한다. 
 # python manage.py collectstatic을 실행하면 BASE_DIR/www_dir/static에 정적 파일들이 모아진다.
-STATIC_ROOT = os.path.join(BASE_DIR, 'www_dir', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR,  'www_dir', 'static')
 
+print(STATIC_ROOT)

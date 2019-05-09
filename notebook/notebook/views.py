@@ -56,19 +56,19 @@ def homeView(request) :
 
 #400에러
 def bad_request_page(request, *args, **argv):
-    response = render(request, "404.html", {})
+    response = render(request, "error_page.html", {})
     response.status_code = 400
     return response
 
 #404에러
 def page_not_found_page(request, *args, **argv):
-    response = render(request, "404.html", {})
+    response = render(request, "error_page.html", {})
     response.status_code = 404
     return response
 
 #500에러
 def server_error_page(request, *args, **argv):
-    response = render(request, "404.html", {})
+    response = render(request, "error_page.html", {})
     response.status_code = 500
     return response
 
