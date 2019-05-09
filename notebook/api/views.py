@@ -36,12 +36,16 @@ def deleteView(request) :
         except KeyError :
             return redirect('home')
 
+'''
+19.05.09
+Android 추가
+'''
+@csrf_exempt
 def updateView(request) :
-    try :
-        if request.session['user'] is not None :
+    if request.META['HTTP_USER_AGENT'] == 'ANDROID':
             data_instance = Data.objects.get(idx=request.POST.get('idx'))
             print(data_instance.publish)
-                        
+
             if (data_instance.publish):
                 data_instance.publish = False
                 data_instance.save()
@@ -50,12 +54,28 @@ def updateView(request) :
                 data_instance.publish = True
                 data_instance.save()
                 print("@@@@@@@@@@@@@false -> true 끝@@@@@@@@@@@@@@")
+
+            return HttpResponse("200")
+    else:
+        try :
+            if request.session['user'] is not None :
+                data_instance = Data.objects.get(idx=request.POST.get('idx'))
+                print(data_instance.publish)
+                            
+                if (data_instance.publish):
+                    data_instance.publish = False
+                    data_instance.save()
+                    print("@@@@@@@@@@@@@true -> false 끝@@@@@@@@@@@@@@")
+                else:
+                    data_instance.publish = True
+                    data_instance.save()
+                    print("@@@@@@@@@@@@@false -> true 끝@@@@@@@@@@@@@@")
+                return redirect('home')
+            else :
+                # 로그인 하지 않은 상태
+                return redirect('home')
+        except KeyError :
             return redirect('home')
-        else :
-            # 로그인 하지 않은 상태
-            return redirect('home')
-    except KeyError :
-        return redirect('home')
 
 def insert(request, params) :
     # member = Member.objects.get(id=params['id'], service_type=params['service_type'])
@@ -155,3 +175,4 @@ def upload(request):
                     }
             return render(request, 'ML/upload_result.html', context)
     return render(request, 'ML/upload.html')
+ 
