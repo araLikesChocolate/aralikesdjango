@@ -77,7 +77,7 @@
                             </a>
                         </li>
                         <li id='home' class='home'><a href="/">home</a></li>
-                        <li id='quiz' class='quiz'><a href="#quiz">quiz</a></li>
+                        {% comment %} <li id='quiz' class='quiz'><a href="#quiz">quiz</a></li> {% endcomment %}
                         <li id='logout' class='logout'><a href="javascript:notebookLogout('{{ request.session.user.service_type }}');">logout</a></li>
                         <li id='account' class="drop-down account"><a href="javascript:;">account</a>
                             <ul>
@@ -102,7 +102,7 @@
                         </li>
                     {% else %}
                         <li id='home' class='home'><a href="/">home</a></li>
-                        <li id='quiz' class='quiz'><a href="#quiz">quiz</a></li>
+                        {% comment %} <li id='quiz' class='quiz'><a href="#quiz">quiz</a></li> {% endcomment %}
                         <li id='login' class='login'><a href="{% url 'login:login' %}">login</a></li>
                     {% endif %}
                 </ul>
