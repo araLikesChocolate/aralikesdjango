@@ -233,37 +233,42 @@ function csrfSafeMethod(method) {
 }
 
 function delData(idx) {
-  console.log(idx);
-  $.ajaxSetup({
-    beforeSend: function(xhr, settings) {
-      // var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
-        csrftoken = $.cookie('csrftoken');
-        console.log(csrftoken);
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
-        }
-    }
-  });
 
-  $.ajax({
-    type: 'POST',
-    url: 'api/delete/',
-    data: { 
-            idx: idx,
-        },
-    async: false,
-    success: function(data) {
-        if(data != null) {
-            console.log('delete successed...');
-            window.location.replace('/');
+  var result = confirm("정말 삭제 하시겠습니까?");
+        if(!result){return false;}
+        else{
+            console.log(idx);
+            $.ajaxSetup({
+              beforeSend: function(xhr, settings) {
+                // var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+                  csrftoken = $.cookie('csrftoken');
+                  console.log(csrftoken);
+                  if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                      xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+                  }
+              }
+            });
+
+            $.ajax({
+              type: 'POST',
+              url: 'api/delete/',
+              data: { 
+                      idx: idx,
+                  },
+              async: false,
+              success: function(data) {
+                  if(data != null) {
+                      console.log('delete successed...');
+                      window.location.replace('/');
+                  }
+              },
+              fail: function(error) {
+                  console.log('delete failed...');
+                  window.location.replace('/');
+                  console.log(JSON.stringify(error));
+              }
+            });   
         }
-    },
-    fail: function(error) {
-        console.log('delete failed...');
-        window.location.replace('/');
-        console.log(JSON.stringify(error));
-    }
-  });   
 }
 
 /****************************************

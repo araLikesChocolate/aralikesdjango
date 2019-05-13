@@ -1126,3 +1126,17 @@
  top: -35px;
  right: 10px;
 }
+
+/* 업로드 완료 후, 모달창 이미지 */
+
+.img-result {
+  height:350px;
+  width: 95%; 
+}
+
+@media (max-width: 575px){
+  .img-result {
+    width: 95%;
+    height:auto;
+  }
+}

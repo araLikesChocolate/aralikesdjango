@@ -55,7 +55,6 @@ $(function () {
             contentType:false,
             type:'POST',
             success:function(data){
-                alert("사진 로드 성공");
                 if(data != null) {
                     // 업로드 결과 보여주기
                     $('span.loading').hide();

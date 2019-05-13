@@ -43,12 +43,12 @@
                     </div>
 
                     {% if request.session.user.id == data.url|split:"_"|first %}
-                        <button class="btn btn-custom2" onclick="javacript:updateData({{ data.idx }});"> 
+                        <button class="btn btn-custom2" id="btn-publish" onclick="javacript:updateData({{ data.idx }});"> 
                             {% comment %} {% if data.publish == True %}<i class="fas fa-handshake"></i>공개 <i class="fas fa-check"></i>{% else %}<i class="fas fa-minus-square"></i>공개 <i class="fas fa-times"></i>{% endif %} {% endcomment %}
                             {% if data.publish == True %}<i class="fas fa-users"></i>{% else %}<i class="fas fa-user"></i></i>{% endif %}
                         </button>
                             
-                        <button class="btn btn-custom" onclick="javacript:delData({{ data.idx }});"><i class="fas fa-trash"></i></button> 
+                        <button class="btn btn-custom" id="btn-delete" onclick="javacript:delData({{ data.idx }});"><i class="fas fa-trash"></i></button> 
                     {% else %}
                     {% endif %}
                 </div>

@@ -95,11 +95,14 @@ window.MobileSelect = (function() {
 		    // 	_this.mobileSelect.classList.remove('mobileSelect-show');
 			// });
 		
-			$('#speak').click(function(){
+			// '<div class="caption-bar"><button class="btn btn-custom3 waves-effect waves-light speak" id="speak"><i class="fas fa-volume-up" style="font-size:24px"></i></button></div>'
+			$('.btn-custom3').click(function(){
+				console.log('button clicked');
+
 				var tempValue ='';
-		    	for(var i=0; i<_this.wheel.length; i++){
+				for(var i=0; i<_this.wheel.length; i++){
 					i==_this.wheel.length-1 ? tempValue += _this.getValue(i) : tempValue += _this.getValue(i)+' ';
-		    	}
+				}
 				// var text = $('#message').val();
 				
 				var text = tempValue;
@@ -107,19 +110,39 @@ window.MobileSelect = (function() {
 
 				var msg = new SpeechSynthesisUtterance();
 				var voices = window.speechSynthesis.getVoices();
-				// msg.voice = voices[$('#voices').val()];
-				// msg.rate = $('#rate').val() / 10;
-				// msg.pitch = $('#pitch').val();
-				msg.voice = voices[3];
-				msg.rate = 1;
-				msg.pitch = 1;
-				msg.text = text;
-		  
-				msg.onend = function(e) {
-				  console.log('Finished in ' + event.elapsedTime + ' seconds.');
+
+				// TTS 진행중일 때,
+				if ($(this).hasClass("mute")){
+					console.log('class mute');
+					speechSynthesis.cancel();
+
+				// TTS 진행중이 아닐 때,
+				}else if($(this).hasClass('speak')){
+					console.log('class가 speak');
+
+					$(this).removeClass('speak');
+					$(this).addClass('mute');
+					$(this).html('<i class="fas fa-volume-mute" style="font-size:24px"></i>');
+
+					// msg.voice = voices[$('#voices').val()];
+					// msg.rate = $('#rate').val() / 10;
+					// msg.pitch = $('#pitch').val();
+	
+					msg.voice = voices[3];
+					msg.rate = 1;
+					msg.pitch = 1;
+					msg.text = text;
+	
+					msg.onend = function(e) {
+					  console.log('Finished in ' + event.elapsedTime + ' seconds.');
+					  $(".btn-custom3").html('<i class="fas fa-volume-up" style="font-size:24px"></i>');
+					  $(".btn-custom3").removeClass('mute');
+					  $(".btn-custom3").addClass('speak');
+					};
+			  
+					speechSynthesis.speak(msg);
 				};
-		  
-				speechSynthesis.speak(msg);
+						
 			});
 
 			
@@ -153,8 +176,8 @@ window.MobileSelect = (function() {
 					// '<select id="voices" class="hidden voices"></select> ' +
 					// '<input type="hidden" id="rate" min="1" max="100" value="10" />' +
 					// '<input type="hidden" id="pitch" min="0" max="2" value="1" />' +
-					'<input type="hidden" id="message" placeholder="message" value="Test">' +
-					'<div class="caption-bar"><button class="btn btn-custom3 waves-effect waves-light btn" id="speak"><i class="fas fa-volume-up" style="font-size:24px"></i></button></div>' +
+					'<input type="hidden" id="message" placeholder="message" value="Test">' + 
+					'<div class="caption-bar"><button class="btn btn-custom3 waves-effect waves-light speak" id="speak"><i class="fas fa-volume-up" style="font-size:24px"></i></button></div>' +
 		            '<div class="panel">'+
 		                '<div class="fixWidth">'+
 		                	'<div class="wheels">'+
