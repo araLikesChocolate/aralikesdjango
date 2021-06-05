@@ -2,7 +2,7 @@ certifi==2019.3.9
 cffi==1.12.3
 cycler==0.10.0
 Cython==0.29.7
-Django==2.2
+Django==2.2.21
 djangorestframework==3.9.2
 easydict==1.9
 jsonfield==2.0.2
